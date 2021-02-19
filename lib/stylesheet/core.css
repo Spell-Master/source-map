@@ -1,0 +1,95 @@
+
+@font-face {font-family: 'gunship'; src: url('../fonts/gunship.ttf')}
+@font-face {font-family: 'roboto'; src: url('../fonts/roboto.ttf')}
+@font-face {font-family: 'quicksand'; src: url('../fonts/Quicksand-VariableFont_wght.ttf')}
+
+/**
+ * ****************************************
+ * Estrutura INDEX
+ * ****************************************
+ */
+html {
+    -webkit-tap-highlight-color: transparent
+}
+body {
+    color: #555555;
+    background-color: #222222;
+    font-family: 'roboto';
+    font-size: 16px
+}
+main {
+    background-color: #ffffff
+}
+footer {
+    background-color: #222222
+}
+.gunship {
+    font-family: 'gunship'
+}
+.quicksand {
+    font-family: 'quicksand'
+}
+article ul:not([class]) {
+    margin-left: 20px
+}
+
+/** ****************************************
+ * Ajustes dos recuros SM CSS/JS
+ * *****************************************/
+.modal {
+    z-index: 999
+}
+.galery-background {
+    filter: blur(5px);
+    opacity: .9
+}
+.galery-background, .galery-box, .galery-image, .thumb-background, .galery-x {
+    z-index: 7
+}
+.galery-image {
+    max-height: 80vh;
+    width: auto;
+    height: auto
+}
+.thumb {
+    height: 55px;
+    width: 55px;
+    margin: 5px
+}
+.select-base > .select-list {
+    z-index: 2
+}
+.modal-content {
+    max-height: 80vh
+}
+hr {
+    border-bottom: 1px solid #d9d9d9
+}
+
+button [class^="icon-"]:before {
+    line-height: inherit;
+    padding: 0 6px
+}
+#paginator > .item {
+    display: none
+}
+#paginator > .item:nth-child(1),
+#paginator > .item:nth-child(2),
+#paginator > .item:nth-child(3),
+#paginator > .item:nth-child(4),
+#paginator > .item:nth-child(5),
+#paginator > .item:nth-child(6),
+#paginator > .item:nth-child(7),
+#paginator > .item:nth-child(8),
+#paginator > .item:nth-child(9) {
+    display: block
+}
+
+.checkmark + label.checkmark-line::before {
+    content: '';
+    margin: 0 -5px;
+    width: 50px;
+    height: 50px
+}
+
+.input-default:invalid:not(:placeholder-shown){color:#f55!important; box-shadow:0 0}
