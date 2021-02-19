@@ -1,0 +1,7 @@
+# NetBeans
+/nbproject/*
+/nbproject
+nbproject/private/private.xml
+nbproject/*
+nbproject/
+nbproject
