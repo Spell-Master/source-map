@@ -12,6 +12,9 @@
   }
  */
 include ('system/config.php');
+require_once 'system/function/LoadModule.php';
+
+$url = SeoData::parseUrl();
 ?>
 <html lang="pt-BR">
     <head>
@@ -32,12 +35,9 @@ include ('system/config.php');
 
     </head>
     <body>
-        <header>
-        </header>
+        <header><?php include ('modules/header.php'); ?></header>
         <main>
-            <?php
-            var_dump($config->dbHost);
-            ?>
+            <?php include (LoadModule($url[0])); ?>
         </main>
         <footer>
 
@@ -51,6 +51,11 @@ include ('system/config.php');
 
         <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
             W: <div class="line-block"></div> <span class="text-red">|</span>
+            <?php
+            foreach ($url as $key => $value) {
+                echo ("url[{$key}] = {$value} <span class=\"text-red\">|</span> ");
+            }
+            ?>
         </div>
         <script>
             var res = document.getElementById('resolucao').children[0];

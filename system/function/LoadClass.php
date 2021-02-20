@@ -11,7 +11,8 @@
 
 spl_autoload_register(function ($Class) {
     $findDir = [
-        'database'
+        'database',
+        'helper',
     ];
     $includeDir = null;
     foreach ($findDir as $DirName) {

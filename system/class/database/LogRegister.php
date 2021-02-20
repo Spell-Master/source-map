@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ********************************************
  * @copyright: Spell Master(c)
@@ -7,6 +6,7 @@
  * @Class: Classe registro de erros.
  * ********************************************
  */
+
 class LogRegister {
 
     private $file;
@@ -78,6 +78,7 @@ class LogRegister {
                 . ($this->message ? "- Mensagem:\n" . strip_tags($this->message) . "\n" : "")
                 . ($this->comment ? "\n- Comentários:\n" . strip_tags($this->comment) : "")
                 . "\n";
+
         $reg = fopen(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR . 'error.txt', 'a');
         fwrite($reg, $txt);
         fclose($reg);
