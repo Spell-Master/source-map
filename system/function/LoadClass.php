@@ -13,6 +13,7 @@ spl_autoload_register(function ($Class) {
     $findDir = [
         'database',
         'helper',
+        'model'
     ];
     $includeDir = null;
     foreach ($findDir as $DirName) {

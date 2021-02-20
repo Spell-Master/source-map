@@ -18,7 +18,7 @@ function LoadModule($module) {
         case 'inicio': $fileName = 'home.php'; break;
         case 'cadastro': $fileName = 'user/new.php'; break;
         case 'recuperar-senha': $fileName = 'user/recover.php'; break;
-        case 'entrar': case 'login': $fileName = 'user/login.php'; break;
+        case 'entrar': $fileName = 'user/login.php'; break;
     }
     if (file_exists('modules/' . $fileName)) {
         return ('modules/' . $fileName);

@@ -13,15 +13,12 @@ html {
 }
 body {
     color: #555555;
-    background-color: #222222;
+    background-color: #444444;
     font-family: 'roboto';
     font-size: 16px
 }
 main {
     background-color: #ffffff
-}
-footer {
-    background-color: #222222
 }
 .gunship {
     font-family: 'gunship'
@@ -93,3 +90,11 @@ button [class^="icon-"]:before {
 }
 
 .input-default:invalid:not(:placeholder-shown){color:#f55!important; box-shadow:0 0}
+
+
+/*
+Outros
+*/
+.patern-bg {
+    background-image: url('../image/patern.svg')
+}

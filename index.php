@@ -12,12 +12,14 @@
   }
  */
 include ('system/config.php');
-require_once 'system/function/LoadModule.php';
+require_once ('system/function/LoadModule.php');
+require_once ('system/function/BaseURI.php');
 
 $url = SeoData::parseUrl();
 ?>
 <html lang="pt-BR">
     <head>
+        <base href="<?= BaseURI(); ?>">
         <meta charset="UTF-8">
         <title><?= NAME ?></title>
         <meta name="ROBOTS" content="INDEX, FOLLOW" />
@@ -26,7 +28,7 @@ $url = SeoData::parseUrl();
         <link href="image/favicon.ico" rel="icon" type="image/x-icon" />
 
         <link href="lib/stylesheet/sm-default.css" rel="stylesheet" type="text/css" />
-        <link href="lib/fonts/iconmoon/icomoon.css" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-libary.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/core.css" rel="stylesheet" type="text/css" />
 

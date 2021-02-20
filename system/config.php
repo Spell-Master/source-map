@@ -40,6 +40,9 @@ try {
 
         /* Nome global para o website */
         defined('NAME') || define('NAME', $config->siteName);
+        
+        /* Define e inicia a única cessão válida dentro do website */
+        $session = Session::startSession(NAME);
     }
 } catch (Exception $e) {
     header('location : http500/');

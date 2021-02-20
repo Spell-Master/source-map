@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xml_author="Omar Pautz (Spell Master)">
     <siteName>Source-Map</siteName> <!-- Nome do website -->
+    
+    <enable>
+        <mail>y</mail> <!-- Habilitar sistema de e-mail -->
+    </enable>
 
 </settings>
