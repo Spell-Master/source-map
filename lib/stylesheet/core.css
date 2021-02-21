@@ -91,6 +91,34 @@ button [class^="icon-"]:before {
 
 .input-default:invalid:not(:placeholder-shown){color:#f55!important; box-shadow:0 0}
 
+/** ****************************************
+ * Código capcha
+ * *****************************************/
+#captchaimg {
+    height: 50px;
+    width: 100%
+}
+.refresh-captcha {
+    height: 50px;
+    display: block;
+    background-color: #4d4d4d;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    text-align: center;
+}
+.refresh-captcha > div {
+    color: #e5e5e5;
+    font-size: 25px;
+    line-height: 50px
+}
+.refresh-captcha:hover > div {
+    color: #ffffff;
+    animation:effect-spin .3s linear
+}
+#captcha {
+    height: 50px;
+    font-size: 25px
+}
 
 /*
 Outros

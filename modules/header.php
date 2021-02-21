@@ -25,15 +25,17 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
                 </li>
                 <?php
             } else {
-                ?>
-                <li class="line-block">
-                    <a href="entrar" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> ENTRAR</a>
-                </li>
-                <li class="line-block">
-                    <span class="bold">|</span>
-                    <a href="cadastro" class="padding-lr-min text-white-hover"><i class="icon-clipboard3"></i> REGISTRO</a>
-                </li>
-                <?php
+                if ($config->enable->users == 'y') {
+                    ?>
+                    <li class="line-block">
+                        <a href="entrar" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> ENTRAR</a>
+                    </li>
+                    <li class="line-block">
+                        <span class="bold">|</span>
+                        <a href="cadastro" class="padding-lr-min text-white-hover"><i class="icon-clipboard3"></i> REGISTRO</a>
+                    </li>
+                    <?php
+                }
                 if ($config->enable->mail == 'y') {
                     ?>
                     <li class="line-block">

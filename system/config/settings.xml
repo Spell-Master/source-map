@@ -2,8 +2,21 @@
 <settings xml_author="Omar Pautz (Spell Master)">
     <siteName>Source-Map</siteName> <!-- Nome do website -->
     
+    <!-- Habilitar ou desabilitar recursos (y: SIM / n: NÃO) -->
     <enable>
+        <user>y</user> <!-- Habilitar cadastro e login para usuários comuns -->
         <mail>y</mail> <!-- Habilitar sistema de e-mail -->
+        <newConfirm>y</newConfirm> <!-- Solicitar confirmação de cadastros por e-mail -->
     </enable>
+    
+    <!-- Determinar quantidades de entradas -->
+    <length>
+        <minName>4</minName> <!-- Mínimo de caracteres em nomes de usuário -->
+        <maxName>30</maxName> <!-- Máximo de caracteres em nomes de usuário -->
+        <minMail>11</minMail> <!-- Mínimo de caracteres em endereços de e-mail -->
+        <maxMail>80</maxMail> <!-- Máximo de caracteres em endereços de e-mail -->
+        <minPass>6</minPass> <!-- Mínimo de caracteres em senha -->
+        <maxPass>50</maxPass> <!-- Máximo de caracteres em senha -->
+    </length>
 
 </settings>
