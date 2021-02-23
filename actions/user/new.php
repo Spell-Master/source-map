@@ -1,3 +1,6 @@
+<?php
+echo ("<script>smlib.modal.showX();</script>");
+var_dump($_POST);
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

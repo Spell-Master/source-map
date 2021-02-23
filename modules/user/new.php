@@ -2,7 +2,7 @@
 try {
     if (isset($session->user)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($config->enable->users == 'n') {
+    } else if ($config->enable->user == 'n') {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else {
         ?>
@@ -52,9 +52,9 @@ try {
                                     <p>Senha</p>
                                     <div class="row">
                                         <div class="float-right">
-                                            <button class="btn-dark text-white box-y-50" title="Mostrar Senha" style="padding: 6px 14px">
-                                                <i class="icon-eye font-large"></i>
-                                            </button>
+                                            <a class="btn-dark text-white box-y-50" title="Mostrar Senha" style="padding: 6px 14px" onclick="smcore.formItens.showPass()">
+                                                <i class="icon-eye font-large" id="pass-icon"></i>
+                                            </a>
                                         </div>
                                         <div class="over-not">
                                             <input id="pass" name="pass" type="password" maxlength="<?= $config->length->maxPass ?>" placeholder="Informe a senha" class="input-default align-center" />
@@ -70,10 +70,10 @@ try {
 
                                     <p class="font-medium">Você aceita e garante seguir todos os <a href="termos" target="_black" class="href-link underline">termos de uso</a>?</p>
                                     <div class="relative margin-top">
-                                        <input class="checkmark" name="exemplo_radio" id="terms-a" type="radio">
+                                        <input class="checkmark" name="terms" id="terms-a" type="radio">
                                         <label for="terms-a" class="text-green"> SIM <i class="icon-thumbs-up3"></i></label>
 
-                                        <input class="checkmark" name="exemplo_radio" id="terms-b" type="radio" checked="">
+                                        <input class="checkmark" name="terms" id="terms-b" type="radio" checked="">
                                         <label for="terms-b" class="text-red"> NÃO <i class="icon-thumbs-down3"></i></label>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@ try {
                                         <img src="lib/image/captcha.php" alt="captcha" id="captchaimg" class="border-all-wide border-light-black radius-left-small bg-dark" />
                                     </div>
                                     <div class="col-quarter col-fix">
-                                        <a class="refresh-captcha" title="Trocar Código">
+                                        <a class="refresh-captcha" title="Trocar Código" onclick="smcore.formItens.capctha()">
                                             <div class="icon-loop3"></div>
                                         </a>
                                     </div>
@@ -104,7 +104,14 @@ try {
                     </form>
 
                     <div class="margin-top-high align-center">
-                        <button class="btn-info text-white">
+                        <button class="btn-info text-white shadow-on-hover" onclick="newUser([
+                                    '<?= $config->length->minName ?>',
+                                    '<?= $config->length->maxName ?>',
+                                    '<?= $config->length->minMail ?>',
+                                    '<?= $config->length->maxMail ?>',
+                                    '<?= $config->length->minPass ?>',
+                                    '<?= $config->length->maxPass ?>'
+                                ])">
                             Enviar solicitação de Cadastro
                             <i class="icon-upload5"></i>
                         </button>

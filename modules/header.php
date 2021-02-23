@@ -25,7 +25,7 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
                 </li>
                 <?php
             } else {
-                if ($config->enable->users == 'y') {
+                if ($config->enable->user == 'y') {
                     ?>
                     <li class="line-block">
                         <a href="entrar" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> ENTRAR</a>
