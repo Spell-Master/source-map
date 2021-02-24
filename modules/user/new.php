@@ -29,7 +29,6 @@ try {
                         <h1 class="quicksand">Bem Vindo(a)</h1>
 
                         <div class="alert-warning margin-top-high shadow">
-
                             <p class="bold">Antes de prosseguir com o cadastro, leia com atenção nossos termos uso.</p>
                             <p>Você pode visualiza-los através desse <a href="termos" target="_black" class="href-link bold underline">endereço</a></p>
                         </div>
@@ -67,7 +66,6 @@ try {
                                 </div>
 
                                 <div class="col-single align-center">
-
                                     <p class="font-medium">Você aceita e garante seguir todos os <a href="termos" target="_black" class="href-link underline">termos de uso</a>?</p>
                                     <div class="relative margin-top">
                                         <input class="checkmark" name="terms" value="a" id="terms-a" type="radio">
@@ -104,25 +102,27 @@ try {
                     </form>
 
                     <div class="margin-top-high align-center">
-                        <button class="btn-info text-white shadow-on-hover" onclick="newUser([
-                                    '<?= $config->length->minName ?>',
-                                    '<?= $config->length->maxName ?>',
-                                    '<?= $config->length->minMail ?>',
-                                    '<?= $config->length->maxMail ?>',
-                                    '<?= $config->length->minPass ?>',
-                                    '<?= $config->length->maxPass ?>'
-                                ])">
+                        <button class="btn-info text-white shadow-on-hover" onclick="newUser(['<?= $config->length->minName ?>', '<?= $config->length->maxName ?>', '<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])">
                             Enviar solicitação de Cadastro
                             <i class="icon-upload5"></i>
                         </button>
                     </div>
 
-                    <div class="margin-top align-right">
-                        <a href="entrar" class="href-link">Início</a> |
-                        <a href="entrar" class="href-link">Entrar</a> |
-                        <?php if ($config->enable->mail == 'y') { ?>
-                            <a href="recuperar-senha" class="href-link">Recuperar Senha</a>
-                        <?php } ?>
+                    <div class="row-pad margin-top">
+                        <div class="col-half col-fix">
+                            <?php if ($config->enable->mail == 'y' && $config->enable->newConfirm == 'y') { ?>
+                                <a href="confirmar" class="btn-empty href-link" title="Enviar outro e-mail de confirmação do cadastro relaziado">
+                                    <i class="icon-mail4"></i>
+                                    Re-enviar e-mail
+                                </a>
+                            <?php } ?>
+                        </div>
+                        <div class="col-half col-fix align-right">
+                            <a href="entrar" class="href-link"><i class="icon-user3"></i> Entrar</a> |
+                            <?php if ($config->enable->mail == 'y') { ?>
+                                <a href="recuperar-senha" class="href-link"><i class="icon-lock"></i> Senha</a>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>

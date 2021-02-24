@@ -9,6 +9,9 @@ if ($post) {
         case 'new-user':
             $include = 'user/new.php';
             break;
+        case 're-mail':
+            $include = 'user/re-mail.php';
+            break;
         default:
             $include = '../error/500.php';
             break;

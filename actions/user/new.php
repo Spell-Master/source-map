@@ -1,13 +1,25 @@
 <?php
+$uri = GlobalFilter::filterServe();
+
 $len = new LenMaxMin();
 $social = new SocialLink();
+$code = new CreateCode();
+$clear = new StrClean();
+$select = new Select();
+$insert = new Insert();
+$delete = new Delete();
+$mailer = new Mailer();
 
+$selectB = clone $select;
+$selectC = clone $select;
+
+$hostUrl = substr($uri->HTTP_REFERER, 0, strpos($uri->HTTP_REFERER, 'cadastro'));
 $name = (isset($post->name) ? trim($post->name) : false);
 $mail = (isset($post->mail) ? trim($post->mail) : false);
 $pass = (isset($post->pass) ? trim($post->pass) : false);
 $passb = (isset($post->pass) ? $post->passb : false);
 $terms = (isset($post->terms) ? $post->terms : false);
-$captcha = (isset($post->terms) ? trim($post->captcha) : false);
+$captcha = (isset($post->captcha) ? trim($post->captcha) : false);
 
 try {
     if (isset($session->user)) {
@@ -48,20 +60,13 @@ try {
     //
     else if (!$captcha) {
         throw new ConstException('Não recebido dados de $_POST[\'captcha\']', ConstException::SYSTEM_ERROR);
-    }
-    //
-    else if ($config->enable->captchaSensitive == 'y' && ($captcha !== $session->code)) {
+    } else if ($config->enable->captchaSensitive == 'y' && ($captcha !== $session->code)) {
         throw new ConstException('Código de verificação não está correto', ConstException::INVALID_POST);
     } else if ($config->enable->captchaSensitive == 'n' && (strtolower($captcha) !== strtolower($session->code))) {
         throw new ConstException('Código de verificação não está correto', ConstException::INVALID_POST);
     }
     //
     else {
-        $code = new CreateCode();
-        $clear = new StrClean();
-        $select = new Select();
-        $selectB = clone $select;
-
         $save = [
             'code' => $code->defCode(20) . time(),
             'mail' => htmlentities($mail),
@@ -71,56 +76,38 @@ try {
             'date' => date('Y-m-d')
         ];
 
+        // Verificar se já existe um usuário cadastrado
         $select->query(
-                "users",
-                "u_mail = :um OR u_link = :ul",
-                "um={$save['mail']}&ul={$save['link']}"
+            "users",
+            "u_mail = :um OR u_link = :ul",
+            "um={$save['mail']}&ul={$save['link']}"
         );
 
+        // Verificar se já existe um cadastro aguardando confirmação
         $selectB->query(
-                "users_temp",
-                "ut_code = :utc OR ut_mail = :utm",
-                "utc={$save['code']}&utm={$save['mail']}"
+            "users_temp",
+            "ut_code = :utc OR ut_mail = :utm",
+            "utc={$save['code']}&utm={$save['mail']}"
         );
-
 
         if ($select->count()) {
             throw new ConstException('Não é possível concluir o cadastro'
-                    . '<p class="font-small">Tente um nome ou e-mail diferentes</p>', ConstException::INVALID_POST);
+            . '<p class="font-small">Tente um nome ou e-mail diferentes</p>', ConstException::INVALID_POST);
         } else if ($selectB->count()) {
             throw new ConstException('Já exite uma requisição de cadastro esperando confirmação'
-                    . '<p class="font-small">Verifique a caixa de entrada do e-mail de ' . $save['mail'] . '</p>', ConstException::INVALID_POST);
+            . '<p class="font-small">Verifique a caixa de entrada do e-mail de ' . $save['mail'] . '</p>', ConstException::INVALID_POST);
         } else if ($select->error() || $selectB->error()) {
             $error = "";
             $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
             $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
             throw new ConstException($error, ConstException::SYSTEM_ERROR);
         } else {
-            $insert = new Insert();
 
             ////////////////////////////////////////////////////
-            //
-            // Confimar cadastro por e-mail
-            // 
+            // CONFIRMAR CADASTRO POR E-MAIL
             ////////////////////////////////////////////////////
             if ($config->enable->mail == 'y' && $config->enable->newConfirm == 'y') {
-                $uri = GlobalFilter::filterServe();
-                $hostUrl = substr($uri->HTTP_REFERER, 0, strpos($uri->HTTP_REFERER, 'cadastro'));
-
-                // APAGAR TODOS REGISTROS COM MAIS DE 1 DIA
-                $day = date('Y-m-d', strtotime(date('Y-m-d') . ' -1 day'));
-                $selectC = clone $select;
-                $delete = new Delete();
-                $selectC->setQuery("SELECT ut_code, ut_date FROM users_temp WHERE ut_date < '{$day}'");
-                if ($selectC->count()) {
-                    foreach ($selectC->result() as $value) {
-                        $delete->query("users_temp", "ut_code = :utc", "utc={$value->ut_code}");
-                    }
-                } else if ($selectC->error()) {
-                    throw new ConstException($selectC->error(), ConstException::SYSTEM_ERROR);
-                }
-
-                // SALVAR USUÁRIO TEMPORÁRIO
+                // Salvar usuário temporário
                 $insert->query("users_temp", [
                     'ut_code' => $save['code'],
                     'ut_mail' => $save['mail'],
@@ -130,21 +117,33 @@ try {
                     'ut_date' => $save['date']
                 ]);
 
+                // Apagar registros temporários com mais de 1 dia
+                $day = date('Y-m-d', strtotime(date('Y-m-d') . ' -1 day'));
+                $selectC->setQuery("SELECT ut_code, ut_date FROM users_temp WHERE ut_date < '{$day}'");
+                if ($selectC->count()) {
+                    foreach ($selectC->result() as $value) {
+                        $delete->query("users_temp", "ut_code = :utc", "utc={$value->ut_code}");
+                    }
+                } else if ($selectC->error()) {
+                    throw new ConstException($selectC->error(), ConstException::SYSTEM_ERROR);
+                }
+
                 if ($insert->count()) {
-                    $mailer = new Mailer();
+                    // Enviar e-mail de confirmação
+
                     $mailer->sendMail(
-                            $save['mail'],
-                            'Requisição de Cadastro',
-                            __DIR__ . '/../../mail/new_user.html',
-                            [
-                                'link' => $hostUrl,
-                                'sitename' => NAME,
-                                'mail' => $save['mail'],
-                                'hour' => date('H:m:s'),
-                                'date' => $clear->dateTime($save['date']),
-                                'name' => $save['name'],
-                                'code' => $save['code']
-                            ]
+                        $save['mail'],
+                        'Requisição de Cadastro',
+                        __DIR__ . '/../../mail/new_user.html',
+                        [
+                            'link' => $hostUrl,
+                            'sitename' => NAME,
+                            'mail' => $save['mail'],
+                            'hour' => date('H:m:s'),
+                            'date' => $clear->dateTime($save['date']),
+                            'name' => $save['name'],
+                            'code' => $save['code']
+                        ]
                     );
                     ?>
                     <div class="align-center padding-all">
@@ -163,22 +162,21 @@ try {
                         }, <?= $config->length->reload ?>000);
                     </script>
                     <?php
-                    exit();
                 } else if ($insert->error()) {
                     throw new ConstException($insert->error(), ConstException::SYSTEM_ERROR);
                 } else {
                     throw new ConstException('No momento não foi possível concluir o cadastro'
-                            . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
+                    . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
                 }
             }
 
             ////////////////////////////////////////////////////
-            //
-            // Cadastrar sem confirmação de e-mail
-            // 
+            // CADASTRAR SEM CONFIRMAÇÃO DE E-MAIL
             ////////////////////////////////////////////////////
             else {
+                // Salvar usuário
                 $insert->query("users", [
+                    'u_hash' => $save['code'],
                     'u_mail' => $save['mail'],
                     'u_pass' => $save['pass'],
                     'u_name' => $save['name'],
@@ -186,24 +184,25 @@ try {
                     'u_date' => $save['date']
                 ]);
                 if ($insert->count()) {
+                    // Iniciar cessão
+                    $session->user = GlobalFilter::StdArray([
+                        'hash' => $save['code'],
+                        'mail' => $save['mail'],
+                        'name' => $save['name'],
+                        'link' => $save['link'],
+                    ]);
+                    // Definir o cookie
+                    setcookie('clienthash', $save['code'], time() + 3600 * 24 * 365, '/', $uri->HTTP_HOST, false);
 
-                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    // CRIAR SESSÃO !!!!!!!!!!!!!!!!
-                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     ?>
-                    <div class="align-center">
-                        Sua solicitação de cadastro foi enviada
-                        <p class="font-small">
-                            Consulte seu e-mail <span class="text-red bold"><?= $mail ?></span> para mais informações
-                        </p>
+                    <div class="align-center padding-all">
+                        <i class="icon-warning icn-4x"></i>
+                        <p>Cadastro Concluído</p>
+                        <a class="btn-default shadow-on-hover" href="perfil/<?= $save['link'] ?>">Ir para sua página</a>
                     </div>
-                    <div class="padding-all">
-                        <a href="./" class="btn-default button-block">Voltar ao início</a>
-                    </div>
-
                     <script>
                         setTimeout(function () {
-                            smcore.go.href = 'perfil/<?= $save['link'] ?>';
+                            smcore.go.href('perfil/<?= $save['link'] ?>');
                         }, <?= (int) $config->length->reload ?>000);
                     </script>
                     <?php
@@ -211,7 +210,7 @@ try {
                     throw new ConstException($insert->error(), ConstException::SYSTEM_ERROR);
                 } else {
                     throw new ConstException('No momento não foi possível concluir o cadastro'
-                            . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
+                    . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
                 }
             }
         }

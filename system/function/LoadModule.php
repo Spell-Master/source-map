@@ -20,6 +20,7 @@ function LoadModule($module) {
         case 'confirmar': $fileName = 'user/confirm.php'; break;
         case 'recuperar-senha': $fileName = 'user/recover.php'; break;
         case 'entrar': $fileName = 'user/login.php'; break;
+        case 'perfil': $fileName = 'user/profile.php'; break;
         case 'termos': $fileName = 'info/terms.php'; break;
     }
     if (file_exists('modules/' . $fileName)) {

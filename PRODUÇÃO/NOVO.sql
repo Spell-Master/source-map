@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `u_id` int(11) NOT NULL AUTO_INCREMENT,
     `u_mail` varchar(90) NOT NULL DEFAULT '' COMMENT 'Endereço de email',
+    `u_hash` varchar(50) NOT NULL DEFAULT '' COMMENT 'Hash identificador',
     `u_pass` varchar(500) NOT NULL DEFAULT '' COMMENT 'Senha de acesso',
     `u_level` int(1) NOT NULL DEFAULT 0 COMMENT 'Nível de acesso',
     `u_name` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nome do usuário',

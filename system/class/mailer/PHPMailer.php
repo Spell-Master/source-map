@@ -2646,6 +2646,10 @@ class PHPMailer
             if (!is_readable($path)) {
                 throw new phpmailerException($this->lang('file_open') . $path, self::STOP_CONTINUE);
             }
+
+            /*
+             * ***********************************************************
+             * ISSO NÃO FUNCIONA NO PHP 8
             $magic_quotes = get_magic_quotes_runtime();
             if ($magic_quotes) {
                 if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -2665,7 +2669,15 @@ class PHPMailer
                 } else {
                     ini_set('magic_quotes_runtime', $magic_quotes);
                 }
-            }
+            } 
+             */
+            
+            // SOLUÇÃO para get_magic_quotes_runtime
+            ini_set('magic_quotes_runtime', false);
+            $file_buffer = file_get_contents($path);
+            $file_buffer = $this->encodeString($file_buffer, $encoding);
+            
+            
             return $file_buffer;
         } catch (Exception $exc) {
             $this->setError($exc->getMessage());
