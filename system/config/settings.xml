@@ -7,10 +7,13 @@
         <user>y</user> <!-- Habilitar cadastro e login para usuários comuns -->
         <mail>y</mail> <!-- Habilitar sistema de e-mail -->
         <newConfirm>y</newConfirm> <!-- Solicitar confirmação de cadastros por e-mail -->
+        <captchaSensitive>n</captchaSensitive> <!-- O código captcha deve diferenciar letras minúsculas de maiúsculas -->
     </enable>
     
     <!-- Determinar quantidades de entradas -->
     <length>
+        <colldown>1</colldown> <!-- Aguardar em segundos até um arquivo seja aberto por um AJAX -->
+        <reload>5</reload> <!-- Aguardar em segundos para redirecionar automaticamente -->
         <minName>4</minName> <!-- Mínimo de caracteres em nomes de usuário -->
         <maxName>30</maxName> <!-- Máximo de caracteres em nomes de usuário -->
         <minMail>11</minMail> <!-- Mínimo de caracteres em endereços de e-mail -->

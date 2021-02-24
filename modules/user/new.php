@@ -70,10 +70,10 @@ try {
 
                                     <p class="font-medium">Você aceita e garante seguir todos os <a href="termos" target="_black" class="href-link underline">termos de uso</a>?</p>
                                     <div class="relative margin-top">
-                                        <input class="checkmark" name="terms" id="terms-a" type="radio">
+                                        <input class="checkmark" name="terms" value="a" id="terms-a" type="radio">
                                         <label for="terms-a" class="text-green"> SIM <i class="icon-thumbs-up3"></i></label>
 
-                                        <input class="checkmark" name="terms" id="terms-b" type="radio" checked="">
+                                        <input class="checkmark" name="terms" value="b" id="terms-b" type="radio" checked="">
                                         <label for="terms-b" class="text-red"> NÃO <i class="icon-thumbs-down3"></i></label>
                                     </div>
                                 </div>

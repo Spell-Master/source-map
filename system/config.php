@@ -38,9 +38,16 @@ try {
         defined('PASS') || define('PASS', $config->dbPass);
         defined('DATA') || define('DATA', $config->dbName);
 
+        /* Constants para conexão SMTP */
+        defined('MAILTYPE') || define('MAILTYPE', $config->mailType);
+        defined('MAILHOST') || define('MAILHOST', $config->mailHost);
+        defined('MAILPORT') || define('MAILPORT', $config->mailPort);
+        defined('MAILUSER') || define('MAILUSER', $config->mailUser);
+        defined('MAILPASS') || define('MAILPASS', $config->mailPass);
+
         /* Nome global para o website */
         defined('NAME') || define('NAME', $config->siteName);
-        
+
         /* Define e inicia a única cessão válida dentro do website */
         $session = Session::startSession(NAME);
     }

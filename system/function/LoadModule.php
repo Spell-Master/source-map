@@ -17,6 +17,7 @@ function LoadModule($module) {
     switch ($module) {
         case 'inicio': $fileName = 'home.php'; break;
         case 'cadastro': $fileName = 'user/new.php'; break;
+        case 'confirmar': $fileName = 'user/confirm.php'; break;
         case 'recuperar-senha': $fileName = 'user/recover.php'; break;
         case 'entrar': $fileName = 'user/login.php'; break;
         case 'termos': $fileName = 'info/terms.php'; break;

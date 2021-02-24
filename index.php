@@ -34,7 +34,7 @@ $url = SeoData::parseUrl();
         
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
-        <script src="lib/javascript/sm-core.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-core.js?rand=<?= time() ?>" type="text/javascript"></script>
         <script src="lib/javascript/from-actions.js" type="text/javascript"></script>
 
     </head>
