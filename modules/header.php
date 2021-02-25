@@ -2,7 +2,7 @@
 $user = (isset($session->user) ? $session->user : false);
 if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar' || $url[0] == 'confirmar') {
     if ($user) {
-        header('LOCATION: ' . BaseURI());
+        header('LOCATION: ' . $baseUri);
     }
 } else if ($url[0] == 'inicio') {
     ?>

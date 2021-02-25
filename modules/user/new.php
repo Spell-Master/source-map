@@ -132,7 +132,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            header('LOCATION: ' . BaseURI());
+            header('LOCATION: ' . $baseUri);
             break;
     }
 }

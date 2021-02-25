@@ -15,6 +15,9 @@ if ($post) {
         case 'confirm-new':
             $include = 'user/new-confirm.php';
             break;
+        case 'recover-pass':
+            $include = 'user/recover-pass.php';
+            break;
         default:
             $include = '../error/500.php';
             break;

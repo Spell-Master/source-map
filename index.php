@@ -15,11 +15,12 @@ include ('system/config.php');
 require_once ('system/function/LoadModule.php');
 require_once ('system/function/BaseURI.php');
 
+$baseUri = BaseURI();
 $url = SeoData::parseUrl();
 ?>
 <html lang="pt-BR">
     <head>
-        <base href="<?= BaseURI(); ?>">
+        <base href="<?= $baseUri ?>">
         <meta charset="UTF-8">
         <title><?= NAME ?></title>
         <meta name="ROBOTS" content="INDEX, FOLLOW" />
