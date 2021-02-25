@@ -24,6 +24,8 @@ $captcha = (isset($post->captcha) ? trim($post->captcha) : false);
 try {
     if (isset($session->user)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
+    } else if ($config->enable->user == 'n') {
+        throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //
     else if (!$name) {
@@ -72,7 +74,7 @@ try {
             'mail' => htmlentities($mail),
             'pass' => password_hash(htmlentities($pass), PASSWORD_DEFAULT),
             'name' => htmlentities($name),
-            'link' => $clear->formatStr($name),
+            'link' => $clear->formatStr(mb_strtolower($name)),
             'date' => date('Y-m-d')
         ];
 
@@ -189,7 +191,7 @@ try {
                         'hash' => $save['code'],
                         'mail' => $save['mail'],
                         'name' => $save['name'],
-                        'link' => $save['link'],
+                        'link' => $save['link']
                     ]);
                     // Definir o cookie
                     setcookie('clienthash', $save['code'], time() + 3600 * 24 * 365, '/', $uri->HTTP_HOST, false);
@@ -198,7 +200,9 @@ try {
                     <div class="align-center padding-all">
                         <i class="icon-warning icn-4x"></i>
                         <p>Cadastro Concluído</p>
-                        <a class="btn-default shadow-on-hover" href="perfil/<?= $save['link'] ?>">Ir para sua página</a>
+                        <div class="margin-top">
+                            <a class="btn-default shadow-on-hover" href="perfil/<?= $save['link'] ?>">Ir para sua página</a>
+                        </div>
                     </div>
                     <script>
                         setTimeout(function () {

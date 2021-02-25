@@ -13,6 +13,8 @@ $captcha = (isset($post->captcha) ? trim($post->captcha) : false);
 try {
     if (isset($session->user)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
+    } else if ($config->enable->mail == 'n') {
+        throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //
     else if (!$mail) {

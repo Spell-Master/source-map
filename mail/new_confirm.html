@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Confirmar Cadastro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {color:#777777;font-family:'roboto';}
+            a:active,a:hover{outline-width:0}
+            a{text-decoration:none;background-color:transparent}
+        </style>
+    </head>
+    <body>
+        <div style="background:#ffffff;">
+            <div style="background:#333333; padding:18px; font-size:24px">
+                <a href="{link}" target="_blank">
+                    <img src="cid:smlogo" alt="{sitename}" />
+                </a>
+            </div>
+            <div style="padding:10px; font-size:16px; color:#444444">
+                Senhor(a) propietário do endereço de e-mail {mail}.
+                <p>Você está recebendo isso devido a uma confirmação de cadastro em nosso
+                    <a href="{link}"  target="_blank">website</a> às {hour} no dia {date}.
+                </p>
+                <p>Esperamos que possa aproveitar e participar com louvor em nossa comunidade pois é um prazer ter você conosco.</p>
+                <p>Não se esqueça de acessar seu perfil e personalizar-lo conforme desejar</p>
+                
+                <div style="padding:30px 10px; font-size:16px; color:#444444">
+                    <a href="{link}{profile}" target="_blank" style="outline:0;border:none;padding:.75rem 1.5rem;width:15.625rem;display:inline-block;vertical-align:middle;text-decoration:none;text-align:center;color:inherit;background-color:inherit;cursor:pointer;word-wrap:break-word;background-color:#3f7ebf;color:#ffffff">
+                        Seu Perfil
+                    </a>
+                    <p style="font-style:italic">{link}{profile}<p>
+                </div>
+            </div>
+        </div>
+        <div style="background:#e5e5e5; padding:18px; font-size:16px;  color:#444444">
+            Caso desconheça essa ação, por favor entre em nossa comunidade pelo link <a href="{link}entrar" target="_blank">{sitename}</a> e poderá excluir seu perfil de nossa comunidade.
+        </div>
+        <div style="background:#444444; padding:18px; text-align:right; font-size:12px; color:#e5e5e5">
+            Equipe {sitename}
+        </div>
+    </body>
+</html>

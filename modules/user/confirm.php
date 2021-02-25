@@ -27,7 +27,49 @@ try {
                     </div>
                 </div>
                 <div class="bg-white margin-bottom padding-all">
-                    <?php if (isset($config[1])) { ?>
+                    <?php if (isset($confirm[1])) { ?>
+                        <div class="align-center">
+                            <h2 class="quicksand">Confirmação de Cadastro</h2>
+
+                            <hr />
+                            <div class="margin-top">
+                                <div class="margin-auto" style="max-width: 400px">
+                                    <p class="list margin-left align-left">Código de verificação</p>
+                                    <div class="row">
+                                        <div class="col-threequarter col-fix">
+                                            <img src="lib/image/captcha.php" alt="captcha" id="captchaimg" class="border-all-wide border-light-black radius-left-small bg-dark" />
+                                        </div>
+                                        <div class="col-quarter col-fix">
+                                            <a class="refresh-captcha" title="Trocar Código" onclick="smcore.formItens.capctha()">
+                                                <div class="icon-loop3"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <form method="POST" action="" id="confirm-new">
+                                        <p class="align-left">Código de Ativação</p>
+                                        <div class="input-default align-center"><?= $confirm[1] ?></div>
+
+                                        <p class="align-left">Confirme o e-mail</p>
+                                        <input type="text" name="mail" id="mail" class="input-default align-center" placeholder="exemplo@exemplo.com" maxlength="<?= $config->length->maxMail ?>" />
+
+                                        <p class="align-left">Código de Verificação</p>
+                                        <input id="captcha" name="captcha" type="text" maxlength="6" placeholder="xxxxxx" pattern="([a-zA-Z0-9]+)" class="input-default align-center gunship" />
+
+                                        <input type="hidden" name="hash" value="<?= $confirm[1] ?>" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="margin-top-high align-center">
+                                <button class="btn-info text-white shadow-on-hover" onclick="confirmNew([
+                                                        '<?= $config->length->minMail ?>',
+                                                        '<?= $config->length->maxMail ?>'
+                                                    ])">
+                                    Validar Cadastro
+                                    <i class="icon-upload5"></i>
+                                </button>
+                            </div>
+                        </div>
 
                     <?php } else { ?>
                         <div class="align-center">
@@ -52,7 +94,7 @@ try {
                                         <p class="align-left">E-mail cadastrado</p>
                                         <input type="text" name="mail" id="mail" class="input-default align-center" maxlength="<?= $config->length->maxMail ?>" />
 
-                                        <p class="align-left">Insira o código de verificação</p>
+                                        <p class="align-left">Código de Verificação</p>
                                         <input id="captcha" name="captcha" type="text" maxlength="6" pattern="([a-zA-Z0-9]+)" class="input-default align-center gunship" />
                                     </form>
                                 </div>
@@ -68,7 +110,17 @@ try {
                                 </button>
                             </div>
                         </div>
-                    <?php } ?>
+                        <?php
+                        if ($config->enable->user == 'y') {
+                            ?>
+                            <div class="align-right margin-top">
+                                <a href="entrar" class="href-link"><i class="icon-user3"></i> Entrar</a> |
+                                <a href="cadastro" class="href-link"><i class="icon-clipboard3"></i> Cadastro</a>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>

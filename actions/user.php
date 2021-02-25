@@ -12,6 +12,9 @@ if ($post) {
         case 're-mail':
             $include = 'user/re-mail.php';
             break;
+        case 'confirm-new':
+            $include = 'user/new-confirm.php';
+            break;
         default:
             $include = '../error/500.php';
             break;
