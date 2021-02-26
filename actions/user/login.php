@@ -5,6 +5,7 @@ $len = new LenMaxMin();
 $social = new SocialLink();
 $select = new Select();
 $clear = new StrClean();
+$user = new SmUser();
 
 $mail = (isset($post->mail) ? trim($post->mail) : false);
 $pass = (isset($post->pass) ? trim($post->pass) : false);
@@ -54,16 +55,14 @@ try {
                 // Nenhum banimento
                 else {
                     // Iniciar cessão
-                    $session->user = GlobalFilter::StdArray([
+                    $user->setLogin([
                         'hash' => $userData->u_hash,
                         'mail' => $userData->u_mail,
                         'name' => $userData->u_name,
-                        'link' => $userData->u_link
+                        'link' => $userData->u_link,
+                        'level' => $userData->u_level
                     ]);
-                    // Definir o cookie
-                    setcookie('clienthash', $userData->u_hash, time() + 3600 * 24 * 365, '/', $uri->HTTP_HOST, false);
                 }
-
                 SeoData::showProgress();
                 ?>
                 <div class="align-center">

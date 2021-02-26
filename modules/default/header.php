@@ -1,7 +1,7 @@
 <?php
-$user = (isset($session->user) ? $session->user : false);
+$login = (isset($session->user) ? $session->user : false);
 if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar' || $url[0] == 'confirmar') {
-    if ($user) {
+    if ($login) {
         header('LOCATION: ' . $baseUri);
     }
 } else if ($url[0] == 'inicio') {
@@ -9,7 +9,7 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
     <div class="padding-all-min patern-bg align-right font-small text-light-grey">
         <ul class="list-none">
             <?php
-            if ($user) {
+            if ($login) {
                 ?>
                 <li class="line-block">
                     <a href="perfil/" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> PERFIL</a>
@@ -44,7 +44,7 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
                     </li>
                     <?php
                 }
-            } // $user
+            } // $login
             ?>
         </ul>
     </div>

@@ -9,6 +9,7 @@ $select = new Select();
 $insert = new Insert();
 $delete = new Delete();
 $mailer = new Mailer();
+$user = new SmUser();
 
 $mail = (isset($post->mail) ? trim($post->mail) : false);
 $captcha = (isset($post->captcha) ? trim($post->captcha) : false);
@@ -73,14 +74,13 @@ try {
                     throw new ConstException($delete->error(), ConstException::SYSTEM_ERROR);
                 } else {
                     // Iniciar cessão
-                    $session->user = GlobalFilter::StdArray([
+                    $user->setLogin([
                         'hash' => $tempData->ut_code,
                         'mail' => $tempData->ut_mail,
                         'name' => $tempData->ut_name,
-                        'link' => $tempData->ut_link
+                        'link' => $tempData->ut_link,
+                        'level' => 0
                     ]);
-                    // Definir o cookie
-                    setcookie('clienthash', $tempData->ut_code, time() + 3600 * 24 * 365, '/', $uri->HTTP_HOST, false);
 
                     if ($config->enable->mail == 'y') {
                         $mailer->sendMail(

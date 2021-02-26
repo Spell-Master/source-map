@@ -132,7 +132,6 @@ try {
 
                 if ($insert->count()) {
                     // Enviar e-mail de confirmação
-
                     $mailer->sendMail(
                         $save['mail'],
                         'Requisição de Cadastro',
@@ -187,15 +186,13 @@ try {
                 ]);
                 if ($insert->count()) {
                     // Iniciar cessão
-                    $session->user = GlobalFilter::StdArray([
+                    $user->setLogin([
                         'hash' => $save['code'],
                         'mail' => $save['mail'],
                         'name' => $save['name'],
-                        'link' => $save['link']
+                        'link' => $save['link'],
+                        'level' => 0
                     ]);
-                    // Definir o cookie
-                    setcookie('clienthash', $save['code'], time() + 3600 * 24 * 365, '/', $uri->HTTP_HOST, false);
-
                     ?>
                     <div class="align-center padding-all">
                         <i class="icon-warning icn-4x"></i>

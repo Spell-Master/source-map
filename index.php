@@ -17,6 +17,25 @@ require_once ('system/function/BaseURI.php');
 
 $baseUri = BaseURI();
 $url = SeoData::parseUrl();
+
+// Logar o usuário pelo cookie
+$cookie = GlobalFilter::filterCookie();
+$select = new Select();
+$clear = new StrClean();
+$user = new SmUser();
+if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($session->user)) {
+    $select->query("users", "u_hash = :uh", "uh={$clear->formatStr($cookie->clienthash)}");
+    if ($select->count()) {
+        $userData = $select->result()[0];
+        $user->setLogin([
+            'hash' => $userData->u_hash,
+            'mail' => $userData->u_mail,
+            'name' => $userData->u_name,
+            'link' => $userData->u_link,
+            'level' => $userData->u_level
+        ]);
+    }
+}
 ?>
 <html lang="pt-BR">
     <head>
@@ -32,7 +51,7 @@ $url = SeoData::parseUrl();
         <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-libary.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-core.css?rand=<?= time() ?>" rel="stylesheet" type="text/css" />
-        
+
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-core.js?rand=<?= time() ?>" type="text/javascript"></script>
@@ -40,19 +59,9 @@ $url = SeoData::parseUrl();
 
     </head>
     <body>
-        <header><?php include ('modules/header.php'); ?></header>
-        <main>
-            <?php include (LoadModule($url[0])); ?>
-        </main>
-        <footer>
-
-            <div class="modal" id="default-modal">
-                <div class="modal-box zoom-in" style="max-width: 600px">
-                    <div class="modal-header"></div>
-                    <div class="modal-content over-y" id="modal-load"></div>
-                </div>
-            </div>
-        </footer>
+        <header><?php include ('modules/default/header.php'); ?></header>
+        <main><?php include (LoadModule($url[0])); ?></main>
+        <footer><?php include ('modules/default/footer.php'); ?></footer>
 
         <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
             W: <div class="line-block"></div> <span class="text-red">|</span>
