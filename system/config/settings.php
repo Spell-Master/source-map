@@ -5,8 +5,8 @@ return [
     /*
      * Níveis de Acesso
      */
-    'developer' => 1, // Desenvolvedor
-    'staff' => 2, // Coordenador
+    'staff' => 1, // Moderador
+    'manager' => 2, // Coordenador
     'admin' => 3, // Administrador
 
     /*

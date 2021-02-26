@@ -18,6 +18,9 @@ if ($post) {
         case 'recover-pass':
             $include = 'user/recover-pass.php';
             break;
+        case 'user-login':
+            $include = 'user/login.php';
+            break;
         default:
             $include = '../error/500.php';
             break;
