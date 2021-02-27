@@ -8,6 +8,7 @@
         <mail>y</mail> <!-- Habilitar sistema de e-mail -->
         <newConfirm>n</newConfirm> <!-- Solicitar confirmação de cadastros por e-mail -->
         <captchaSensitive>n</captchaSensitive> <!-- O código captcha deve diferenciar letras minúsculas de maiúsculas -->
+        <loginError>y</loginError> <!-- Quando errar o login registrar o erro para bloquear acesso da máquina -->
     </enable>
     
     <!-- Determinar quantidades de entradas -->
@@ -20,6 +21,7 @@
         <maxMail>80</maxMail> <!-- Máximo de caracteres em endereços de e-mail -->
         <minPass>6</minPass> <!-- Mínimo de caracteres em senha -->
         <maxPass>50</maxPass> <!-- Máximo de caracteres em senha -->
+        <loginError>3</loginError> <!-- Quantidade de logins falhos até bloquear a máquina -->
     </length>
 
 </settings>

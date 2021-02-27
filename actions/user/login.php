@@ -3,9 +3,9 @@ $uri = GlobalFilter::filterServe();
 
 $len = new LenMaxMin();
 $social = new SocialLink();
+$user = new SmUser();
 $select = new Select();
 $clear = new StrClean();
-$user = new SmUser();
 
 $mail = (isset($post->mail) ? trim($post->mail) : false);
 $pass = (isset($post->pass) ? trim($post->pass) : false);
@@ -13,6 +13,11 @@ $pass = (isset($post->pass) ? trim($post->pass) : false);
 try {
     if (isset($session->user)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
+    }
+    //
+    else if ($config->enable->loginError == 'y' && $user->loginCheck()) {
+        throw new ConstException('Devido errar dados de acesso por mais de ' . $config->length->loginError . ' vezes'
+        . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
     }
     //
     else if (!$mail) {
@@ -77,11 +82,17 @@ try {
                 </script>
                 <?php
             } else {
+                if ($config->enable->loginError == 'y') {
+                    $user->loginError($config->length->loginError);
+                }
                 throw new ConstException('Não foi possível validar os dados fornecidos', ConstException::INVALID_POST);
             }
         } else if ($select->error()) {
             throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
         } else {
+            if ($config->enable->loginError == 'y') {
+                $user->loginError($config->length->loginError);
+            }
             throw new ConstException('Não foi possível validar os dados fornecidos', ConstException::INVALID_POST);
         }
     }

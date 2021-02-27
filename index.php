@@ -59,7 +59,15 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
 
     </head>
     <body>
-        <header><?php include ('modules/default/header.php'); ?></header>
+        <header>
+            <div class="modal" id="default-modal">
+                <div class="modal-box zoom-in" style="max-width: 600px">
+                    <div class="modal-header"></div>
+                    <div class="modal-content over-y" id="modal-load"></div>
+                </div>
+            </div>
+            <?php include ('modules/default/header.php'); ?>
+            </header>
         <main><?php include (LoadModule($url[0])); ?></main>
         <footer><?php include ('modules/default/footer.php'); ?></footer>
 
@@ -70,6 +78,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
                 echo ("url[{$key}] = {$value} <span class=\"text-red\">|</span> ");
             }
             ?>
+            <a href="teste" class="href-link">TESTES</a>
         </div>
         <script>
             var res = document.getElementById('resolucao').children[0];

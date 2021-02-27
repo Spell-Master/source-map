@@ -1,6 +1,7 @@
 <?php
 $uri = GlobalFilter::filterServe();
 
+$user = new SmUser();
 $len = new LenMaxMin();
 $social = new SocialLink();
 $code = new CreateCode();
@@ -26,6 +27,11 @@ try {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else if ($config->enable->user == 'n') {
         throw new ConstException(null, ConstException::INVALID_ACESS);
+    }
+    //
+    else if ($config->enable->loginError == 'y' && $user->loginCheck()) {
+        throw new ConstException('Devido errar dados de acesso por mais de ' . $config->length->loginError . ' vezes'
+        . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
     }
     //
     else if (!$name) {
@@ -228,6 +234,21 @@ try {
             break;
         case ConstException::INVALID_POST:
             echo ("<script>smcore.modal.error('{$e->getMessage()}', false);</script>");
+            break;
+        case ConstException::MISC_RETURN:
+            ?>
+            <div class="text-red align-center padding-all">
+                <i class="icon-warning icn-4x"></i>
+                <p class="font-default"><?= $e->getMessage() ?></p>
+                <p class="font-small">Redirecionando...</p>
+            </div>
+            <script>
+                smlib.modal.title('Não Autorizado');
+                setTimeout(function () {
+                    smcore.go.href('./');
+                }, <?= (int) $config->length->reload ?>000);
+            </script>
+            <?php
             break;
     }
 }

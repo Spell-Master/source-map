@@ -1,7 +1,11 @@
 <?php
+$cookie = GlobalFilter::filterCookie();
 try {
     if (isset($session->user)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
+    } else if ($config->enable->loginError == 'y' && isset($cookie->loginerror)) {
+        throw new ConstException('Devido errar dados de acesso por mais de ' . $config->length->loginError . ' vezes'
+        . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
     } else {
         ?>
         <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
@@ -59,5 +63,17 @@ try {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
             header('LOCATION: ' . $baseUri);
+        case ConstException::MISC_RETURN:
+            ?>
+            <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
+            <script>
+                smlib.modal.open('Não Autorizado', false);
+                document.getElementById('modal-load').innerHTML = '<div class="text-red align-center padding-all"><i class="icon-warning icn-4x"></i><div class="font-medium"><?= $e->getMessage() ?></div></div>';
+                setTimeout(function () {
+                    smcore.go.href('<?= $baseUri ?>');
+                }, <?= (int) $config->length->reload ?>000);
+            </script>
+            <?php
+            break;
     }
 }

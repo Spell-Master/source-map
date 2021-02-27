@@ -1,4 +1,14 @@
 -- ----------------------------
+-- Erros de login
+-- ----------------------------
+DROP TABLE IF EXISTS `user_error`;
+CREATE TABLE `user_error` (
+    `ue_count` int(1) NOT NULL DEFAULT '1' COMMENT 'contagem de quantas vezes errou',
+    `ue_bound` text NOT NULL DEFAULT '' COMMENT 'dados da máquina que errou o login',
+    `ue_time` date COMMENT 'tempo para desbloquear'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
 -- Usuários temporários
 -- ----------------------------
 DROP TABLE IF EXISTS `users_temp`;
