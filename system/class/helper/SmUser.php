@@ -29,7 +29,6 @@ class SmUser {
      */
     public function setLogin($loginData = []) {
         $this->getServe();
-        $this->logOut();
         $this->delLoginErr();
         @$session = Session::startSession(NAME);
         $session->user = GlobalFilter::StdArray([
@@ -43,6 +42,7 @@ class SmUser {
             $session->admin = $loginData['level'];
         }
         setcookie('clienthash', $loginData['hash'], time() + 3600 * 24 * 365, '/', $this->serve->HTTP_HOST, false);
+        setcookie('loginerror', null, time() - 1000, '/', $this->serve->HTTP_HOST, false);
     }
 
     /**
@@ -55,7 +55,7 @@ class SmUser {
             $cookies = explode(';', $this->serve->HTTP_COOKIE);
             foreach ($cookies as $cookie) {
                 $name = trim(explode('=', $cookie)[0]);
-                setcookie($name, '', time() - 1000, '/', $this->serve->HTTP_HOST, false);
+                setcookie($name, null, time() - 1000, '/', $this->serve->HTTP_HOST, false);
             }
         }
     }

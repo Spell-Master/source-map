@@ -34,10 +34,10 @@ try {
                         <div class="margin-auto" style="max-width: 400px">
                             <form method="POST" action="" id="user-login" onsubmit="return (false)">
                                 <p>Endereço de e-mail</p>
-                                <input type="text" name="mail" id="mail" maxlength="<?= $config->length->maxMail ?>" class="input-default" />
+                                <input value="admin@admin.com" type="text" name="mail" id="mail" maxlength="<?= $config->length->maxMail ?>" class="input-default" />
 
                                 <p>Senha de acesso</p>
-                                <input type="password" name="pass" id="pass" maxlength="<?= $config->length->maxPass ?>" class="input-default" />
+                                <input value="123456" type="password" name="pass" id="pass" maxlength="<?= $config->length->maxPass ?>" class="input-default" />
 
                                 <div class="padding-all align-center">
                                     <button class="btn-info button-block text-white shadow-on-hover" onclick="userLogin(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])"> Confirmar Acesso <i class="icon-enter3"></i> </button>
