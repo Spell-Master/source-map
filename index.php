@@ -48,9 +48,10 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <link href="image/favicon.ico" rel="icon" type="image/x-icon" />
 
         <link href="lib/stylesheet/sm-default.css" rel="stylesheet" type="text/css" />
-        <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-libary.css" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-core.css?rand=<?= time() ?>" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/media.css?rand=<?= time() ?>" rel="stylesheet" type="text/css" />
 
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
@@ -81,6 +82,8 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
             <a href="teste" class="href-link">TESTES</a>
         </div>
         <script>
+            var $itemOpen = new ItemOpen();
+            
             var res = document.getElementById('resolucao').children[0];
             res.innerText = window.innerWidth;
             window.onresize = function () {

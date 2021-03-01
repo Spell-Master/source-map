@@ -1,0 +1,75 @@
+/* 
+    Created on : 01/03/2021, 04:32:54
+    Author     : Spell Master
+*/
+@media (max-width: 1024px) {
+    h1 {font-size: 45px}
+    h2 {font-size: 35px}
+    h3 {font-size: 29px}
+    h4 {font-size: 28px}
+    h5 {font-size: 23px}
+    h6 {font-size: 20px}
+    .font-extra {font-size: 35px}
+    .font-jumbo {font-size: 30px}
+    .font-large {font-size: 25px}
+    .font-medium {font-size: 20px}
+}
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 768px) {
+    h1 {font-size: 44px}
+    h2 {font-size: 34px}
+    h3 {font-size: 28px}
+    h4 {font-size: 27px}
+    h5 {font-size: 22px}
+    h6 {font-size: 19px}
+    .font-extra {font-size: 34px}
+    .font-jumbo {font-size: 29px}
+    .font-large {font-size: 24px}
+    .font-medium {font-size: 19px}
+}
+
+@media (max-width: 700px) {
+    #header .logo-img {
+        background-image: url('../image/logo.png');
+        background-position: center
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {font-size: 36px}
+    h2 {font-size: 28px}
+    h3 {font-size: 23px}
+    h4 {font-size: 20px}
+    h5 {font-size: 18px}
+    h6 {font-size: 17px}
+    .font-extra {font-size: 32px}
+    .font-jumbo {font-size: 27px}
+    .font-large {font-size: 20px}
+    .font-medium {font-size: 18px}
+}
+
+@media (max-width: 530px) {
+}
+
+@media (max-width: 479px) {
+    #msg-box {
+        width: calc(100% - 27px);
+        float: none;
+        margin: -1px 20px 0 5px
+    }
+
+}
+
+@media (max-width: 400px) {
+
+
+}
+
+@media (max-width: 320px) {
+}
+
+@media (max-width: 240px) {
+}

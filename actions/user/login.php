@@ -71,7 +71,7 @@ try {
                 SeoData::showProgress();
                 ?>
                 <div class="align-center">
-                    <p>Carregando dados do usuário</p>
+                    <p>Carregando dados de acesso</p>
                     <p class="font-small">Aguarde...</p>
                 </div>
                 <script>

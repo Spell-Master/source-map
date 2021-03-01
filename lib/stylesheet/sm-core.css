@@ -121,6 +121,132 @@ button [class^="icon-"]:before {
 }
 
 /*
+header
+*/
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1
+}
+
+#header .logo-img {
+    background-image: url('../image/logo-large.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px
+}
+
+#header .user-menu {
+    margin-right: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    font-family: 'icomoon-ultimate'
+}
+#header .user-menu > li {cursor: pointer}
+#header .user-menu > li[data-open='login-box']:before { font-size: 40px; content: "\eb08" }
+#header .user-menu > li.register a:before { font-size: 40px; content: "\eb0d" }
+#header .user-menu > li > img[data-open='user-box'] {
+    height: 45px;
+    vertical-align: top;
+    margin-top: -13px
+}
+#header .user-menu > li.login-name {
+    font-family: 'roboto';
+    font-size: 18px;
+    max-width: 120px
+}
+#header .user-menu > li[data-open='msg-box']:before { font-size: 35px; content: "\ea32" }
+
+/* Caixas suspensas do topo */
+.arrow-box {
+    position: absolute;
+    z-index: 6
+}
+.arrow-box:after,
+.arrow-box:before {
+    position: absolute;
+    z-index: 6;
+    bottom: 100%;
+    right: 0;
+    border: solid transparent;
+    border-color: transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+}
+.arrow-box:after {
+    border-bottom-color: #ffffff;
+    border-width: 16px;
+    margin-right: 18px
+}
+.arrow-box:before {
+    border-bottom-color: #dddddd;
+    border-width: 18px;
+    margin-right: 16px
+}
+
+.login-box.arrow-box {margin: 4px 0 0 54px}
+.user-box.arrow-box {margin: 5px 0 0 56px}
+.msg-box.arrow-box {margin: 6px 0 0 52px}
+
+#login-box,
+#user-box,
+#msg-box {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0 8px 14px rgba(0,0,0,.7);
+    width: 300px;
+    float: right
+}
+#login-box {margin: -1px 20px}
+#user-box {margin: 0 20px}
+#msg-box {
+    width: 450px;
+    margin: -1px 20px
+}
+
+.login-box,
+.user-box,
+.msg-box {
+    display: none
+}
+.login-box.opened,
+.user-box.opened,
+.msg-box.opened {
+    display: block
+}
+
+#user-box > ul > li {
+    cursor: pointer;
+    border-bottom: 1px solid #dddddd
+}
+#user-box > ul > li:last-of-type {
+    border-bottom: none
+}
+#user-box > ul > li > a {
+    display: block;
+    background-color: #fafafa;
+    padding: 16px 30px;
+    color: #3a3a3a;
+    transition: all .3s
+}
+#user-box > ul > li:hover > a {
+    background: #efefef
+}
+#user-box > ul > li.logout > a {
+    background-color: #c40700;
+    color: #ffffff;
+}
+#user-box > ul > li.logout:hover > a {
+    background-color: #da190b;
+    color: #ffffff;
+}
+
+
+/*
 Outros
 */
 .patern-bg {

@@ -71,7 +71,7 @@ class Mailer {
         $this->mailer->FromName = utf8_decode(NAME);
         $this->mailer->setLanguage('pt_br', __DIR__ . DIRECTORY_SEPARATOR .'language' . DIRECTORY_SEPARATOR);
         
-        $this->mailer->AddEmbeddedImage(__DIR__ . '/../../../lib/image/mail-title.png', 'smlogo');
+        $this->mailer->AddEmbeddedImage(__DIR__ . '/../../../lib/image/logo-mail.png', 'smlogo');
     }
 
     /**
