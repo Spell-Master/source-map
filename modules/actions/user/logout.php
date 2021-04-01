@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__ . '/../../system/config.php');
+require_once (__DIR__ . '/../../../system/config.php');
 $user = new SmUser();
 $user->logOut();
 ?>

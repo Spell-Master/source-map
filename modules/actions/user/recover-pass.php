@@ -57,7 +57,7 @@ try {
                 $mailer->sendMail(
                     $userData->u_mail,
                     'Redefinir Senha',
-                    __DIR__ . '/../../mail/re_mail.html',
+                    __DIR__ . '/../../../system/mail/re_mail.html',
                     [
                         'link' => substr($uri->HTTP_REFERER, 0, strpos($uri->HTTP_REFERER, 'recuperar-senha')),
                         'sitename' => NAME,
@@ -102,10 +102,10 @@ try {
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            include (__DIR__ . '/../../error/500.php');
+            include (__DIR__ . '/../error/500.php');
             break;
         case ConstException::INVALID_ACESS:
-            include (__DIR__ . '/../../error/denied.php');
+            include (__DIR__ . '/../error/denied.php');
             break;
         case ConstException::INVALID_POST:
             echo ("<script>smcore.modal.error('{$e->getMessage()}', false);</script>");

@@ -43,7 +43,7 @@ try {
             $mailer->sendMail(
                 $tempData->ut_mail,
                 'Requisição de Cadastro',
-                __DIR__ . '/../../mail/new_user.html',
+                __DIR__ . '/../../../system/mail/re_mail.html',
                 [
                     'link' => $hostUrl,
                     'sitename' => NAME,
@@ -85,10 +85,10 @@ try {
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            include (__DIR__ . '/../../error/500.php');
+            include (__DIR__ . '/../error/500.php');
             break;
         case ConstException::INVALID_ACESS:
-            include (__DIR__ . '/../../error/denied.php');
+            include (__DIR__ . '/../error/denied.php');
             break;
         case ConstException::INVALID_POST:
             echo ("<script>smcore.modal.error('{$e->getMessage()}', false);</script>");

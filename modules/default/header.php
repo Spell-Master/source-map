@@ -21,7 +21,7 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
                 <?php } ?>
                 <li class="line-block">
                     <span class="bold">|</span>
-                    <a class="padding-lr-min text-dark-red text-white-hover cursor-pointer"><i class="icon-switch"></i> SAIR</a>
+                    <a class="padding-lr-min text-dark-red text-white-hover cursor-pointer" onclick="logOut()"><i class="icon-switch"></i> SAIR</a>
                 </li>
                 <?php
             } else {
@@ -66,7 +66,7 @@ if ($url[0] == 'cadastro' || $url[0] == 'recuperar-senha' || $url[0] == 'entrar'
                                     <div class="user-box arrow-box"></div>
                                 </li>
                                 <li class="line-block login-name over-text" data-open="user-box" title="Perfil">
-                                    <?= $login->name ?>ssssssssss
+                                    <?= $login->name ?>
                                 </li>
                                 <?php if ($config->enable->message == 'y') { ?>
                                     <li class="line-block" data-open="msg-box" title="Mensagens">
