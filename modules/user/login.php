@@ -5,7 +5,7 @@ try {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else if ($config->enable->loginError == 'y' && isset($cookie->loginerror)) {
         throw new ConstException('Devido errar dados de acesso por mais de ' . $config->length->loginError . ' vezes'
-        . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
+                                 . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
     } else {
         ?>
         <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
@@ -29,10 +29,9 @@ try {
                 <div class="bg-white margin-bottom padding-all">
                     <h2 class="quicksand align-center">Entrar</h2>
                     <hr />
-
-                    <div class="margin-top">
-                        <div class="margin-auto" style="max-width: 400px">
-                            <form method="POST" action="" id="user-login" onsubmit="return (false)">
+                    <form method="POST" action="" id="user-login" onsubmit="return (false)">
+                        <div class="margin-top">
+                            <div class="margin-auto" style="max-width: 400px">
                                 <p>Endereço de e-mail</p>
                                 <input value="admin@admin.com" type="text" name="mail" id="mail" maxlength="<?= $config->length->maxMail ?>" class="input-default" />
 
@@ -42,18 +41,18 @@ try {
                                 <div class="padding-all align-center">
                                     <button class="btn-info button-block text-white shadow-on-hover" onclick="userLogin(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])"> Confirmar Acesso <i class="icon-enter3"></i> </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <?php if ($config->enable->user == 'y') { ?>
-                        <div class="margin-top align-right">
-                            <a href="cadastro" class="href-link"><i class="icon-clipboard3"></i> Registro </a> |
-                            <?php if ($config->enable->mail == 'y') { ?>
-                                <a href="recuperar-senha" class="href-link"><i class="icon-lock"></i> Senha</a>
-                            <?php } ?>
-                        </div>
-                    <?php } ?>
+                        <?php if ($config->enable->user == 'y') { ?>
+                            <div class="margin-top align-right">
+                                <a href="cadastro" class="href-link"><i class="icon-clipboard3"></i> Registro </a> |
+                                <?php if ($config->enable->mail == 'y') { ?>
+                                    <a href="recuperar-senha" class="href-link"><i class="icon-lock"></i> Senha</a>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+                    </form>
                 </div>
             </div>
         </div>
