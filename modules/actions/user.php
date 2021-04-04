@@ -26,7 +26,7 @@ if ($post) {
             break;
     }
 } else {
-     $include = 'error/500.php';
+     $include = '../error/500.php';
 }
 
 include (__DIR__ . '/' . $include);

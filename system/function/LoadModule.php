@@ -24,10 +24,7 @@ function LoadModule($module) {
         case 'entrar': $fileName = 'user/login.php'; break;
         case 'perfil': $fileName = 'user/profile.php'; break;
         case 'termos': $fileName = 'info/terms.php'; break;
+        default: $fileName = 'error/404.php'; break;
     }
-    if (file_exists('modules/' . $fileName)) {
-        return ('modules/' . $fileName);
-    } else {
-        return ('error/404.php');
-    }
+    return ('modules/' . $fileName);
 }
