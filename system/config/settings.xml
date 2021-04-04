@@ -9,7 +9,8 @@
         <newConfirm>n</newConfirm> <!-- Solicitar confirmação de cadastros por e-mail -->
         <captchaSensitive>n</captchaSensitive> <!-- O código captcha deve diferenciar letras minúsculas de maiúsculas -->
         <loginError>y</loginError> <!-- Quando errar o login registrar o erro para bloquear acesso da máquina -->
-        <message>y</message> <!-- Habilitar mensagens pessoais e notificações -->
+        <notification>y</notification> <!-- Habilitar notificações -->
+        <message>y</message> <!-- Habilitar mensagens pessoais -->
     </enable>
     
     <!-- Determinar quantidades de entradas -->

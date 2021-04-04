@@ -1,7 +1,7 @@
 
 @font-face {font-family: 'gunship'; src: url('../fonts/gunship.ttf')}
 @font-face {font-family: 'roboto'; src: url('../fonts/roboto.ttf')}
-@font-face {font-family: 'quicksand'; src: url('../fonts/Quicksand-VariableFont_wght.ttf')}
+@font-face {font-family: 'quicksand'; src: url('../fonts/quicksand.ttf')}
 
 /**
  * ****************************************
@@ -124,50 +124,62 @@ button [class^="icon-"]:before {
 header
 */
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
     z-index: 1
 }
-
-#header .logo-img {
+#header > .top-bar {
+    height: 50px;
+    width: 100vw;
+    padding: 10px
+}
+#header .logo {
+    height: 30px;
     background-image: url('../image/logo-large.png');
     background-size: contain;
     background-repeat: no-repeat;
-    height: 30px
+}
+#header .user-menu {
+    margin-right: 20px;
+    line-height: 25px;
+    color: #ffffff;
+    font-family: 'icomoon-ultimate';
 }
 
-#header .user-menu {
-    margin-right: 30px;
-    line-height: 30px;
-    color: #ffffff;
-    font-family: 'icomoon-ultimate'
-}
-#header .user-menu > li {cursor: pointer}
-#header .user-menu > li[data-open='login-box']:before { font-size: 40px; content: "\eb08" }
-#header .user-menu > li.register a:before { font-size: 40px; content: "\eb0d" }
-#header .user-menu > li > img[data-open='user-box'] {
-    height: 45px;
-    vertical-align: top;
-    margin-top: -13px
-}
-#header .user-menu > li.login-name {
-    font-family: 'roboto';
-    font-size: 18px;
-    max-width: 120px
-}
+#header .user-menu > li {cursor: pointer; padding: 0 3px}
+#header .user-menu > li[data-open='login-box']:before { font-size: 35px; content: "\eb08" }
+#header .user-menu > li.register a:before { font-size: 35px; content: "\eb0d" }
+#header .user-menu > li > img[data-open='user-box'] {height: 40px; margin-top: -5px}
+#header .user-menu > li.login-name {font-size: 18px; font-family: 'roboto'; height: 40px; max-width: 250px; vertical-align: top; margin-top: 2.5px; overflow: hidden}
+#header .user-menu > li[data-open='note-box'],
+#header .user-menu > li[data-open='msg-box'] { vertical-align: top; margin-top: 2.5px}
+#header .user-menu > li[data-open='note-box']:before { font-size: 26px; content: "\ea58" }
 #header .user-menu > li[data-open='msg-box']:before { font-size: 35px; content: "\ea32" }
 
-/* Caixas suspensas do topo */
-.arrow-box {
-    position: absolute;
-    z-index: 6
+#header .top-cont-icon .emblem-circle {
+    height: 24px;
+    width: 24px;
+    line-height: 24px
 }
-.arrow-box:after,
-.arrow-box:before {
+
+#header .top-cont-icon[data-open='note-box'],
+#header .top-cont-icon[data-open='msg-box'] {
     position: absolute;
-    z-index: 6;
+    font-size: 14px;
+    font-family: 'roboto'
+}
+#header .top-cont-icon[data-open='note-box'] {left: 12px; top: -40px}
+#header .top-cont-icon[data-open='msg-box'] {left: 20px; top: -45px}
+
+/*
+Setas suspensas do topo
+*/
+.arrow-top {
+    position: absolute;
+    z-index: 2
+}
+.arrow-top:after,
+.arrow-top:before {
+    position: absolute;
+    z-index: 2;
     bottom: 100%;
     right: 0;
     border: solid transparent;
@@ -175,76 +187,93 @@ header
     content: " ";
     height: 0;
     width: 0;
-    pointer-events: none;
+    pointer-events: none
 }
-.arrow-box:after {
+.arrow-top:after {
     border-bottom-color: #ffffff;
-    border-width: 16px;
-    margin-right: 18px
+    border-width: 15px;
+    margin-right: 17px
 }
-.arrow-box:before {
+.arrow-top:before {
     border-bottom-color: #dddddd;
-    border-width: 18px;
-    margin-right: 16px
+    border-width: 17px;
+    margin-right: 15px
 }
 
-.login-box.arrow-box {margin: 4px 0 0 54px}
-.user-box.arrow-box {margin: 5px 0 0 56px}
-.msg-box.arrow-box {margin: 6px 0 0 52px}
+.arrow-top.login-box {margin: 8px 0 0 50px}
+.arrow-top.user-box {margin: 1px 0 0 53px}
+.arrow-top.note-box {margin: 10px 0 0 45px}
+.arrow-top.msg-box {margin: 6px 0 0 50px}
 
+/* Caixas suspensas do topo */
 #login-box,
 #user-box,
+#note-box,
 #msg-box {
+    position: absolute;
+    right: 0;
+    margin: 0 20px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
-    box-shadow: 0 8px 14px rgba(0,0,0,.7);
-    width: 300px;
-    float: right
+    box-shadow: 0 8px 14px rgba(0,0,0,.7)
 }
-#login-box {margin: -1px 20px}
-#user-box {margin: 0 20px}
+
+#login-box,
+#user-box {
+    width: 300px
+}
+#note-box,
 #msg-box {
-    width: 450px;
-    margin: -1px 20px
+    width: 450px
+}
+#msg-box {
+    margin: 0 5px
 }
 
 .login-box,
 .user-box,
+.note-box,
 .msg-box {
     display: none
 }
 .login-box.opened,
 .user-box.opened,
+.note-box.opened,
 .msg-box.opened {
     display: block
 }
 
-#user-box > ul > li {
+/* Menus para user-box, note-box e msg-box */
+ul.top-menu {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+ul.top-menu > li {
     cursor: pointer;
     border-bottom: 1px solid #dddddd
 }
-#user-box > ul > li:last-of-type {
+ul.top-menu > li:last-of-type {
     border-bottom: none
 }
-#user-box > ul > li > a {
+ul.top-menu > li > a {
     display: block;
     background-color: #fafafa;
-    padding: 16px 30px;
+    padding: 12px 20px;
     color: #3a3a3a;
     transition: all .3s
 }
-#user-box > ul > li:hover > a {
+ul.top-menu > li:hover > a {
     background: #efefef
 }
-#user-box > ul > li.logout > a {
+ul.top-menu > li.logout > a {
     background-color: #c40700;
-    color: #ffffff;
+    color: #ffffff
 }
-#user-box > ul > li.logout:hover > a {
+ul.top-menu > li.logout:hover > a {
     background-color: #da190b;
-    color: #ffffff;
+    color: #ffffff
 }
-
 
 /*
 Outros

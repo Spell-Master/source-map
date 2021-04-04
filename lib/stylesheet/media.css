@@ -32,9 +32,11 @@
 }
 
 @media (max-width: 700px) {
-    #header .logo-img {
-        background-image: url('../image/logo.png');
-        background-position: center
+    #header .user-menu {
+        margin-right: 10px;
+    }
+    #header .logo {
+        background-image: url('../image/logo.png')
     }
 }
 
@@ -55,17 +57,20 @@
 }
 
 @media (max-width: 479px) {
+    #note-box,
     #msg-box {
-        width: calc(100% - 27px);
-        float: none;
-        margin: -1px 20px 0 5px
+        width: calc(100% - 15px);
+        margin: 0 10px 0 5px
     }
-
 }
 
 @media (max-width: 400px) {
-
-
+    #header .user-menu > li.login-name {max-width: 60px}
+    #login-box,
+    #user-box {
+        width: calc(100% - 15px);
+        margin: 0 10px 0 5px
+    }
 }
 
 @media (max-width: 320px) {
