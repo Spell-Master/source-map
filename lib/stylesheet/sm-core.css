@@ -124,11 +124,14 @@ button [class^="icon-"]:before {
 header
 */
 #header {
-    z-index: 1
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%
 }
 #header > .top-bar {
     height: 50px;
-    width: 100vw;
     padding: 10px
 }
 #header .logo {
@@ -138,7 +141,7 @@ header
     background-repeat: no-repeat;
 }
 #header .user-menu {
-    margin-right: 20px;
+    margin-right: 5px;
     line-height: 25px;
     color: #ffffff;
     font-family: 'icomoon-ultimate';
@@ -148,7 +151,7 @@ header
 #header .user-menu > li[data-open='login-box']:before { font-size: 35px; content: "\eb08" }
 #header .user-menu > li.register a:before { font-size: 35px; content: "\eb0d" }
 #header .user-menu > li > img[data-open='user-box'] {height: 40px; margin-top: -5px}
-#header .user-menu > li.login-name {font-size: 18px; font-family: 'roboto'; height: 40px; max-width: 250px; vertical-align: top; margin-top: 2.5px; overflow: hidden}
+#header .user-menu > li.login-name {font-size: 18px; font-family: 'roboto'; height: 40px; max-width: 120px; vertical-align: top; margin-top: 2.5px; overflow: hidden}
 #header .user-menu > li[data-open='note-box'],
 #header .user-menu > li[data-open='msg-box'] { vertical-align: top; margin-top: 2.5px}
 #header .user-menu > li[data-open='note-box']:before { font-size: 26px; content: "\ea58" }
@@ -174,12 +177,12 @@ Setas suspensas do topo
 */
 .arrow-top {
     position: absolute;
-    z-index: 2
+    z-index: 3
 }
 .arrow-top:after,
 .arrow-top:before {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     bottom: 100%;
     right: 0;
     border: solid transparent;
@@ -271,8 +274,35 @@ ul.top-menu > li.logout > a {
     color: #ffffff
 }
 ul.top-menu > li.logout:hover > a {
-    background-color: #da190b;
+    background-color: #da190b
+}
+
+/*
+Cabeçalho preto abaixo da header
+*/
+#header-bottom {
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    margin-top: 50px;
+    top: 0;
+    left: 0
+}
+#header-bottom.top {
+    position: fixed;
+    margin-top: 0
+}
+#header-bottom .bottom-bar {
+    height: 55px;
+    background: #333333;
     color: #ffffff
+}
+
+
+
+#page-load {
+   margin-top: 105px;
+   min-height: 250px
 }
 
 /*
@@ -280,4 +310,14 @@ Outros
 */
 .patern-bg {
     background-image: url('../image/patern.svg')
+}
+
+#scoll-top {
+    z-index: 4;
+    bottom: 10px;
+    right: 10px;
+    display: none
+}
+#scoll-top.show {
+    display: block
 }

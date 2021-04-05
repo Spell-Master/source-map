@@ -70,7 +70,12 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
             <?php include ('modules/default/header.php'); ?>
             </header>
         <main><?php include (LoadModule($url[0])); ?></main>
-        <footer><?php include ('modules/default/footer.php'); ?></footer>
+        <footer>
+            <?php include ('modules/default/footer.php'); ?>
+            <div id="scoll-top" class="fixed cursor-pointer">
+                <i class="icon-circle-up4 icn-3x text-dark-red text-red-hover"></i>
+            </div>
+        </footer>
 
         <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
             W: <div class="line-block"></div> <span class="text-red">|</span>
@@ -83,6 +88,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         </div>
         <script>
             var $itemOpen = new ItemOpen();
+            smcore.topScroll();
             
             var res = document.getElementById('resolucao').children[0];
             res.innerText = window.innerWidth;
