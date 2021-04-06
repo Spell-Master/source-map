@@ -338,7 +338,7 @@ Abaixo da header
     background-image: url('../image/patern.svg');
     box-shadow: 0 6px 12px rgba(0,0,0,.5);
     transition: transform .3s;
-    transform: translateY(-105%);
+    transform: translateY(-150%);
     z-index: 1
 }
 .session-folder.opened,
@@ -354,9 +354,9 @@ Abaixo da header
     top: 55px;
     background-color: #333333;
     background-image: url('../image/patern.svg');
-    box-shadow: -6px 0px 12px 0px rgba(0,0,0,.5);
+    box-shadow: -3px 0px 12px 0px rgba(0,0,0,.3);
     transition: transform .3s;
-    transform: translateX(110%);
+    transform: translateX(150%);
     z-index: 2
 }
 #header-bottom .session-menu.opened {

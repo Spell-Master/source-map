@@ -11,6 +11,7 @@
         <loginError>y</loginError> <!-- Quando errar o login registrar o erro para bloquear acesso da máquina -->
         <notification>y</notification> <!-- Habilitar notificações -->
         <message>y</message> <!-- Habilitar mensagens pessoais -->
+        <search>y</search> <!-- Permitir uso de sistema de pesquisa? -->
     </enable>
     
     <!-- Determinar quantidades de entradas -->
@@ -24,6 +25,12 @@
         <minPass>6</minPass> <!-- Mínimo de caracteres em senha -->
         <maxPass>50</maxPass> <!-- Máximo de caracteres em senha -->
         <loginError>3</loginError> <!-- Quantidade de logins falhos até bloquear a máquina -->
+        <longStr>400</longStr> <!-- Quantidade de caracteres até ser cortado -->
     </length>
+    
+    <rows>
+        <search>3</search> <!-- Quantos registros devem existir para habilitar uma pesquisa? -->
+        <pag>3</pag> <!-- quantos registros devem ser exibidos por página em uma paginação? -->
+    </rows>
 
 </settings>
