@@ -10,34 +10,32 @@
                         <?php
                         if ($login) { // LOGADO
                             ?>
-                            <ul class="user-menu list-none align-right">
-                                <li class="line-block" title="Perfil">
-                                    <img src="<?= (empty($login->photo) ? 'lib/image/profile.png' : $login->photo) ?>" class="radius-circle" data-open="user-box" alt="" />
-                                    <div class="arrow-top user-box"></div>
-                                </li>
-                                <li class="line-block login-name over-text" data-open="user-box" title="Perfil">
-                                    <?= $login->name ?>
-                                </li>
-                                <?php if ($config->enable->notification == 'y') { ?>
-                                    <li class="line-block" data-open="note-box" title="Notificações">
-                                        <div class="relative">
-                                            <div class="top-cont-icon" data-open="note-box">
-                                                <div class="emblem-circle bg-black" data-open="note-box">99+</div>
-                                            </div>
+                            <li class="line-block" title="Perfil">
+                                <img src="<?= (empty($login->photo) ? 'lib/image/profile.png' : $login->photo) ?>" class="radius-circle" data-open="user-box" alt="" />
+                                <div class="arrow-top user-box"></div>
+                            </li>
+                            <li class="line-block login-name over-text" data-open="user-box" title="Perfil">
+                                <?= $login->name ?>
+                            </li>
+                            <?php if ($config->enable->notification == 'y') { ?>
+                                <li class="line-block" data-open="note-box" title="Notificações">
+                                    <div class="relative">
+                                        <div class="top-cont-icon" data-open="note-box">
+                                            <div class="emblem-circle bg-black" data-open="note-box">99+</div>
                                         </div>
-                                        <div class="arrow-top note-box"></div>
-                                    </li>
-                                <?php } if ($config->enable->message == 'y') { ?>
-                                    <li class="line-block" data-open="msg-box" title="Mensagens">
-                                        <div class="relative">
-                                            <div class="top-cont-icon" data-open="msg-box">
-                                                <div class="emblem-circle bg-black" data-open="msg-box">99+</div>
-                                            </div>
+                                    </div>
+                                    <div class="arrow-top note-box"></div>
+                                </li>
+                            <?php } if ($config->enable->message == 'y') { ?>
+                                <li class="line-block" data-open="msg-box" title="Mensagens">
+                                    <div class="relative">
+                                        <div class="top-cont-icon" data-open="msg-box">
+                                            <div class="emblem-circle bg-black" data-open="msg-box">99+</div>
                                         </div>
-                                        <div class="arrow-top msg-box"></div>
-                                    </li>
-                                <?php } ?>
-                            </ul>
+                                    </div>
+                                    <div class="arrow-top msg-box"></div>
+                                </li>
+                            <?php } ?>
                         <?php } else { // DESLOGADO ?>
                             <li class="line-block" data-open="login-box" title="Entrar">
                                 <div class="arrow-top login-box"></div>
@@ -116,7 +114,7 @@
             </div>
             <?php
         }
-    } else { // DESLOGADO 
+    } else {
         ?>
         <div id="login-box" class="login-box" data-open="fix">
             <div class="padding-all">

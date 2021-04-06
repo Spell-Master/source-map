@@ -12,13 +12,19 @@ html {
     -webkit-tap-highlight-color: transparent
 }
 body {
-    color: #555555;
-    background-color: #444444;
+    color: #444444;
+    background-color: #333333;
     font-family: 'roboto';
     font-size: 16px
 }
+header {
+    background-color: #c40700
+}
 main {
     background-color: #ffffff
+}
+footer {
+    background-color: #333333
 }
 .gunship {
     font-family: 'gunship'
@@ -54,7 +60,7 @@ article ul:not([class]) {
     margin: 5px
 }
 .select-base > .select-list {
-    z-index: 2
+    z-index: 1
 }
 .modal-content {
     max-height: 80vh
@@ -124,11 +130,11 @@ button [class^="icon-"]:before {
 header
 */
 #header {
-    z-index: 2;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%
+    width: 100%;
+    z-index: 3
 }
 #header > .top-bar {
     height: 50px;
@@ -141,7 +147,7 @@ header
     background-repeat: no-repeat;
 }
 #header .user-menu {
-    margin-right: 5px;
+    margin-right: 20px;
     line-height: 25px;
     color: #ffffff;
     font-family: 'icomoon-ultimate';
@@ -149,7 +155,7 @@ header
 
 #header .user-menu > li {cursor: pointer; padding: 0 3px}
 #header .user-menu > li[data-open='login-box']:before { font-size: 35px; content: "\eb08" }
-#header .user-menu > li.register a:before { font-size: 35px; content: "\eb0d" }
+#header .user-menu > li.register a:before { font-size: 33px; content: "\e99c" }
 #header .user-menu > li > img[data-open='user-box'] {height: 40px; margin-top: -5px}
 #header .user-menu > li.login-name {font-size: 18px; font-family: 'roboto'; height: 40px; max-width: 120px; vertical-align: top; margin-top: 2.5px; overflow: hidden}
 #header .user-menu > li[data-open='note-box'],
@@ -176,13 +182,11 @@ header
 Setas suspensas do topo
 */
 .arrow-top {
-    position: absolute;
-    z-index: 3
+    position: absolute
 }
 .arrow-top:after,
 .arrow-top:before {
     position: absolute;
-    z-index: 3;
     bottom: 100%;
     right: 0;
     border: solid transparent;
@@ -190,7 +194,8 @@ Setas suspensas do topo
     content: " ";
     height: 0;
     width: 0;
-    pointer-events: none
+    pointer-events: none;
+    z-index: 3
 }
 .arrow-top:after {
     border-bottom-color: #ffffff;
@@ -218,7 +223,7 @@ Setas suspensas do topo
     margin: 0 20px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
-    box-shadow: 0 8px 14px rgba(0,0,0,.7)
+    box-shadow: 0 8px 14px rgba(0,0,0,.5)
 }
 
 #login-box,
@@ -278,31 +283,127 @@ ul.top-menu > li.logout:hover > a {
 }
 
 /*
-Cabeçalho preto abaixo da header
+Abaixo da header
 */
 #header-bottom {
-    z-index: 1;
-    width: 100%;
-    position: absolute;
-    margin-top: 50px;
-    top: 0;
-    left: 0
-}
-#header-bottom.top {
     position: fixed;
-    margin-top: 0
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    color: #efefef;
+    z-index: 2
 }
 #header-bottom .bottom-bar {
+    position: absolute;
     height: 55px;
-    background: #333333;
+    width: 100%;
+    line-height: 55px;
+    background-color: #222222;
+    box-shadow: 0 6px 12px rgba(0,0,0,.5);
+    z-index: 2
+}
+#header-bottom ul.bar-menu {
+    margin-top: -2px;
+    margin-right: 30px;
+    list-style: none;
+    text-align: right
+}
+#header-bottom ul.bar-menu > li {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+    font-size: 30px;
+    font-family: 'icomoon-ultimate'
+}
+#header-bottom ul.bar-menu > li {
+    padding: 0 5px;
+}
+
+#header-bottom ul.bar-menu > li.session-add:before { content: "\ea76" }
+#header-bottom ul.bar-menu > li[data-open='session-folder']:before { content: "\e9db" }
+#header-bottom ul.bar-menu > li[data-open='session-search']:before { content: "\eb38" }
+#header-bottom ul.bar-menu > li[data-open='session-menu']:before { content: "\ec71" }
+#header-bottom ul.bar-menu > li.opened[data-open='session-search']:before { content: "\eb39" }
+#header-bottom ul.bar-menu > li.opened[data-open='session-folder']:before { content: "\e9dc" }
+#header-bottom ul.bar-menu > li.opened[data-open='session-menu']:before { content: "\ed6d" }
+
+.session-folder,
+#header-bottom .session-search {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 55px;
+    background-color: #333333;
+    background-image: url('../image/patern.svg');
+    box-shadow: 0 6px 12px rgba(0,0,0,.5);
+    transition: transform .3s;
+    transform: translateY(-105%);
+    z-index: 1
+}
+.session-folder.opened,
+#header-bottom .session-search.opened {
+    transform: translateY(0)
+}
+
+#header-bottom .session-menu {
+    position: absolute;
+    height: calc(100vh - 50px);
+    width: 320px;
+    right: 0;
+    top: 55px;
+    background-color: #333333;
+    background-image: url('../image/patern.svg');
+    box-shadow: -6px 0px 12px 0px rgba(0,0,0,.5);
+    transition: transform .3s;
+    transform: translateX(110%);
+    z-index: 2
+}
+#header-bottom .session-menu.opened {
+    transform: translateX(0)
+}
+
+/* Menu principal */
+#header-bottom .session-menu ul {
+    height: calc(100vh - 105px);
+    overflow-y: auto;
+    overflow-x: hidden
+}
+#header-bottom .session-menu ul > li {
+    cursor: pointer;
+    border-bottom: 1px solid #dddddd
+}
+#header-bottom .session-menu ul > li:last-of-type {
+    border-bottom: none
+}
+#header-bottom .session-menu ul > li > a {
+    display: block;
+    background-color: #fafafa;
+    padding: 12px 20px;
+    color: #3a3a3a;
+    transition: all .3s
+}
+#header-bottom .session-menu ul > li:hover > a {
+    background: #efefef
+}
+#header-bottom .session-menu ul > li.active > a {
+    background-color: #c40700;
     color: #ffffff
+}
+#header-bottom .session-menu ul > li.active:hover > a {
+    background-color: #da190b
 }
 
 
 
+
+
+
+
+/* **** */
 #page-load {
-   margin-top: 105px;
-   min-height: 250px
+    margin-top: 105px;
+    min-height: 250px
 }
 
 /*
@@ -313,10 +414,10 @@ Outros
 }
 
 #scoll-top {
-    z-index: 4;
-    bottom: 10px;
-    right: 10px;
-    display: none
+    bottom: 0;
+    right: 5px;
+    display: none;
+    z-index: 2
 }
 #scoll-top.show {
     display: block

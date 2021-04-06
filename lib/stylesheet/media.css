@@ -72,8 +72,12 @@
 
 @media (max-width: 320px) {
     #header .user-menu > li[data-open='note-box'],
-    #header .user-menu > li[data-open='msg-box'] {
+    #header .user-menu > li[data-open='msg-box'],
+    #header-bottom ul.bar-menu > li.session-add {
         display: none
+    }
+    #header-bottom .session-menu {
+        width: 100%
     }
 }
 

@@ -1,4 +1,4 @@
-<div class="padding-all-min patern-bg align-right text-light-grey">
+<div class="padding-all-min bg-black patern-bg align-right text-light-grey">
     <ul class="list-none align-center">
         <?php if ($login) { // LOGADO ?>
             <li class="line-block">

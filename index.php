@@ -72,9 +72,9 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <main><?php include (LoadModule($url[0])); ?></main>
         <footer>
             <?php include ('modules/default/footer.php'); ?>
-            <div id="scoll-top" class="fixed cursor-pointer">
-                <i class="icon-circle-up4 icn-3x text-dark-red text-red-hover"></i>
-            </div>
+            <a id="scoll-top" class="fixed cursor-pointer">
+                <i class="icon-circle-up4 icn-3x text-dark-blue text-blue-hover"></i>
+            </a>
         </footer>
 
         <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
