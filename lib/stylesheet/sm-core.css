@@ -394,12 +394,6 @@ Abaixo da header
     background-color: #da190b
 }
 
-
-
-
-
-
-
 /* **** */
 #page-load {
     margin-top: 105px;
@@ -421,4 +415,8 @@ Outros
 }
 #scoll-top.show {
     display: block
+}
+
+.editor-area {
+    border: 1px solid #e7e7e7
 }
