@@ -364,33 +364,33 @@ Abaixo da header
 }
 
 /* Menu principal */
-#header-bottom .session-menu ul {
+#global-menu {
     height: calc(100vh - 105px);
     overflow-y: auto;
     overflow-x: hidden
 }
-#header-bottom .session-menu ul > li {
+#global-menu > li {
     cursor: pointer;
     border-bottom: 1px solid #dddddd
 }
-#header-bottom .session-menu ul > li:last-of-type {
+#global-menu > li:last-of-type {
     border-bottom: none
 }
-#header-bottom .session-menu ul > li > a {
+#global-menu > li > a {
     display: block;
     background-color: #fafafa;
     padding: 12px 20px;
     color: #3a3a3a;
     transition: all .3s
 }
-#header-bottom .session-menu ul > li:hover > a {
+#global-menu > li:hover > a {
     background: #efefef
 }
-#header-bottom .session-menu ul > li.active > a {
+#global-menu > li > a.active {
     background-color: #c40700;
     color: #ffffff
 }
-#header-bottom .session-menu ul > li.active:hover > a {
+#global-menu > li:hover > a.active {
     background-color: #da190b
 }
 

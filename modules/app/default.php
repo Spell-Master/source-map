@@ -1,6 +1,7 @@
 <?php
-$clear = new StrClean();
-$valid = new StrValid();
+$select = new Select();
+$admin = (isset($session->admin) ? $session->admin : 0);
+
 switch ($url[0]) {
     case 'css-padrao':
         $app = ['key' => 'css', 'name' => 'CSS'];
@@ -9,20 +10,26 @@ switch ($url[0]) {
         $app = ['key' => 'js', 'name' => 'Javascript'];
         break;
 }
-$admin = (isset($session->admin) ? $session->admin : 0);
-$appPage = (isset($url[1]) ? $clear->formatStr($url[1]) : false);
 
-$selectApp = new Select();
-$selectApp->query("app_page", "a_key = :ak", "ak={$app['key']}");
+$select->setQuery("
+    SELECT
+        a_hash,
+        a_link,
+        a_title,
+        a_key
+    FROM
+        app_page
+    WHERE
+        a_key = :ak",
+        "ak={$app['key']}"
+);
 
 try {
-    if ($appPage && !$valid->urlCheck($url[1])) {
-        throw new ConstException(null, ConstException::INVALID_URL);
-    } else if ($selectApp->error()) {
-        throw new ConstException($selectApp->error(), ConstException::SYSTEM_ERROR);
+    if ($select->error()) {
+        throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
     } else {
-        $appCount = $selectApp->count();
-        $appResult = $selectApp->result();
+        $appCount = $select->count();
+        $appResult = $select->result();
         ?>
         <div id="header-bottom" class="bg-dark-black">
             <div class="bottom-bar">
@@ -75,14 +82,14 @@ try {
                 </div>
             <?php } if ($appCount > 1) { ?> 
                 <div class="session-menu">
-                    <ul>
-                        <?php foreach ($appResult as $appValue) { ?>
+                    <ul id="global-menu">
+                        <?php foreach ($appResult as $value) { ?>
                             <li>
                                 <a
-                                    href="<?= $app['key'] ?>-padrao/<?= $appValue->a_link ?>"
-                                    title="<?= $appValue->a_title ?>"
-                                    id="link-<?= $appValue->a_hash ?>">
-                                        <?= $appValue->a_title ?>
+                                    href="<?= $app['key'] ?>-padrao/<?= $value->a_link ?>"
+                                    title="<?= $value->a_title ?>"
+                                    data-list="link-<?= $value->a_hash ?>">
+                                        <?= $value->a_title ?>
                                 </a>
                             </li>
                         <?php } ?>
@@ -105,6 +112,9 @@ try {
             }
             ?>
         </div>
+        <script>
+            smcore.globalMenu('app');
+        </script>
         <?php
     }
 } catch (ConstException $e) {
