@@ -75,9 +75,9 @@ try {
                     <p class="font-small">Aguarde...</p>
                 </div>
                 <script>
-                    smlib.modal.open('Entrar', false);
+                    sml.modal.open('Entrar', false);
                     setTimeout(function () {
-                        <?= (in_array('entrar', explode('/', $uri->HTTP_REFERER)) ? 'smcore.go.href(\'./\');' : 'smcore.go.reload();') ?>
+                        <?= (in_array('entrar', explode('/', $uri->HTTP_REFERER)) ? 'smc.go.href(\'./\');' : 'smc.go.reload();') ?>
                     }, <?= (int) $config->length->reload ?>000);
                 </script>
                 <?php
@@ -107,7 +107,7 @@ try {
             include (__DIR__ . '/../../error/denied.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smcore.modal.error('{$e->getMessage()}', true);</script>");
+            echo ("<script>smc.modal.error('{$e->getMessage()}', true);</script>");
             break;
         case ConstException::MISC_RETURN:
             ?>
@@ -117,9 +117,9 @@ try {
                 <p class="font-small">Redirecionando...</p>
             </div>
             <script>
-                smlib.modal.open('Não Autorizado', false);
+                sml.modal.open('Não Autorizado', false);
                 setTimeout(function () {
-                    smcore.go.href('./');
+                    smc.go.href('./');
                 }, <?= (int) $config->length->reload ?>000);
             </script>
             <?php

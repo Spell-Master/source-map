@@ -55,8 +55,8 @@ try {
             </div>
 
             <script>
-                smlib.paginator.set('item', <?= $config->rows->pag ?>);
-                smlib.paginator.init(1);
+                sml.paginator.set('item', <?= $config->rows->pag ?>);
+                sml.paginator.init(1);
             </script>
             <?php
         } else {

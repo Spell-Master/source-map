@@ -113,7 +113,7 @@ try {
             ?>
         </div>
         <script>
-            smcore.globalMenu('app');
+            smc.globalMenu('app');
         </script>
         <?php
     }

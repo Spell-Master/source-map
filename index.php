@@ -93,7 +93,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         </div>
         <script>
             var $itemOpen = new ItemOpen();
-            smcore.topScroll();
+            smc.topScroll();
             
             var res = document.getElementById('resolucao').children[0];
             res.innerText = window.innerWidth;

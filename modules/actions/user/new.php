@@ -165,7 +165,7 @@ try {
                     </div>
                     <script>
                         setTimeout(function () {
-                            smcore.go.href('./');
+                            smc.go.href('./');
                         }, <?= $config->length->reload ?>000);
                     </script>
                     <?php
@@ -209,7 +209,7 @@ try {
                     </div>
                     <script>
                         setTimeout(function () {
-                            smcore.go.href('perfil/<?= $save['link'] ?>');
+                            smc.go.href('perfil/<?= $save['link'] ?>');
                         }, <?= (int) $config->length->reload ?>000);
                     </script>
                     <?php
@@ -233,7 +233,7 @@ try {
             include (__DIR__ . '/../../error/denied.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smcore.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
             break;
         case ConstException::MISC_RETURN:
             ?>
@@ -243,9 +243,9 @@ try {
                 <p class="font-small">Redirecionando...</p>
             </div>
             <script>
-                smlib.modal.title('Não Autorizado');
+                sml.modal.title('Não Autorizado');
                 setTimeout(function () {
-                    smcore.go.href('./');
+                    smc.go.href('./');
                 }, <?= (int) $config->length->reload ?>000);
             </script>
             <?php

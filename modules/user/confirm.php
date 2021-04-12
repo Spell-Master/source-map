@@ -40,7 +40,7 @@ try {
                                             <img src="lib/image/captcha.php" alt="captcha" id="captchaimg" class="border-all-wide border-light-black radius-left-small bg-dark" />
                                         </div>
                                         <div class="col-quarter col-fix">
-                                            <a class="refresh-captcha" title="Trocar Código" onclick="smcore.formItens.capctha()">
+                                            <a class="refresh-captcha" title="Trocar Código" onclick="smc.formItens.capctha()">
                                                 <div class="icon-loop3"></div>
                                             </a>
                                         </div>
@@ -78,7 +78,7 @@ try {
                                             <img src="lib/image/captcha.php" alt="captcha" id="captchaimg" class="border-all-wide border-light-black radius-left-small bg-dark" />
                                         </div>
                                         <div class="col-quarter col-fix">
-                                            <a class="refresh-captcha" title="Trocar Código" onclick="smcore.formItens.capctha()">
+                                            <a class="refresh-captcha" title="Trocar Código" onclick="smc.formItens.capctha()">
                                                 <div class="icon-loop3"></div>
                                             </a>
                                         </div>
