@@ -407,70 +407,81 @@ a.cke_combo_button {
 }
 
 /* Botões */
-.cke_button__textcolor_icon,
-.cke_button__bold_icon,
-.cke_button__italic_icon,
-.cke_button__underline_icon,
-.cke_button__strike_icon,
-.cke_button__justifyleft_icon,
-.cke_button__justifycenter_icon,
-.cke_button__justifyright_icon,
-.cke_button__bulletedlist_icon,
-.cke_button__emojipanel_icon,
-.cke_button__spoiler_icon,
-.cke_button__link_icon,
-.cke_combo__blockquote,
-.cke_button__smcode,
-.cke_button__source_icon {
-    background-image: none !important;
-    text-align: center;
-    font-size: 22px
-}
 .cke_combo__fontsize {
-    content: "";
+    content: ""
 }
 .cke_combo__fontsize > a:before {
     font-family: "icomoon-ultimate";
     content: "\ee91";
     font-size: 23px
 }
-.cke_button_icon.cke_button__textcolor_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\eeaa";
-    font-size: 36px
+
+.cke_button__textcolor_icon,
+.cke_button__bold_icon,
+.cke_button__italic_icon,
+.cke_button__underline_icon,
+.cke_button__strike_icon,
+.cke_button__bulletedlist_icon,
+.cke_button__justifyleft_icon,
+.cke_button__justifycenter_icon,
+.cke_button__justifyright_icon,
+.cke_button__quote_icon,
+.cke_combo__blockquote a {
+    background-image: none !important;
+    text-align: center;
+    font-size: 22px
 }
-.cke_button_icon.cke_button__bold_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ee97";
+.cke_button_icon.cke_button__textcolor_icon:before,
+.cke_button_icon.cke_button__bold_icon:before,
+.cke_button_icon.cke_button__italic_icon:before,
+.cke_button_icon.cke_button__underline_icon:before,
+.cke_button_icon.cke_button__strike_icon:before,
+.cke_button_icon.cke_button__bulletedlist_icon:before,
+.cke_button_icon.cke_button__justifyleft_icon:before,
+.cke_button_icon.cke_button__justifycenter_icon:before,
+.cke_button_icon.cke_button__justifyright_icon:before,
+.cke_combo__blockquote a:before,
+.cke_button_icon.cke_button__quote_icon:before {
+    font-family: "icomoon-ultimate"
 }
-.cke_button_icon.cke_button__italic_icon:before {
+.cke_button_icon.cke_button__textcolor_icon:before {content: "\eeaa"; font-size: 36px}
+.cke_button_icon.cke_button__bold_icon:before {content: "\ee97"}
+.cke_button_icon.cke_button__italic_icon:before {content: "\ee99"}
+.cke_button_icon.cke_button__underline_icon:before {content: "\ee98"}
+.cke_button_icon.cke_button__strike_icon:before {content: "\ee9a"}
+.cke_button_icon.cke_button__bulletedlist_icon:before {content: "\ec5a"}
+.cke_button_icon.cke_button__justifyleft_icon:before {content: "\eebb"}
+.cke_button_icon.cke_button__justifycenter_icon:before {content: "\eebe"}
+.cke_button_icon.cke_button__justifyright_icon:before {content: "\eebd"}
+.cke_combo__blockquote a:before {content: "\eed0"}
+.cke_button_icon.cke_button__quote_icon:before {content: "\eed0"}
+/*
+.cke_combo__blockquote a:before {
     font-family: "icomoon-ultimate";
-    content: "\ee99";
+    content: "\eab4";
+    font-size: 24px
 }
-.cke_button_icon.cke_button__underline_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ee98";
+*/
+
+
+
+.cke_button__emojipanel_icon,
+.cke_button__spoiler_icon,
+.cke_button__link_icon,
+
+.cke_button__smcode,
+.cke_button__source_icon {
+    background-image: none !important;
+    text-align: center;
+    font-size: 22px
 }
-.cke_button_icon.cke_button__strike_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ee9a";
-}
-.cke_button_icon.cke_button__justifyleft_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\eebb";
-}
-.cke_button_icon.cke_button__justifycenter_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\eebe";
-}
-.cke_button_icon.cke_button__justifyright_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\eebd";
-}
-.cke_button_icon.cke_button__bulletedlist_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ec5a";
-}
+
+
+
+
+
+
+
 .cke_button_icon.cke_button__emojipanel_icon:before {
     font-family: "icomoon-ultimate";
     content: "\ed04";
@@ -484,11 +495,7 @@ a.cke_combo_button {
     font-family: "icomoon-ultimate";
     content: "\ec96"
 }
-.cke_combo__blockquote a:before {
-    font-family: "icomoon-ultimate";
-    content: "\eab4";
-    font-size: 24px
-}
+
 .cke_button_icon.cke_button__smcode_icon {
     font-size: 24px
 }
