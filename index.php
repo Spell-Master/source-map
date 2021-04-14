@@ -50,16 +50,16 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <link href="lib/stylesheet/sm-default.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-libary.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
-        <link href="lib/stylesheet/sm-core.css?rand=<?= time() ?>" rel="stylesheet" type="text/css" />
-        <link href="lib/stylesheet/media.css?rand=<?= time() ?>" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/sm-core.css" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/media.css" rel="stylesheet" type="text/css" />
 
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
-        <script src="lib/javascript/sm-core.js?rand=<?= time() ?>" type="text/javascript"></script>
+        <script src="lib/javascript/sm-core.js" type="text/javascript"></script>
         <script src="lib/javascript/from-actions.js" type="text/javascript"></script>
 
         <script src="lib/editor/ckeditor.js?rand=<?= time() ?>" type="text/javascript"></script>
-        <script src="lib/javascript/sm-editor.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-editor.js?rand=<?= time() ?>" type="text/javascript"></script>
         <script>
             const BASE_URI = '<?= $baseUri ?>';
         </script>

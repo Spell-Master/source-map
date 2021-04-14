@@ -426,7 +426,8 @@ a.cke_combo_button {
 .cke_button__justifycenter_icon,
 .cke_button__justifyright_icon,
 .cke_button__quote_icon,
-.cke_combo__blockquote a {
+.cke_combo__blockquote a,
+.cke_button__linkadd_icon {
     background-image: none !important;
     text-align: center;
     font-size: 22px
@@ -441,7 +442,8 @@ a.cke_combo_button {
 .cke_button_icon.cke_button__justifycenter_icon:before,
 .cke_button_icon.cke_button__justifyright_icon:before,
 .cke_combo__blockquote a:before,
-.cke_button_icon.cke_button__quote_icon:before {
+.cke_button_icon.cke_button__quote_icon:before,
+.cke_button_icon.cke_button__linkadd_icon:before {
     font-family: "icomoon-ultimate"
 }
 .cke_button_icon.cke_button__textcolor_icon:before {content: "\eeaa"; font-size: 36px}
@@ -455,13 +457,7 @@ a.cke_combo_button {
 .cke_button_icon.cke_button__justifyright_icon:before {content: "\eebd"}
 .cke_combo__blockquote a:before {content: "\eed0"}
 .cke_button_icon.cke_button__quote_icon:before {content: "\eed0"}
-/*
-.cke_combo__blockquote a:before {
-    font-family: "icomoon-ultimate";
-    content: "\eab4";
-    font-size: 24px
-}
-*/
+.cke_button_icon.cke_button__linkadd_icon:before {content: "\ec96"}
 
 
 
@@ -491,10 +487,7 @@ a.cke_combo_button {
     font-family: "icomoon-ultimate";
     content: "\ecb1";
 }
-.cke_button_icon.cke_button__link_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ec96"
-}
+
 
 .cke_button_icon.cke_button__smcode_icon {
     font-size: 24px
