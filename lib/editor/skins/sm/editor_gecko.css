@@ -427,7 +427,8 @@ a.cke_combo_button {
 .cke_button__justifyright_icon,
 .cke_button__quote_icon,
 .cke_combo__blockquote a,
-.cke_button__linkadd_icon {
+.cke_button__linkadd_icon,
+.cke_button__spoiler_icon {
     background-image: none !important;
     text-align: center;
     font-size: 22px
@@ -443,7 +444,8 @@ a.cke_combo_button {
 .cke_button_icon.cke_button__justifyright_icon:before,
 .cke_combo__blockquote a:before,
 .cke_button_icon.cke_button__quote_icon:before,
-.cke_button_icon.cke_button__linkadd_icon:before {
+.cke_button_icon.cke_button__linkadd_icon:before,
+.cke_button_icon.cke_button__spoiler_icon:before {
     font-family: "icomoon-ultimate"
 }
 .cke_button_icon.cke_button__textcolor_icon:before {content: "\eeaa"; font-size: 36px}
@@ -458,11 +460,11 @@ a.cke_combo_button {
 .cke_combo__blockquote a:before {content: "\eed0"}
 .cke_button_icon.cke_button__quote_icon:before {content: "\eed0"}
 .cke_button_icon.cke_button__linkadd_icon:before {content: "\ec96"}
+.cke_button_icon.cke_button__spoiler_icon:before {content: "\ecb1"}
 
 
 
 .cke_button__emojipanel_icon,
-.cke_button__spoiler_icon,
 .cke_button__link_icon,
 
 .cke_button__smcode,
@@ -474,19 +476,12 @@ a.cke_combo_button {
 
 
 
-
-
-
-
 .cke_button_icon.cke_button__emojipanel_icon:before {
     font-family: "icomoon-ultimate";
     content: "\ed04";
     font-size: 25px
 }
-.cke_button_icon.cke_button__spoiler_icon:before {
-    font-family: "icomoon-ultimate";
-    content: "\ecb1";
-}
+
 
 
 .cke_button_icon.cke_button__smcode_icon {
@@ -508,6 +503,9 @@ a.cke_combo_button {
     padding-left: 9px;
     width: 25px
 }
+/*
+Blockquote
+*/
 .quote,
 .quote-black,
 .quote-grey,
@@ -524,3 +522,44 @@ a.cke_combo_button {
 .quote-yellow {background-color:#f5f0b2; border-left:.3125rem solid #ffeb3b}
 .href-link       {cursor:pointer; font-weight:400; color:#337ab7}
 .href-link:hover {color:#2196f3}
+/*
+Spoiler
+*/
+.spoiler-read {
+    width: calc(100% - 10px);
+    overflow-x: hidden;
+    white-space: nowrap;
+    /*cursor: pointer;*/
+    background-color: #ededed;
+    text-align: left;
+    font-size: 18px;
+    line-height: 48px;
+    border: 1px solid #dddddd;
+    height: 50px;
+    padding: 0 10px;
+    transition: .5s;
+    position: relative
+}
+.spoiler-read:hover {
+    background-color: #dddddd
+}
+.spoiler-read:after {
+    content: " ";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-color: #cccccc transparent transparent transparent;
+    position: absolute;
+    top: 20px;
+    right: 8px
+}
+.spoiler-body {
+    width: calc(100% - 10px);
+    padding: 10px;
+    background-color: #ffffff;
+    height: auto;
+    border: 1px solid #eeeeee;
+    border-top: none;
+    transition: height .5s ease;
+    word-break: break-all
+}

@@ -1,0 +1,43 @@
+/* 
+    Created on : 12/12/2018, 17:37:12
+    Author     : Spell Master
+*/
+
+.spoiler-read {
+    width: calc(100% - 10px);
+    overflow-x: hidden;
+    white-space: nowrap;
+    /*cursor: pointer;*/
+    background-color: #ededed;
+    text-align: left;
+    font-size: 18px;
+    line-height: 48px;
+    border: 1px solid #dddddd;
+    height: 50px;
+    padding: 0 10px;
+    transition: .5s;
+    position: relative
+}
+.spoiler-read:hover {
+    background-color: #dddddd
+}
+.spoiler-read:after {
+    content: " ";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-color: #cccccc transparent transparent transparent;
+    position: absolute;
+    top: 20px;
+    right: 8px
+}
+.spoiler-body {
+    width: calc(100% - 10px);
+    padding: 10px;
+    background-color: #ffffff;
+    height: auto;
+    border: 1px solid #eeeeee;
+    border-top: none;
+    transition: height .5s ease;
+    word-break: break-all
+}

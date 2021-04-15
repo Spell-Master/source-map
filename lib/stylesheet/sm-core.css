@@ -420,3 +420,48 @@ Outros
 .editor-area {
     border: 1px solid #e7e7e7
 }
+
+/* Spoiler */
+.spoiler-read {
+    width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #ededed;
+    text-align: left;
+    font-size: 18px;
+    line-height: 48px;
+    border: 1px solid #dddddd;
+    height: 50px;
+    padding-left: 18px;
+    transition: .5s;
+    position: relative
+}
+.spoiler-read:hover {
+    background-color: #dddddd
+}
+.spoiler-read:after {
+    content: " ";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-color: #cccccc transparent transparent transparent;
+    position: absolute;
+    top: 20px;
+    right: 8px
+}
+.spoiler-read.active:after {
+    top: 10px;
+    border-color: transparent transparent #cccccc transparent
+}
+.spoiler-body {
+    padding: 10px;
+    background-color: #ffffff;
+    overflow: hidden;
+    border: 1px solid #eeeeee;
+    border-top: none;
+    display: none
+}
+.spoiler-body.active {
+    display: block
+}
