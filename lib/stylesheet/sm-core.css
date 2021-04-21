@@ -418,7 +418,13 @@ Outros
 }
 
 .editor-area {
+    display: block;
     border: 1px solid #e7e7e7
+}
+
+.textarea {
+    min-height: 200px;
+    resize: none
 }
 
 /* Spoiler */

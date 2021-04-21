@@ -27,7 +27,8 @@
     function salvar() {
         sm_e.save('editorA');
         resultado.innerHTML = editorA.value;
-        sm_e.spoiler();
+        smc.spoiler();
+        Prism.highlightAll();
     }
 
     function limpar() {
