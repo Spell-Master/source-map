@@ -31,9 +31,6 @@
         sm_e.replace(SOURCE_CODE.editor, $textArea.value);
         SOURCE_CODE.editor = null;
         SOURCE_CODE.string = null;
-
         sml.modal.close();
     }
-
-
 </script>

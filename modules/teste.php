@@ -20,7 +20,7 @@
 
     
     
-    sm_e.init('editorA', 'advance');
+    sm_e.init('editorA', 'all');
 
     var resultado = document.getElementById('resultado');
     var editorA = document.getElementById('editorA');
