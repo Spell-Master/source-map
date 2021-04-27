@@ -16,6 +16,12 @@
 }
 
 @media (max-width: 900px) {
+    /* EDITOR */
+    .cke_button__smsource,
+    .cke_button__smcode,
+    .cke_button__spoiler {
+        display: none !important
+    }
 }
 
 @media (max-width: 768px) {
@@ -29,6 +35,12 @@
     .font-jumbo {font-size: 29px}
     .font-large {font-size: 24px}
     .font-medium {font-size: 19px}
+    /* EDITOR */
+    .cke_button__justifyleft,
+    .cke_button__justifycenter,
+    .cke_button__justifyright {
+        display: none !important
+    }
 }
 
 @media (max-width: 700px) {
@@ -48,9 +60,21 @@
     .font-jumbo {font-size: 27px}
     .font-large {font-size: 20px}
     .font-medium {font-size: 18px}
+    /* EDITOR */
+    .cke_combo__fontsize,
+    .cke_button__textcolor {
+        display: none !important
+    }
 }
 
 @media (max-width: 530px) {
+    .cke_button__bulletedlist,
+    .cke_button__quote,
+    .cke_combo__blockquote,
+    .cke_button__linkadd {
+        display: none !important
+    }
+
 }
 
 @media (max-width: 479px) {
