@@ -66,13 +66,13 @@
         var $editor = CKEDITOR.instances[CODE_MEMORY.editor];
         var $codeText = ($textArea.value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var $template = '<pre><code class="' + $selector.value + '">' + $codeText + '</code></pre><p>&nbsp;</p>';
-        if ($codeText.length >= 1) {
-            $editor.insertHtml($template);
-            $editor.widgets.initOn($template, 'codeSnippet');
-        }
-        CODE_MEMORY.editor = null;
+
+        $editor.insertHtml($template);
+        $editor.widgets.initOn($template, 'codeSnippet');
+
         CODE_MEMORY.model = null;
         CODE_MEMORY.text = null;
+
         sml.modal.close();
     }
 </script>
