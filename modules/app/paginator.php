@@ -8,18 +8,16 @@ try {
     } else {
         SeoData::breadCrumbs($url);
         $doc = simplexml_load_file(__DIR__ . '/../../system/docs/sm-' . $app['key'] . '.xml');
-        if ($selectB->count()) {
-            ?>
-            <div class="container padding-all-prop">
-                <div class="padding-right-prop over-not">
-                    <h1 class="font-extra over-text"><?= $app['name'] ?> Padrão</h1>
-                </div>
-                <hr />
+        ?>
+        <div class="container padding-all-prop" id="page-base">
+            <div class="padding-right-prop over-not">
+                <h1 class="font-extra over-text"><?= $app['name'] ?> Padrão</h1>
+            </div>
+            <div class="card">
                 <?= $doc->info ?>
-
-                <hr />
-
-                <div class="align-right">
+            </div>
+            <?php if ($selectB->count()) { ?>
+                <div class="align-right margin-top">
                     <div data-paginator=""></div>
                 </div>
 
@@ -29,7 +27,7 @@ try {
                             <div class="margin-lr over-text">
                                 <div class="icon-circle-small line-block vertical-middle"></div>
                                 <div class="line-block">
-                                    <a href="app/<?= $url[1] ?>/<?= $value->a_link ?>">
+                                    <a href="<?= $url[0] ?>/<?= $value->a_link ?>">
                                         <?= $value->a_title ?>
                                     </a>
                                 </div>
@@ -40,7 +38,7 @@ try {
                                 <?= SeoData::longText($value->a_text, $config->length->longStr) ?>
                             </article>
                             <div class="padding-all-min align-right">
-                                <a href="app/<?= $url[1] ?>/<?= $value->a_link ?>" class="href-link italic">
+                                <a href="<?= $url[0] ?>/<?= $value->a_link ?>" class="href-link italic">
                                     Acessar
                                     &nbsp; <i class="icon-bubble-quote"></i>
                                 </a>
@@ -52,15 +50,22 @@ try {
                 <div class="padding-all align-center">
                     <div data-paginator=""></div>
                 </div>
-            </div>
 
-            <script>
-                sml.paginator.set('item', <?= $config->rows->pag ?>);
-                sml.paginator.init(1);
-            </script>
+                <script>
+                    sml.paginator.set('item', <?= $config->rows->pag ?>);
+                    sml.paginator.init(1);
+                </script>
+                <?php
+            } else {
+                include (__DIR__ . '/../error/412.php');
+            }
+            ?>
+        </div>
+        <?php
+        if ($admin && $admin >= $config->admin) {
+            ?>
+            <div class="container padding-all-prop" id="page-action"></div>
             <?php
-        } else {
-            throw new ConstException(null, ConstException::NOT_FOUND);
         }
     }
 } catch (ConstException $e) {
@@ -69,9 +74,6 @@ try {
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
             include (__DIR__ . '/../error/500.php');
-            break;
-        case ConstException::NOT_FOUND:
-            include (__DIR__ . '/../error/412.php');
             break;
     }
 }

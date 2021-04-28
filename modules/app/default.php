@@ -42,8 +42,8 @@ try {
                         </div>
                         <div class="col-twothird col-fix">
                             <ul class="bar-menu">
-                                <?php if ($admin && $admin->level >= $config->admin) { ?>
-                                    <li class="session-add" title="Adicionar Conteúdo"></li>
+                                <?php if ($admin && $admin >= $config->admin) { ?>
+                                    <li class="session-add" onclick="sm_a.newPage('<?= $app['key'] ?>');" title="Adicionar Conteúdo"></li>
                                 <?php } ?> 
                                 <li data-open="session-folder" title="Sessões"></li>
                                 <?php if ($config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
@@ -100,15 +100,10 @@ try {
 
         <div id="page-load">
             <?php
-            if ($appCount) {
-                if (isset($url[1])) {
-                    include (__DIR__ . '/page-load.php');
-                } else {
-                    include (__DIR__ . '/paginator.php');
-                }
+            if (isset($url[1])) {
+                include (__DIR__ . '/page-load.php');
             } else {
-                SeoData::breadCrumbs($url);
-                include (__DIR__ . '/../error/412.php');
+                include (__DIR__ . '/paginator.php');
             }
             ?>
         </div>

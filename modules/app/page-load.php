@@ -4,7 +4,10 @@ $valid = new StrValid();
 $clear = new StrClean();
 $selectB = new Select();
 
-$url = SeoData::parseUrl();
+if (!isset($url)) {
+    $url = SeoData::parseUrl();
+    $admin = (isset($session->admin) ? $session->admin : 0);
+}
 
 try {
     if (!isset($url[0])) {
@@ -30,19 +33,26 @@ try {
         $key = explode('-', $url[0])[0];
         $selectB->query("app_page", "a_link = :al AND a_key = :ak", "al={$appPage}&ak={$key}");
         SeoData::breadCrumbs($url);
-        if ($selectB->count()) {
-            $pageData = $selectB->result()[0];
-            ?>
-            <div class="container padding-all-prop">
+        ?>
+        <div class="container padding-all-prop" id="page-base">
+            <?php
+            if ($selectB->count()) {
+                $pageData = $selectB->result()[0];
+                ?>
                 <h1><?= $pageData->a_title ?></h1>
                 <hr />
-                <?= $pageData->a_content ?>
-            </div>
+                <?= PostData::showPost($pageData->a_content) ?>
+                <?php
+            } else {
+                include (__DIR__ . '/../error/412.php');
+            }
+            ?>
+        </div>
+        <?php
+        if ($admin && $admin >= $config->admin) {
+            ?>
+            <div class="container padding-all-prop" id="page-action"></div>
             <?php
-        } else if ($selectB->error()) {
-            throw new ConstException($selectB->error(), ConstException::SYSTEM_ERROR);
-        } else {
-            throw new ConstException(null, ConstException::NOT_FOUND);
         }
     }
 } catch (ConstException $e) {
@@ -54,9 +64,6 @@ try {
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
             include (__DIR__ . '/../error/500.php');
-            break;
-        case ConstException::NOT_FOUND:
-            include (__DIR__ . '/../error/412.php');
             break;
     }
 }
