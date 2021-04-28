@@ -58,6 +58,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-core.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-postdata.js" type="text/javascript"></script>
         <script src="lib/javascript/from-actions.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-app.js" type="text/javascript"></script>
 

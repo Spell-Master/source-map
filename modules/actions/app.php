@@ -7,7 +7,9 @@ $post = GlobalFilter::filterPost();
 
 if ($post) {
     switch ($post->form_id) {
-        
+        case 'new-app':
+            $include = 'app/new.php';
+            break;
     }
 } else {
     $include = '../error/500.php';

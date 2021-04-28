@@ -26,6 +26,10 @@
         <maxPass>50</maxPass> <!-- Máximo de caracteres em senha -->
         <loginError>3</loginError> <!-- Quantidade de logins falhos até bloquear a máquina -->
         <longStr>400</longStr> <!-- Quantidade de caracteres até ser cortado -->
+        <minPageTitle>3</minPageTitle> <!-- Mínimo de caracteres em títulos de página -->
+        <maxPageTitle>30</maxPageTitle> <!-- Máximo de caracteres em títulos de página -->
+        <minPageData>1</minPageData> <!-- Mínimo de caracteres em conteúdo de página -->
+        <maxPageData>100000</maxPageData> <!-- Máximo de caracteres em conteúdo de página -->
     </length>
     
     <rows>
