@@ -23,7 +23,7 @@
     $codeEditor.focus();
 
     function unBreak(str) {
-        return (str.replace(/<br>/g, '\r').replace(/<br \/>/g, '\r'));
+        return (str.replace(/<br>/g, '\r').replace(/<br \/>/g, '\r').replace(/&nbsp;/g, ' '));
     }
 
     function saveSource() {

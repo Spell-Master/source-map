@@ -42,6 +42,10 @@ try {
                 <h1><?= $pageData->a_title ?></h1>
                 <hr />
                 <?= PostData::showPost($pageData->a_content) ?>
+                <script>
+                    smc.spoiler();
+                    Prism.highlightAll();
+                </script>
                 <?php
             } else {
                 include (__DIR__ . '/../error/412.php');
