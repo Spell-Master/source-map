@@ -39,12 +39,29 @@ try {
             if ($selectB->count()) {
                 $pageData = $selectB->result()[0];
                 ?>
-                <h1><?= $pageData->a_title ?></h1>
+                <div class="row-pad">
+                    <div class="col-twothird col-fix">
+                        <div class="over-text" style="margin-top: -5px">
+                            <h1 data-apptitle=""><?= $pageData->a_title ?></h1>
+                        </div>
+                    </div>
+                    <div class="col-third col-fix">
+                        <select class="select-options" id="manager-page">
+                            <option value="">Gerenciar</option>
+                            <option value="edi">Editar</option>
+                            <option value="del">Apagar</option>
+                        </select>
+                    </div>
+                </div>
                 <hr />
-                <?= PostData::showPost($pageData->a_content) ?>
+                <div data-appcontent="">
+                    <?= PostData::showPost($pageData->a_content) ?>
+                </div>
+                <div data-appmodel="" class="hide"><?= $key ?></div>
                 <script>
                     smc.spoiler();
                     Prism.highlightAll();
+                    sm_a.managerPage();
                 </script>
                 <?php
             } else {
