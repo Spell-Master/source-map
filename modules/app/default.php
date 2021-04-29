@@ -88,7 +88,7 @@ try {
                                 <a
                                     href="<?= $app['key'] ?>-padrao/<?= $value->a_link ?>"
                                     title="<?= $value->a_title ?>"
-                                    data-list="link-<?= $value->a_hash ?>">
+                                    id="link-<?= $value->a_hash ?>">
                                         <?= $value->a_title ?>
                                 </a>
                             </li>

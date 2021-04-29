@@ -46,11 +46,13 @@ try {
                         </div>
                     </div>
                     <div class="col-third col-fix">
-                        <select class="select-options" id="manager-page">
-                            <option value="">Gerenciar</option>
-                            <option value="edi">Editar</option>
-                            <option value="del">Apagar</option>
-                        </select>
+                        <?php if ($admin && $admin >= $config->admin) { ?>
+                            <select class="select-options" id="manager-page">
+                                <option value="">Gerenciar</option>
+                                <option value="edi">Editar</option>
+                                <option value="del">Apagar</option>
+                            </select>
+                        <?php } ?>
                     </div>
                 </div>
                 <hr />
@@ -59,9 +61,13 @@ try {
                 </div>
                 <div data-appmodel="" class="hide"><?= $key ?></div>
                 <script>
+                    var $linkId = document.getElementById('link-<?= $pageData->a_hash ?>');
                     smc.spoiler();
                     Prism.highlightAll();
                     sm_a.managerPage();
+                    if (sml.isReady($linkId)) {
+                        $linkId.classList.add('active');
+                    }
                 </script>
                 <?php
             } else {
