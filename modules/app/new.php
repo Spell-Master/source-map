@@ -43,18 +43,18 @@ try {
                 <button
                     class="btn-success shadow-on-hover"
                     title="Publicar Página"
-                    onclick="newApp([
+                    onclick="saveApp([
                                 '<?= $config->length->minPageTitle ?>',
                                 '<?= $config->length->maxPageTitle ?>',
                                 '<?= $config->length->minPageData ?>',
                                 '<?= $config->length->maxPageData ?>'
-                            ])">
+                            ], 'new')">
                     <i class="icon-file-plus2"></i>
                 </button>
                 <button
                     class="btn-info shadow-on-hover"
                     title="Pré visualizar"
-                    onclick="sm_a.preview()">
+                    onclick="sm_a.preview('new')">
                     <i class="icon-file-eye2"></i>
                 </button>
                 <button
