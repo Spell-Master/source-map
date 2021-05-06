@@ -65,7 +65,7 @@ try {
             if ($update->count()) {
                 ?>
                 <div class="align-center padding-all">
-                    <p><i class="icon-bubble-notification icn-3x"></i></p>
+                    <?php SeoData::showProgress() ?>
                     <p class="font-medium">Página editada com sucesso</p>
                     <a href="<?= $app ?>-padrao/<?= $save['a_link'] ?>" class="href-link">
                         <?= $save['a_title'] ?>

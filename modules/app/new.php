@@ -18,54 +18,51 @@ try {
     //
     else {
         ?>
-        <div class="fade-in" id="new-page">
-            <h2 class="quicksand">Nova Página</h2>
-            <hr />
-            <form id="new-app">
-                <div class="box-x-600 margin-auto padding-bottom">
-                    <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        class="input-default"
-                        placeholder="Título da Página"
-                        />
-                </div>
-
-                <div class="editor-area">
-                    <textarea id="editor-page" name="editor" class="input-default"></textarea>
-                </div>
-
-                <input type="hidden" name="app" value="<?= $app ?>" />
-            </form>
-
-            <div class="bg-light padding-all align-right text-white">
-                <button
-                    class="btn-success shadow-on-hover"
-                    title="Publicar Página"
-                    onclick="saveApp([
-                                '<?= $config->length->minPageTitle ?>',
-                                '<?= $config->length->maxPageTitle ?>',
-                                '<?= $config->length->minPageData ?>',
-                                '<?= $config->length->maxPageData ?>'
-                            ], 'new')">
-                    <i class="icon-file-plus2"></i>
-                </button>
-                <button
-                    class="btn-info shadow-on-hover"
-                    title="Pré visualizar"
-                    onclick="sm_a.preview('new')">
-                    <i class="icon-file-eye2"></i>
-                </button>
-                <button
-                    class="btn-warning shadow-on-hover"
-                    title="Cancelar"
-                    onclick="sm_a.cancelNew()">
-                    <i class="icon-file-minus2"></i>
-                </button>
+        <h2 class="quicksand">Nova Página</h2>
+        <hr />
+        <form id="new-app">
+            <div class="box-x-600 margin-auto padding-bottom">
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="input-default"
+                    placeholder="Título da Página"
+                    />
             </div>
+
+            <div class="editor-area">
+                <textarea id="editor-page" name="editor" class="hide"></textarea>
+            </div>
+
+            <input type="hidden" name="app" value="<?= $app ?>" />
+        </form>
+
+        <div class="bg-light padding-all align-right text-white">
+            <button
+                class="btn-success shadow-on-hover"
+                title="Publicar Página"
+                onclick="saveApp([
+                    '<?= $config->length->minPageTitle ?>',
+                    '<?= $config->length->maxPageTitle ?>',
+                    '<?= $config->length->minPageData ?>',
+                    '<?= $config->length->maxPageData ?>'
+                ], 'new')">
+                <i class="icon-file-plus2"></i>
+            </button>
+            <button
+                class="btn-info shadow-on-hover"
+                title="Pré visualizar"
+                onclick="sm_a.preview('new')">
+                <i class="icon-file-eye2"></i>
+            </button>
+            <button
+                class="btn-warning shadow-on-hover"
+                title="Cancelar"
+                onclick="sm_a.cancelNew()">
+                <i class="icon-file-minus2"></i>
+            </button>
         </div>
-        <div id="preview-page"></div>
 
         <script>
             sm_e.init('editor-page', 'admin');

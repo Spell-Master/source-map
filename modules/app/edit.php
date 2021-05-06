@@ -1,6 +1,12 @@
 <?php
 require_once (__DIR__ . '/../../system/config.php');
 $get = GlobalFilter::filterGet();
+
+$valid = new StrValid();
+$clear = new StrClean();
+$select = new Select();
+
+$hash = ($get->hash ? $get->hash : false);
 $app = ($get->app ? $get->app : false);
 
 try {
@@ -10,6 +16,12 @@ try {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //
+    else if (!$hash) {
+        throw new ConstException('Não recebido dados de $_GET[\'hash\']', ConstException::SYSTEM_ERROR);
+    } else if (!$valid->strInt($hash)) {
+        throw new ConstException('$_GET[\'hash\'] não é um identificador válido', ConstException::SYSTEM_ERROR);
+    }
+    //
     else if (!$app) {
         throw new ConstException('Não recebido dados de $_GET[\'app\']', ConstException::SYSTEM_ERROR);
     } else if ($app !== 'css' && $app !== 'js') {
@@ -17,10 +29,20 @@ try {
     }
     //
     else {
-        ?>
-        <div class="fade-in" id="new-page">
+        $pageHash = $clear->formatStr($hash);
+        $pageApp = $clear->formatStr($app);
+
+        $select->query(
+            "app_page",
+            "a_hash = :ah AND a_key = :ak",
+            "ah={$pageHash}&ak={$pageApp}"
+        );
+        if ($select->count()) {
+            $pageData = $select->result()[0];
+            ?>
             <h2 class="quicksand">Editar Página</h2>
             <hr />
+
             <form id="edit-app">
                 <div class="box-x-600 margin-auto padding-bottom">
                     <input
@@ -29,26 +51,30 @@ try {
                         id="title"
                         class="input-default"
                         placeholder="Título da Página"
+                        value="<?= $pageData->a_title ?>"
                         />
                 </div>
 
                 <div class="editor-area">
-                    <textarea id="editor-page" name="editor" class="input-default"></textarea>
+                    <?php SeoData::showProgress() ?>
+                    <textarea
+                        id="editor-page"
+                        name="editor"
+                        class="hide"><?= $pageData->a_content ?></textarea>
                 </div>
 
-                <input type="hidden" name="app" value="<?= $app ?>" />
+                <input type="hidden" name="app" value="<?= $pageData->a_key ?>" />
             </form>
-
             <div class="bg-light padding-all align-right text-white">
                 <button
                     class="btn-success shadow-on-hover"
                     title="Publicar Página"
                     onclick="saveApp([
-                                '<?= $config->length->minPageTitle ?>',
-                                '<?= $config->length->maxPageTitle ?>',
-                                '<?= $config->length->minPageData ?>',
-                                '<?= $config->length->maxPageData ?>'
-                            ], 'edit')">
+                            '<?= $config->length->minPageTitle ?>',
+                            '<?= $config->length->maxPageTitle ?>',
+                            '<?= $config->length->minPageData ?>',
+                            '<?= $config->length->maxPageData ?>'
+                        ], 'edit')">
                     <i class="icon-file-plus2"></i>
                 </button>
                 <button
@@ -64,15 +90,20 @@ try {
                     <i class="icon-file-minus2"></i>
                 </button>
             </div>
-        </div>
-        <div id="preview-page"></div>
 
-        <script>
-            document.getElementById('title').value = decodeURIComponent(MEMORY.appTitle);
-            document.getElementById('editor-page').value = decodeURIComponent(MEMORY.appContent);
-            sm_e.init('editor-page', 'admin');
-        </script>
-        <?php
+            <script>
+                var loading = document.querySelector('div.load-local');
+                sm_e.init('editor-page', 'admin');
+                CKEDITOR.instances['editor-page'].on('instanceReady', function (e) {
+                    loading.parentNode.removeChild(loading);
+                });
+            </script>
+            <?php
+        } else if ($select->error()) {
+            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        } else {
+            throw new ConstException(null, ConstException::NOT_FOUND);
+        }
     }
 } catch (ConstException $e) {
     switch ($e->getCode()) {
@@ -84,5 +115,8 @@ try {
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
             include (__DIR__ . '/../error/500.php');
             break;
+        case ConstException::NOT_FOUND:
+            break;
     }
 }
+exit();

@@ -65,6 +65,7 @@ try {
         if ($admin && $admin >= $config->admin) {
             ?>
             <div class="container padding-all-prop" id="page-action"></div>
+            <div id="preview-page" class="fade-in"></div>
             <?php
         }
     }

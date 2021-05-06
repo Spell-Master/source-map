@@ -42,7 +42,7 @@ try {
                 <div class="row-pad">
                     <div class="col-twothird col-fix">
                         <div class="over-text" style="margin-top: -5px">
-                            <h1 data-apptitle=""><?= $pageData->a_title ?></h1>
+                            <h1><?= $pageData->a_title ?></h1>
                         </div>
                     </div>
                     <div class="col-third col-fix">
@@ -56,15 +56,12 @@ try {
                     </div>
                 </div>
                 <hr />
-                <div data-appcontent="">
-                    <?= PostData::showPost($pageData->a_content) ?>
-                </div>
-                <div data-appmodel="" class="hide"><?= $key ?></div>
+                <?= PostData::showPost($pageData->a_content) ?>
 
                 <?php if ($admin && $admin >= $config->admin) { ?>
                     <form method="POST" action="" id="del-app">
-                        <input type="hidden" name="app" value="<?= $pageData->a_key ?>" />
-                        <input type="hidden" id="page-hash" name="hash" value="<?= $pageData->a_hash ?>" />
+                        <input type="hidden" name="app" value="<?= $pageData->a_key ?>" id="page-app" />
+                        <input type="hidden" name="hash" value="<?= $pageData->a_hash ?>" id="page-hash" />
                     </form>
                 <?php } ?>
 
@@ -86,7 +83,8 @@ try {
         <?php
         if ($admin && $admin >= $config->admin) {
             ?>
-            <div class="container padding-all-prop" id="page-action"></div>
+            <div class="container padding-all-prop fade-in" id="page-action"></div>
+            <div id="preview-page" class="fade-in"></div>
             <?php
         }
     }
