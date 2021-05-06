@@ -60,6 +60,14 @@ try {
                     <?= PostData::showPost($pageData->a_content) ?>
                 </div>
                 <div data-appmodel="" class="hide"><?= $key ?></div>
+
+                <?php if ($admin && $admin >= $config->admin) { ?>
+                    <form method="POST" action="" id="del-app">
+                        <input type="hidden" name="app" value="<?= $pageData->a_key ?>" />
+                        <input type="hidden" id="page-hash" name="hash" value="<?= $pageData->a_hash ?>" />
+                    </form>
+                <?php } ?>
+
                 <script>
                     var $linkId = document.getElementById('link-<?= $pageData->a_hash ?>');
                     smc.spoiler();
