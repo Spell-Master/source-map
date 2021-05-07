@@ -10,9 +10,9 @@ try {
     } else {
         ?>
         <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
-        <div class="vertical-wrap padding-all" style="height: 100vh">
+        <div class="vertical-wrap padding-all-prop" style="height: 100vh">
             <div class="box-x-900" style="z-index: 1">
-                <div class="bg-black padding-all font-large">
+                <div class="bg-black padding-all-min font-large">
                     <div class="row">
                         <div class="float-left">
                             <img src="lib/image/logo.png" class="line-block vertical-middle box-x-50" />
@@ -27,7 +27,7 @@ try {
                         </div>
                     </div>
                 </div>
-                <div class="bg-white margin-bottom padding-all">
+                <div class="bg-white margin-bottom padding-all-prop">
                     <div class="align-center">
                         <h1 class="quicksand">Bem Vindo(a)</h1>
 

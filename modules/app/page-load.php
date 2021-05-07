@@ -48,7 +48,7 @@ try {
                     <div class="col-third col-fix">
                         <?php if ($admin && $admin >= $config->admin) { ?>
                             <select class="select-options" id="manager-page">
-                                <option value="">Gerenciar</option>
+                                <option value="">Ação</option>
                                 <option value="edi">Editar</option>
                                 <option value="del">Apagar</option>
                             </select>

@@ -68,22 +68,19 @@ try {
                         <p class="font-large align-center gunship">Pesquisar</p>
                         <hr class="border-dark-black" />
                         <div class="box-x-900 margin-auto">
-                            <div class="row">
-                                <div class="float-left">
-                                    <button class="btn-info box-y-50 text-white" onclick="searchPage('app', [
-                                                <?= $config->length->minSearch ?>,
-                                                <?= $config->length->maxSearch ?>
-                                            ])">
-                                        <i class="icon-search3 font-medium"></i>
-                                    </button>
-                                </div>
-                                <div class="over-not">
-                                    <form method="POST" action="" id="search-page">
+                            <form method="POST" action="" id="search-page" onsubmit="return searchPage('app', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                                <div class="row">
+                                    <div class="float-left">
+                                        <button class="btn-info box-y-50 text-white">
+                                            <i class="icon-search3 font-medium"></i>
+                                        </button>
+                                    </div>
+                                    <div class="over-not">
                                         <input type="text" name="search" id="search" class="input-default" />
                                         <input type="hidden" name="app" value="<?= $app['key'] ?>" />
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
