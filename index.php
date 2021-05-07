@@ -82,13 +82,16 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
                 </div>
             </div>
             <?php include ('modules/default/header.php'); ?>
-            </header>
+        </header>
         <main><?php include (LoadModule($url[0])); ?></main>
         <footer>
             <?php include ('modules/default/footer.php'); ?>
             <a id="scoll-top" class="fixed cursor-pointer">
                 <i class="icon-circle-up4 icn-3x text-dark-blue text-blue-hover"></i>
             </a>
+            <audio id="notify-wav">
+                <source src="lib/wav/notify.wav" type="audio/x-wav">
+            </audio>
         </footer>
 
         <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
@@ -103,7 +106,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <script>
             var $itemOpen = new ItemOpen();
             smc.topScroll();
-            
+
             var res = document.getElementById('resolucao').children[0];
             res.innerText = window.innerWidth;
             window.onresize = function () {

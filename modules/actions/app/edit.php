@@ -38,7 +38,7 @@ try {
     else {
         $save = [
             'a_title' => PostData::savePost($title),
-            'a_link' => $clear->formatStr($title),
+            'a_link' => mb_strtolower($clear->formatStr($title)),
             'a_content' => PostData::savePost($post->editor),
             'a_text' => htmlentities($editor),
             'a_version' => date('Y-m-d')

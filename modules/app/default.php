@@ -1,6 +1,7 @@
 <?php
 $select = new Select();
 $admin = (isset($session->admin) ? $session->admin : 0);
+$login = (isset($session->user) ? $session->user : false);
 
 switch ($url[0]) {
     case 'css-padrao':
@@ -46,7 +47,7 @@ try {
                                     <li class="session-add" onclick="sm_a.newPage('<?= $app['key'] ?>');" title="Adicionar Conteúdo"></li>
                                 <?php } ?> 
                                 <li data-open="session-folder" title="Sessões"></li>
-                                <?php if ($config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
+                                <?php if ($login && $config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
                                     <li data-open="session-search" title="Pesquisa"></li>
                                 <?php } if ($appCount > 1) { ?> 
                                     <li data-open="session-menu" title="Páginas"></li>
@@ -61,7 +62,7 @@ try {
                 session-folder
             </div>
 
-            <?php if ($config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
+            <?php if ($login && $config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
                 <div class="session-search" data-open="fix">
                     <div class="container padding-all-prop">
                         <p class="font-large align-center gunship">Pesquisar</p>
@@ -69,12 +70,18 @@ try {
                         <div class="box-x-900 margin-auto">
                             <div class="row">
                                 <div class="float-left">
-                                    <button class="btn-info box-y-50 text-white">
+                                    <button class="btn-info box-y-50 text-white" onclick="searchPage('app', [
+                                                <?= $config->length->minSearch ?>,
+                                                <?= $config->length->maxSearch ?>
+                                            ])">
                                         <i class="icon-search3 font-medium"></i>
                                     </button>
                                 </div>
                                 <div class="over-not">
-                                    <input type="text" class="input-default" />
+                                    <form method="POST" action="" id="search-page">
+                                        <input type="text" name="search" id="search" class="input-default" />
+                                        <input type="hidden" name="app" value="<?= $app['key'] ?>" />
+                                    </form>
                                 </div>
                             </div>
                         </div>

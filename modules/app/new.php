@@ -20,7 +20,7 @@ try {
         ?>
         <h2 class="quicksand">Nova Página</h2>
         <hr />
-        <form id="new-app">
+        <form method="POST" action="" id="new-app">
             <div class="box-x-600 margin-auto padding-bottom">
                 <input
                     type="text"

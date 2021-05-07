@@ -43,7 +43,7 @@ try {
             <h2 class="quicksand">Editar Página</h2>
             <hr />
 
-            <form id="edit-app">
+            <form method="POST" action="" id="edit-app">
                 <div class="box-x-600 margin-auto padding-bottom">
                     <input
                         type="text"

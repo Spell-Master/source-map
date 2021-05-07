@@ -39,8 +39,8 @@ try {
     else {
         $save = [
             'a_hash' => $code->defCode(20) . time(),
-            'a_title' => PostData::savePost($title),
-            'a_link' => $clear->formatStr($title),
+            'a_title' => htmlentities($title),
+            'a_link' => mb_strtolower($clear->formatStr($title)),
             'a_key' => $app,
             'a_content' => PostData::savePost($post->editor),
             'a_text' => htmlentities($editor),

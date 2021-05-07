@@ -16,6 +16,9 @@ if ($post) {
         case 'del-app':
             $include = 'app/del.php';
             break;
+        case 'search-page':
+            $include = 'app/search.php';
+            break;
     }
 } else {
     $include = '../error/500.php';

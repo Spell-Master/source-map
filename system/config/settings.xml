@@ -24,6 +24,8 @@
         <maxMail>80</maxMail> <!-- Máximo de caracteres em endereços de e-mail -->
         <minPass>6</minPass> <!-- Mínimo de caracteres em senha -->
         <maxPass>50</maxPass> <!-- Máximo de caracteres em senha -->
+        <minSearch>1</minSearch> <!-- Mínimo de caracteres para formulários de pesquisa -->
+        <maxSearch>10</maxSearch> <!-- Máximo de caracteres para formulários de pesquisa -->
         <loginError>3</loginError> <!-- Quantidade de logins falhos até bloquear a máquina -->
         <longStr>400</longStr> <!-- Quantidade de caracteres até ser cortado -->
         <minPageTitle>3</minPageTitle> <!-- Mínimo de caracteres em títulos de página -->
