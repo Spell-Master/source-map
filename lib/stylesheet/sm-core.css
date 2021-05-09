@@ -73,20 +73,6 @@ button [class^="icon-"]:before {
     line-height: inherit;
     padding: 0 6px
 }
-#paginator > .item {
-    display: none
-}
-#paginator > .item:nth-child(1),
-#paginator > .item:nth-child(2),
-#paginator > .item:nth-child(3),
-#paginator > .item:nth-child(4),
-#paginator > .item:nth-child(5),
-#paginator > .item:nth-child(6),
-#paginator > .item:nth-child(7),
-#paginator > .item:nth-child(8),
-#paginator > .item:nth-child(9) {
-    display: block
-}
 
 .checkmark + label.checkmark-line::before {
     content: '';

@@ -21,8 +21,8 @@ try {
                     <div data-paginator=""></div>
                 </div>
 
-                <?php foreach ($selectB->result() as $value) { ?>
-                    <div class="shadow margin-top item">
+                <?php foreach ($selectB->result() as $key => $value) { ?>
+                    <div class="shadow margin-top item"<?= (($key + 1) > (int) $config->rows->pag ? ' style="display:none"' : null) ?>>
                         <div class="bg-black padding-all-min font-large text-white">
                             <div class="margin-lr over-text">
                                 <div class="icon-circle-small line-block vertical-middle"></div>
