@@ -6,8 +6,9 @@ return [
      * Níveis de Acesso
      */
     'staff' => 1, // Moderador
-    'manager' => 2, // Coordenador
-    'admin' => 3, // Administrador
+    'developer' => 2, // Desenvolvedor
+    'manager' => 3, // Coordenador
+    'admin' => 4, // Administrador
 
     /*
      * Conexão com o banco de dados 
