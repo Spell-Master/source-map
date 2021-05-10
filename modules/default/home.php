@@ -1,5 +1,6 @@
 <p><a class="href-link" href="css-padrao">css-padrao</a></p>
 <p><a class="href-link" href="js-padrao">js-padrao</a></p>
+<p><a class="href-link" href="doc">doc</a></p>
 <?php
 echo __FILE__;
 /* 

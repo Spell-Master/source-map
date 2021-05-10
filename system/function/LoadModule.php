@@ -25,6 +25,7 @@ function LoadModule($module) {
         case 'perfil': $fileName = 'user/profile.php'; break;
         case 'termos': $fileName = 'info/terms.php'; break;
         case 'css-padrao': case 'js-padrao': $fileName = 'app/default.php'; break;
+        case 'doc': $fileName = 'doc/default.php'; break;
         default: $fileName = 'error/404.php'; break;
     }
     return ('modules/' . $fileName);

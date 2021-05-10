@@ -1,3 +1,6 @@
+<?php
+
+?>
 
 <div id="header-bottom" class="bg-dark-black">
     <div class="bottom-bar">
@@ -63,8 +66,10 @@
 </div>
 
 <div id="page-load">
-
+<?php
+var_dump($url);
+?>
 </div>
 <script>
-    smc.globalMenu('app');
+    //smc.globalMenu('app');
 </script>
