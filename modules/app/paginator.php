@@ -52,7 +52,7 @@ try {
                 </div>
 
                 <script>
-                    sml.paginator.set('item', <?= $config->rows->pag ?>);
+                    sml.paginator.set('item', <?= $config->rows->pag ?>, null);
                     sml.paginator.init(1);
                 </script>
                 <?php
