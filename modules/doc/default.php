@@ -124,7 +124,7 @@ try {
                             <p class="font-large align-center gunship">Pesquisar</p>
                             <hr class="border-dark-black" />
                             <div class="box-x-900 margin-auto">
-                                <form method="POST" action="" id="search-page" onsubmit="return searchPage('app', [<? $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                                <form method="POST" action="" id="search-page" onsubmit="return searchPage('doc', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
                                     <div class="row">
                                         <div class="float-left">
                                             <button class="btn-info box-y-50 text-white">
@@ -132,8 +132,8 @@ try {
                                             </button>
                                         </div>
                                         <div class="over-not">
-                                            <input type="text" name="search" id="search" class="input-default" />
-                                            <input type="hidden" name="app" value="" />
+                                            <input type="text" name="search" id="search" class="input-default" placeholder="Procurar em (<?= $docResult[0]->s_title ?>)" />
+                                            <input type="hidden" name="doc" value="<?= $docResult[0]->s_hash ?>" />
                                         </div>
                                     </div>
                                 </form>

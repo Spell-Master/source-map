@@ -429,6 +429,12 @@ Outros
     animation: loadpop 1s
 }
 
+.img-default {
+    width: 100%;
+    height: auto;
+    max-width: 250px
+}
+
 /* Spoiler */
 .spoiler-read {
     width: 100%;
