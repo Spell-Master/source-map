@@ -37,7 +37,8 @@ try {
                 GROUP BY
                     doc_sectors.s_link
                 ORDER BY
-                    doc_category.c_order ASC
+                    doc_category.c_order ASC,
+                    doc_sectors.s_link ASC
             ");
         } else { // ALGUM SETOR ACESSADO (Carregar todas páginas desse setor)
             $select->setQuery("

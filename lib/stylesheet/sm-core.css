@@ -479,3 +479,7 @@ Outros
 .spoiler-body.active {
     display: block
 }
+
+.pag-item {
+    display: none
+}
