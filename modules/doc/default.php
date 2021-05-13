@@ -5,7 +5,6 @@ $clear = new StrClean();
 
 $sectorJoin = (isset($url[1]) ? true : false); // Se acessado algum setor
 $pageJoin = (isset($url[2]) ? true : false); // Se acessado alguma página
-$admin = (isset($session->admin) ? $session->admin : 0);
 $login = (isset($session->user) ? $session->user : false);
 
 try {
@@ -91,9 +90,6 @@ try {
                         </div>
                         <div class="col-twothird col-fix">
                             <ul class="bar-menu">
-                                <?php if ($sectorJoin && $admin && $admin >= $config->developer) { ?>
-                                    <li class="session-add" onclick="sm_a.newPage('');" title="Adicionar Conteúdo"></li>
-                                <?php } ?>
                                 <li data-open="session-folder" title="Sessões"></li>
                                 <?php
                                 if ($docCount && $sectorJoin) {
@@ -173,13 +169,14 @@ try {
                     include (__DIR__ . '/page-load.php');
                 }
             } else {
+                SeoData::breadCrumbs($url);
                 include (__DIR__ . '/../error/412.php');
             }
             ?>
         </div>
 
         <script>
-            //smc.globalMenu('app');
+            smc.globalMenu('doc');
         </script>
         <?php
     }

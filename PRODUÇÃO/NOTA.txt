@@ -1,4 +1,4 @@
-**************************************************************************
+*************************************************************************
 * ADICIONAR
 *************************************************************************
 * Ao executar o login registrar os dados do dispositivo que acessou.
@@ -6,3 +6,9 @@ Quando logar lovamente comparar os dados dos dispositivos anterior e
 atual.
 Se não for idênticos bloquear o login da conta e só liberar depois de
 confirmar por e-mail.
+
+*************************************************************************
+* REMOVER
+*************************************************************************
+* Remover criação e edição de páginas no app padrão.
+Essas funções contará apenas no painel administrativo.
