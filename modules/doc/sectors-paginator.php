@@ -38,7 +38,7 @@ foreach ($docResult as $key => $value) {
                                 <div class="margin-lr over-text">
                                     <div class="icon-circle-small line-block vertical-middle"></div>
                                     <div class="line-block">
-                                        <a href="<?= $sect->s_link ?>">
+                                        <a href="doc/<?= $sect->s_link ?>">
                                             <?= $sect->s_title ?> 
                                         </a>
                                     </div>
@@ -51,7 +51,7 @@ foreach ($docResult as $key => $value) {
                             </div>
                         </div>
                         <div class="padding-all-min align-right">
-                            <a href="<?= $sect->s_link ?>" class="href-link italic">
+                            <a href="doc/<?= $sect->s_link ?>" class="href-link italic">
                                 Acessar &nbsp; <i class="icon-bubble-quote"></i>
                             </a>
                         </div>
