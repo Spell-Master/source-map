@@ -92,14 +92,12 @@ try {
                             <ul class="bar-menu">
                                 <li data-open="session-folder" title="Sessões"></li>
                                 <?php
-                                if ($docCount && $sectorJoin) {
-                                    if ($login && $config->enable->search == 'y' && $docCount >= $config->rows->search) {
-                                        ?>
-                                        <li data-open="session-search" title="Pesquisa"></li>
-                                    <?php } if ($docCount > 1) { ?>
-                                        <li data-open="session-menu" title="Páginas"></li>
-                                        <?php
-                                    }
+                                if ($login && $config->enable->search == 'y' && $docCount >= $config->rows->search) {
+                                    ?>
+                                    <li data-open="session-search" title="Pesquisa"></li>
+                                <?php } if ($docCount > 1) { ?>
+                                    <li data-open="session-menu" title="Páginas"></li>
+                                    <?php
                                 }
                                 ?>
                             </ul>
@@ -113,47 +111,44 @@ try {
             </div>
 
             <?php
-            if ($docCount && $sectorJoin) {
-                if ($login && $config->enable->search == 'y' && $docCount >= $config->rows->search) {
-                    ?>
-                    <div class="session-search" data-open="fix">
-                        <div class="container padding-all-prop">
-                            <p class="font-large align-center gunship">Pesquisar</p>
-                            <hr class="border-dark-black" />
-                            <div class="box-x-900 margin-auto">
-                                <form method="POST" action="" id="search-page" onsubmit="return searchPage('doc', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
-                                    <div class="row">
-                                        <div class="float-left">
-                                            <button class="btn-info box-y-50 text-white">
-                                                <i class="icon-search3 font-medium"></i>
-                                            </button>
-                                        </div>
-                                        <div class="over-not">
-                                            <input type="text" name="search" id="search" class="input-default" placeholder="Procurar em (<?= $docResult[0]->s_title ?>)" />
-                                            <input type="hidden" name="doc" value="<?= $docResult[0]->s_hash ?>" />
-                                        </div>
+            if ($login && $config->enable->search == 'y' && $docCount >= $config->rows->search) {
+                ?>
+                <div class="session-search" data-open="fix">
+                    <div class="container padding-all-prop">
+                        <p class="font-large align-center gunship">Pesquisar</p>
+                        <hr class="border-dark-black" />
+                        <div class="box-x-900 margin-auto">
+                            <form method="POST" action="" id="search-page" onsubmit="return searchPage('doc', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                                <div class="row">
+                                    <div class="float-left">
+                                        <button class="btn-info box-y-50 text-white">
+                                            <i class="icon-search3 font-medium"></i>
+                                        </button>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="over-not">
+                                        <input type="text" name="search" id="search" class="input-default" placeholder="Procurar páginas" />
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                <?php } if ($docCount > 1) { ?>
-                    <div class="session-menu">
-                        <ul id="global-menu">
-                            <?php foreach ($docResult as $value) { ?>
-                                <li>
-                                    <a
-                                        href="doc/<?= $value->s_link . '/' . $value->p_link ?>"
-                                        title="<?= $value->p_title ?>"
-                                        id="link-<?= $value->p_hash ?>">
-                                            <?= $value->p_title ?>
-                                    </a>
-                                </li>
-                            <?php } ?> 
-                        </ul>
-                    </div>
-                    <?php
-                }
+                </div>
+            <?php } if ($docCount > 1) { ?>
+                <div class="session-menu">
+                    <ul id="global-menu">
+                        <?php foreach ($docResult as $value) { ?>
+                            <li>
+                                <a
+                                    href="doc/<?= $value->s_link . '/' . $value->p_link ?>"
+                                    title="<?= $value->p_title ?>"
+                                    id="link-<?= $value->p_hash ?>">
+                                        <?= $value->p_title ?>
+                                </a>
+                            </li>
+                        <?php } ?> 
+                    </ul>
+                </div>
+                <?php
             }
             ?>
         </div>

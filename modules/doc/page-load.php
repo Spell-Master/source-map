@@ -75,37 +75,39 @@ try {
             } else {
                 $userData = ($selectUser->count() ? $selectUser->result() : false);
                 ?>
-                <div class="container padding-all-prop" id="page-base">
-                    <h1 class="over-text"><?= $pageData->p_title ?></h1>
-                    <hr />
-                    <article class="margin-top-high">
-                        <?= PostData::showPost($pageData->p_content) ?>
-                    </article>
-                </div>
-                <div class="bg-light padding-all">
-                    <?php
-                    if ($userData) {
-                        foreach ($userData as $value) {
-                            if ($value->u_hash == $pageData->p_created && $value->u_hash != $pageData->p_last_edit) {
-                                echo ('<p class="list margin-left"><span class="bold">Autor:</span> <a href="users/' . $value->u_link . '" target="_blank" class="href-link">' . $value->u_name . '</a> ' . $clear->dateTime($pageData->p_date) . '</p>');
-                            } else if ($value->u_hash == $pageData->p_last_edit) {
-                                echo ('<p class="list margin-left"><span class="bold">Edição:</span> <a href="users/' . $value->u_link . '" target="_blank" class="href-link">' . $value->u_name . '</a> ' . $clear->dateTime($pageData->p_last_date) . '</p>');
+                <div id="page-base">
+                    <div class="container padding-all-prop">
+                        <h1 class="over-text"><?= $pageData->p_title ?></h1>
+                        <hr />
+                        <article class="margin-top-high">
+                            <?= PostData::showPost($pageData->p_content) ?>
+                        </article>
+                    </div>
+                    <div class="bg-light padding-all">
+                        <?php
+                        if ($userData) {
+                            foreach ($userData as $value) {
+                                if ($value->u_hash == $pageData->p_created && $value->u_hash != $pageData->p_last_edit) {
+                                    echo ('<p class="list margin-left"><span class="bold">Autor:</span> <a href="users/' . $value->u_link . '" target="_blank" class="href-link">' . $value->u_name . '</a> ' . $clear->dateTime($pageData->p_date) . '</p>');
+                                } else if ($value->u_hash == $pageData->p_last_edit) {
+                                    echo ('<p class="list margin-left"><span class="bold">Edição:</span> <a href="users/' . $value->u_link . '" target="_blank" class="href-link">' . $value->u_name . '</a> ' . $clear->dateTime($pageData->p_last_date) . '</p>');
+                                }
                             }
+                        } else {
+                            echo ('<p class="list margin-left"><span class="bold">Autor:</span> ????</p>');
                         }
-                    } else {
-                        echo ('<p class="list margin-left"><span class="bold">Autor:</span> ????</p>');
-                    }
-                    ?>
-                </div>
+                        ?>
+                    </div>
 
-                <script>
-                    var $linkId = document.getElementById('link-<?= $pageData->p_hash ?>');
-                    smc.spoiler();
-                    Prism.highlightAll();
-                    if (sml.isReady($linkId)) {
-                        $linkId.classList.add('active');
-                    }
-                </script>
+                    <script>
+                        var $linkId = document.getElementById('link-<?= $pageData->p_hash ?>');
+                        smc.spoiler();
+                        Prism.highlightAll();
+                        if (sml.isReady($linkId)) {
+                            $linkId.classList.add('active');
+                        }
+                    </script>
+                </div>
                 <?php
             }
         } else if ($selectPage->error()) {
@@ -129,3 +131,4 @@ try {
             break;
     }
 }
+exit();
