@@ -17,6 +17,7 @@ function LoadModule($module) {
     switch ($module) {
         case 'teste': $fileName = 'teste.php'; break;
 
+        case 'admin': $fileName = 'admin/default.php'; break;
         case 'inicio': $fileName = 'default/home.php'; break;
         case 'cadastro': $fileName = 'user/new.php'; break;
         case 'confirmar': $fileName = 'user/confirm.php'; break;
