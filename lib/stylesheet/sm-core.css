@@ -338,11 +338,12 @@ Abaixo da header
     width: 320px;
     right: 0;
     top: 55px;
+    margin-right: -20px;
     background-color: #333333;
     background-image: url('../image/patern.svg');
     box-shadow: -3px 0px 12px 0px rgba(0,0,0,.3);
     transition: transform .3s;
-    transform: translateX(150%);
+    transform: translateX(100%);
     z-index: 2
 }
 #header-bottom .session-menu.opened {
@@ -351,34 +352,62 @@ Abaixo da header
 
 /* Menu principal */
 #global-menu {
+    list-style: none;
     height: calc(100vh - 105px);
     overflow-y: auto;
     overflow-x: hidden
 }
-#global-menu > li {
+#global-menu li {
     cursor: pointer;
     border-bottom: 1px solid #dddddd
 }
-#global-menu > li:last-of-type {
+#global-menu li:last-of-type {
     border-bottom: none
 }
-#global-menu > li > a {
+#global-menu li > a {
     display: block;
     background-color: #fafafa;
     padding: 12px 20px;
     color: #3a3a3a;
     transition: all .3s
 }
-#global-menu > li:hover > a {
+#global-menu li:hover > a {
     background: #efefef
 }
-#global-menu > li > a.active {
+#global-menu li > a.active {
     background-color: #c40700;
     color: #ffffff
 }
-#global-menu > li:hover > a.active {
+#global-menu li:hover > a.active {
     background-color: #da190b
 }
+
+#global-menu ul.sub-menu { /* Sub-menu global */
+    list-style: none;
+    opacity: 0;
+    position: absolute;
+    height: calc(100vh - 105px);
+    width: 320px;
+    overflow-y: auto;
+    top: 0;
+    right: 100%;
+    margin-right: -20px;
+    background-color: #333333;
+    background-image: url('../image/patern.svg');
+    box-shadow: -3px 0px 12px 0px rgba(0,0,0,.3);
+    pointer-events: none;
+    transition: all .5s;
+    transform: translateX(100%);
+    z-index: 2
+}
+#global-menu ul.sub-menu.opened {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateX(0)
+}
+
+
+
 
 /* **** */
 #page-load {

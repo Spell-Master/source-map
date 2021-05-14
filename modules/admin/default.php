@@ -31,16 +31,37 @@ try {
                 session-folder
             </div>
 
-            <div class="session-menu">
+            <div class="session-menu ">
                 <ul id="global-menu">
                     <?php if ($page) { ?>
                         <li><a href="admin" title="Voltar ao início"><i class="icon-home"></i> &nbsp; Início</a></li>
                     <?php } ?>
                     <li><a href="admin/usuarios" title="Usuários"><i class="icon-users"></i> &nbsp; Usuários</a></li>
-                    <?php if ($admin >= $config->developer) { ?>
-                        <li><a href="admin/apps-padrao" title="Apps Padrões"><i class="icon-unite"></i> &nbsp; Aplicações Padrões</a></li>
-                        <li><a href="admin/web-docs" title="Web Doc"><i class="icon-book"></i> &nbsp; Documentação Web</a></li>
+
+                    <?php if ($admin >= $config->admin) { ?>
+                        <li>
+                            <a data-open="app-menu"><i class="icon-share4"></i> &nbsp; Aplicações Padrões</a>
+                            <ul class="sub-menu app-menu">
+                                <li><a data-open="session-menu"><i class="icon-menu8"></i> &nbsp; Menu</a></li>
+                                <li><a href="admin/padrao-css"><i class="icon-file-css2"></i> &nbsp; CSS</a></a></li>
+                                <li><a href="admin/padrao-js"><i class="icon-code"></i> &nbsp; JavaScript</a></a></li>
+                            </ul>
+                        </li>
                     <?php } ?>
+
+                    <?php if ($admin >= $config->developer) { ?>
+                        <li>
+                            <a data-open="doc-menu"><i class="icon-book3"></i> &nbsp; Documentação Web</a>
+                            <ul class="sub-menu doc-menu">
+                                <li><a data-open="session-menu"><i class="icon-menu8"></i> &nbsp; Menu</a></li>
+                                <li><a href="admin/"><i class="icon-archive"></i> &nbsp; Categorias</a></a></li>
+                                <li><a href="admin/"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
+                                <li><a href="admin/"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
+                            </ul>
+                        </li>
+                    <?php } ?>
+
+
                 </ul>
             </div>
 
@@ -54,8 +75,10 @@ try {
                 case 'usuarios':
                     echo 'usuarios';
                     break;
-                case 'apps-padrao':
-                    echo 'apps-padrao';
+                case 'padrao-css':
+                    echo 'padrao-css';
+                case 'padrao-js':
+                    echo 'padrao-js';
                     break;
                 case 'web-docs':
                     echo 'web-docs';
