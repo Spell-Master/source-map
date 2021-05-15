@@ -60,8 +60,6 @@ try {
                             </ul>
                         </li>
                     <?php } ?>
-
-
                 </ul>
             </div>
 
@@ -76,9 +74,8 @@ try {
                     echo 'usuarios';
                     break;
                 case 'padrao-css':
-                    echo 'padrao-css';
                 case 'padrao-js':
-                    echo 'padrao-js';
+                    include (__DIR__ . '/apps.php');
                     break;
                 case 'web-docs':
                     echo 'web-docs';

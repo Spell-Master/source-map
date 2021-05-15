@@ -181,10 +181,9 @@ try {
             include (__DIR__ . '/../error/406.php');
             break;
         case ConstException::SYSTEM_ERROR:
-            //$log = new LogRegister();
-            //$log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            //include (__DIR__ . '/../error/500.php');
-            echo $e->getMessage();
+            $log = new LogRegister();
+            $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
+            include (__DIR__ . '/../error/500.php');
             break;
     }
 }

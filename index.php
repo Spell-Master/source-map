@@ -68,6 +68,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <script src="lib/prism/prism.js" type="text/javascript"></script>
         <script src="lib/editor/ckeditor.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-editor.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-stf.js" type="text/javascript"></script>
         <script>
             const BASE_URI = '<?= $baseUri ?>';
             const MEMORY = {};
