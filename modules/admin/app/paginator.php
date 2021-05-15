@@ -30,7 +30,7 @@ if (count($appResult)) {
                         <div class="bg-white">
                             <div class="row-pad">
                                 <div class="col-s-half float-right align-right">
-                                    <button class="btn-info text-white maximize-min shadow-on-hover">
+                                    <button class="btn-info text-white maximize-min shadow-on-hover" onclick="sm_stf.app.editPage('<?= $value->a_hash ?>')">
                                         &nbsp; <i class="icon-pencil5"></i> Editar &nbsp;
                                     </button>
                                 </div>

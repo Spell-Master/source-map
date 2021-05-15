@@ -9,6 +9,9 @@ if ($post) {
         case 'new-app':
             $include = 'app-new.php';
             break;
+        case 'edit-app':
+            $include = 'app-edit.php';
+            break;
     }
 } else {
     $include = '../error/500.php';
