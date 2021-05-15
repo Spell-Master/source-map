@@ -45,21 +45,25 @@ try {
                 </div>
                 <div class="col-quarter">
                     <p class="font-medium">Adicionar</p>
-                    <button class="btn-success button-block text-white">
+                    <button class="btn-success button-block text-white" onclick="sm_stf.app.newPage('<?= $app['key'] ?>')">
                         Criar <i class="icon-file-plus2"></i>
                     </button>
                 </div>
             </div>
+        </div>
 
-            <div class="margin-top" id="paginator">
+        <div class="margin-top">
+            <div id="paginator" class="fade-in">
                 <?php
                 if (!$count) {
                     include (__DIR__ . '/../error/412.php');
                 } else {
-                    include (__DIR__ . '/apps/paginator.php');
+                    include (__DIR__ . '/app/paginator.php');
                 }
                 ?>
             </div>
+            <div id="page-action"></div>
+            <div id="page-preview"></div>
         </div>
         <?php
     }

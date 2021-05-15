@@ -75,7 +75,7 @@ try {
                     break;
                 case 'padrao-css':
                 case 'padrao-js':
-                    include (__DIR__ . '/apps.php');
+                    include (__DIR__ . '/app.php');
                     break;
                 case 'web-docs':
                     echo 'web-docs';
