@@ -9,7 +9,7 @@ try {
         SeoData::breadCrumbs($url);
         $doc = simplexml_load_file(__DIR__ . '/../../system/docs/sm-' . $app['key'] . '.xml');
         ?>
-        <div class="container padding-all-prop" id="action-page">
+        <div class="container padding-all-prop" id="target-action">
             <div class="padding-right-prop over-not">
                 <h1 class="font-extra over-text"><?= $app['name'] ?> Padrão</h1>
             </div>

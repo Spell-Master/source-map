@@ -35,7 +35,7 @@ try {
         if ($selectB->count()) {
             $pageData = $selectB->result()[0];
             ?>
-            <div class="container padding-all-prop" id="action-page">
+            <div class="container padding-all-prop" id="target-action">
                 <h1 class="over-text"><?= $pageData->a_title ?></h1>
                 <hr />
                 <article class="margin-top-high">

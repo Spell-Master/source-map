@@ -84,7 +84,7 @@ try {
             $html .= '</div>';
             ?>
             <script>
-                var $paginator = document.getElementById('action-page');
+                var $paginator = document.getElementById('target-action');
                 $paginator.innerHTML = `<?= $html ?>`;
                 document.getElementById('search').value = '';
                 sml.paginator.set('pag-item', <?= $config->rows->pag ?>);

@@ -2,7 +2,7 @@
 $sectorData = $docResult[0];
 SeoData::breadCrumbs($url);
 ?>
-<div id="page-base">
+<div id="target-action">
     <div class="container padding-all-prop">
         <div class="padding-right-prop over-not">
             <h1 class="font-extra over-text"><?= $sectorData->s_title ?></h1>

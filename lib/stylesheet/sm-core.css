@@ -510,5 +510,6 @@ Outros
 }
 
 .pag-item {
-    display: none
+    display: none;
+    animation: effect-fade-in .5s
 }

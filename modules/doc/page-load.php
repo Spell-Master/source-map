@@ -75,7 +75,7 @@ try {
             } else {
                 $userData = ($selectUser->count() ? $selectUser->result() : false);
                 ?>
-                <div id="page-base">
+                <div id="target-action">
                     <div class="container padding-all-prop">
                         <h1 class="over-text"><?= $pageData->p_title ?></h1>
                         <hr />
@@ -131,4 +131,3 @@ try {
             break;
     }
 }
-exit();

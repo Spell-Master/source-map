@@ -95,7 +95,7 @@ try {
                                 if ($login && $config->enable->search == 'y' && $docCount >= $config->rows->search) {
                                     ?>
                                     <li data-open="session-search" title="Pesquisa"></li>
-                                <?php } if ($docCount > 1) { ?>
+                                <?php } if ($sectorJoin && $docCount > 1) { ?>
                                     <li data-open="session-menu" title="Páginas"></li>
                                     <?php
                                 }
@@ -118,7 +118,7 @@ try {
                         <p class="font-large align-center gunship">Pesquisar</p>
                         <hr class="border-dark-black" />
                         <div class="box-x-900 margin-auto">
-                            <form method="POST" action="" id="search-page" onsubmit="return searchPage('doc', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                            <form method="POST" action="" id="search-page" onsubmit="return page.search('doc', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
                                 <div class="row">
                                     <div class="float-left">
                                         <button class="btn-info box-y-50 text-white">
@@ -133,7 +133,7 @@ try {
                         </div>
                     </div>
                 </div>
-            <?php } if ($docCount > 1) { ?>
+            <?php } if ($sectorJoin && $docCount > 1) { ?>
                 <div class="session-menu">
                     <ul id="global-menu">
                         <?php foreach ($docResult as $value) { ?>
@@ -171,7 +171,7 @@ try {
         </div>
 
         <script>
-            smc.globalMenu('doc');
+            page.menu('doc');
         </script>
         <?php
     }

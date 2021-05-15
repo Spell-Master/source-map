@@ -1,5 +1,9 @@
 <?php
+echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+require (__DIR__ . '/../../../system/config.php');
+sleep((int) $config->length->colldown);
 
+$post = GlobalFilter::filterPost();
 $len = new LenMaxMin();
 $select = new Select();
 
@@ -65,7 +69,7 @@ try {
                 $html .= '<div class="margin-lr over-text">';
                 $html .= '<div class="icon-circle-small line-block vertical-middle"></div>';
                 $html .= '<div class="line-block">';
-                $html .= '<a href="doc/' . $value->s_link . '/' . $value->p_link . '"> ' . $value->p_title . ' </a>';
+                $html .= '<a href="doc/' . $value->s_link . '/' . $value->p_link . '">' . $value->p_title . '</a>';
                 $html .= '</div>';
                 $html .= '</div>';
                 $html .= '</div>';
@@ -75,21 +79,19 @@ try {
                 $html .= SeoData::longText($value->p_text, $config->length->longStr);
                 $html .= '</article>';
                 $html .= '<div class="padding-all-min align-right">';
-                $html .= '<a href="doc/' . $value->s_link . '/' . $value->p_link . '" class="href-link italic">';
-                $html .= 'Acessar';
-                $html .= '&nbsp; <i class="icon-bubble-quote"></i>';
-                $html .= '</a>';
-                $html .= '</div>';
+                $html .= '<a href="doc/' . $value->s_link . '/' . $value->p_link . '" class="href-link italic"> Acessar &nbsp; <i class="icon-bubble-quote"></i> </a>';
                 $html .= '</div>';
                 $html .= '</div>';
                 $html .= '</div>';
             }
+            $html .= '<div class="padding-all align-center"><div data-paginator=""></div></div>';
+            $html .= '</div>'; // "container padding-all-prop"
             ?>
             <script>
-                var $pageBase = document.getElementById('page-base');
-                $pageBase.innerHTML = `<?= $html ?>`;
+                var $paginator = document.getElementById('target-action');
+                $paginator.innerHTML = `<?= $html ?>`;
                 document.getElementById('search').value = '';
-                sml.paginator.set('pag-item', <?= $config->rows->pag ?>, 'page-base');
+                sml.paginator.set('pag-item', <?= $config->rows->pag ?>, 'target-action');
                 sml.paginator.init(1);
                 sml.modal.close();
                 sml.scrollTop();

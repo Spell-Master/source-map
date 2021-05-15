@@ -11,7 +11,7 @@ foreach ($docResult as $key => $value) {
     }
 }
 ?>
-<div id="page-base">
+<div id="target-action">
     <div class="container padding-all-prop">
         <?php
         foreach ($category as $idx => $categ) {
