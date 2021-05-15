@@ -65,11 +65,16 @@ if (count($appResult)) {
                     </div>
 
                     <div class="padding-all-min align-right">
-                        <a class="text-black-hover cursor-pointer"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                        <a class="text-black-hover cursor-pointer" onclick="sm_stf.app.delPage('<?= $value->a_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
                         <a href="<?= $value->a_key ?>-padrao/<?= $value->a_link ?>" target="_blank" class="href-link"><i class="icon-earth"></i> Acessar</a>
                     </div>
                 </div>
             </div>
+
+            <form method="POST" action="" id="del-app">
+                <input type="hidden" name="hash" value="<?= $value->a_hash ?>" />
+                <input type="hidden" name="app" value="<?= $value->a_key ?>" />
+            </form>
         <?php } ?>
 
         <div class="padding-all align-center">
@@ -82,4 +87,6 @@ if (count($appResult)) {
         sml.paginator.init(1);
     </script>
     <?php
+} else {
+    include (__DIR__ . '/../../error/412.php');
 }
