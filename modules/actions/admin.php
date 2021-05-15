@@ -12,8 +12,8 @@ if ($post) {
         case 'edit-app':
             $include = 'app-edit.php';
             break;
-        case 'del-app':
-            $include = 'app-del.php';
+        case 'search-app':
+            $include = 'app-search.php';
             break;
     }
 } else {

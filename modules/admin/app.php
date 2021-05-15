@@ -28,10 +28,16 @@ try {
             </div>
             <hr />
             <div class="row-pad">
+                <div class="col-quarter">
+                    <p class="font-medium">Adicionar</p>
+                    <button class="btn-success button-block text-white" onclick="sm_stf.app.newPage('<?= $app['key'] ?>')">
+                        Criar <i class="icon-file-plus2"></i>
+                    </button>
+                </div>
                 <div class="col-threequarter">
                     <?php if ($count > $config->rows->search) { ?>
                         <p class="font-medium">Localizar Página</p>
-                        <form method="POST" id="app-search">
+                        <form method="POST" id="search-app" onsubmit="return sm_stf.app.searchPage([<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
                             <div class="row">
                                 <div class="float-right">
                                     <button class="btn-success box-y-50 text-white"><i class="icon-search3"></i></button>
@@ -40,14 +46,9 @@ try {
                                     <input type="text" name="search" id="search" class="input-default" placeholder="pesquisar..." maxlength="<?= $config->length->maxFind ?>" />
                                 </div>
                             </div>
+                            <input type="hidden" name="app" value="<?= $app['key'] ?>"/>
                         </form>
                     <?php } ?>
-                </div>
-                <div class="col-quarter">
-                    <p class="font-medium">Adicionar</p>
-                    <button class="btn-success button-block text-white" onclick="sm_stf.app.newPage('<?= $app['key'] ?>')">
-                        Criar <i class="icon-file-plus2"></i>
-                    </button>
                 </div>
             </div>
         </div>

@@ -71,7 +71,7 @@ if (count($appResult)) {
                 </div>
             </div>
 
-            <form method="POST" action="" id="del-app">
+            <form method="POST" action="" id="del-<?= $value->a_hash ?>">
                 <input type="hidden" name="hash" value="<?= $value->a_hash ?>" />
                 <input type="hidden" name="app" value="<?= $value->a_key ?>" />
             </form>

@@ -30,16 +30,16 @@ try {
                     '<?= $config->length->maxPageData ?>'
                 ], 'new')">
 
-                <div class="box-x-600 margin-auto padding-bottom">
-                    <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        class="input-default"
-                        placeholder="Título da Página"
-                        />
-                </div>
+                <p class="list margin-left font-medium">Título</p>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="input-default"
+                    placeholder="Título da Página"
+                    />
 
+                <p class="list margin-left font-medium">Conteúdo</p>
                 <div class="editor-area">
                     <?php SeoData::showProgress() ?>
                     <textarea id="editor-page" name="editor" class="hide"></textarea>

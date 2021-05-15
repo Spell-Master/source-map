@@ -1,4 +1,9 @@
 <?php
+echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+require_once (__DIR__ . '/../../../system/config.php');
+sleep((int) $config->length->colldown);
+$post = GlobalFilter::filterPost();
+
 $valid = new StrValid();
 $clear = new StrClean();
 $delete = new Delete();
