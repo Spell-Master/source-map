@@ -1,4 +1,8 @@
 <?php
+echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+require (__DIR__ . '/../../../system/config.php');
+sleep((int) $config->length->colldown);
+$post = GlobalFilter::filterPost();
 $len = new LenMaxMin();
 $select = new Select();
 
@@ -58,7 +62,7 @@ try {
 
             $html .= '<div class="align-right margin-top"><div data-paginator=""></div></div>';
             foreach ($select->result() as $value) {
-                $html .= '<div class="shadow margin-top item">';
+                $html .= '<div class="shadow margin-top pag-item">';
                 $html .= '<div class="bg-black padding-all-min font-large text-white">';
                 $html .= '<div class="margin-lr over-text">';
                 $html .= '<div class="icon-circle-small line-block vertical-middle"></div>';
@@ -80,15 +84,10 @@ try {
             $html .= '</div>';
             ?>
             <script>
-                var $pageBase = document.getElementById('page-base');
-                $pageBase.innerHTML = `<?= $html ?>`;
-                if ($pageBase.classList.contains('hide')) {
-                    document.getElementById('preview-page').innerHTML = null;
-                    document.getElementById('page-action').innerHTML = null;
-                    $pageBase.classList.remove('hide');
-                }
+                var $paginator = document.getElementById('action-page');
+                $paginator.innerHTML = `<?= $html ?>`;
                 document.getElementById('search').value = '';
-                sml.paginator.set('item', <?= $config->rows->pag ?>);
+                sml.paginator.set('pag-item', <?= $config->rows->pag ?>);
                 sml.paginator.init(1);
                 sml.modal.close();
                 sml.scrollTop();

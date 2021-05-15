@@ -9,7 +9,7 @@ try {
         SeoData::breadCrumbs($url);
         $doc = simplexml_load_file(__DIR__ . '/../../system/docs/sm-' . $app['key'] . '.xml');
         ?>
-        <div class="container padding-all-prop" id="page-base">
+        <div class="container padding-all-prop" id="action-page">
             <div class="padding-right-prop over-not">
                 <h1 class="font-extra over-text"><?= $app['name'] ?> Padrão</h1>
             </div>
@@ -22,7 +22,7 @@ try {
                 </div>
 
                 <?php foreach ($selectB->result() as $key => $value) { ?>
-                    <div class="shadow margin-top item"<?= (($key + 1) > (int) $config->rows->pag ? ' style="display:none"' : null) ?>>
+                    <div class="shadow margin-top pag-item">
                         <div class="bg-black padding-all-min font-large text-white">
                             <div class="margin-lr over-text">
                                 <div class="icon-circle-small line-block vertical-middle"></div>
@@ -52,7 +52,7 @@ try {
                 </div>
 
                 <script>
-                    sml.paginator.set('item', <?= $config->rows->pag ?>, null);
+                    sml.paginator.set('pag-item', <?= $config->rows->pag ?>, null);
                     sml.paginator.init(1);
                 </script>
                 <?php
@@ -62,12 +62,6 @@ try {
             ?>
         </div>
         <?php
-        if ($admin && $admin >= $config->admin) {
-            ?>
-            <div class="container padding-all-prop" id="page-action"></div>
-            <div id="preview-page" class="fade-in"></div>
-            <?php
-        }
     }
 } catch (ConstException $e) {
     switch ($e->getCode()) {

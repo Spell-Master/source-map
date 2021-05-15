@@ -6,7 +6,6 @@ $selectB = new Select();
 
 if (!isset($url)) {
     $url = SeoData::parseUrl();
-    $admin = (isset($session->admin) ? $session->admin : 0);
 }
 
 try {
@@ -33,59 +32,28 @@ try {
         $key = explode('-', $url[0])[0];
         $selectB->query("app_page", "a_link = :al AND a_key = :ak", "al={$appPage}&ak={$key}");
         SeoData::breadCrumbs($url);
-        ?>
-        <div class="container padding-all-prop" id="page-base">
-            <?php
-            if ($selectB->count()) {
-                $pageData = $selectB->result()[0];
-                ?>
-                <div class="row-pad">
-                    <div class="col-twothird col-fix">
-                        <div class="over-text" style="margin-top: -5px">
-                            <h1><?= $pageData->a_title ?></h1>
-                        </div>
-                    </div>
-                    <div class="col-third col-fix">
-                        <?php if ($admin && $admin >= $config->admin) { ?>
-                            <select class="select-options" id="manager-page">
-                                <option value="">Ação</option>
-                                <option value="edi">Editar</option>
-                                <option value="del">Apagar</option>
-                            </select>
-                        <?php } ?>
-                    </div>
-                </div>
+        if ($selectB->count()) {
+            $pageData = $selectB->result()[0];
+            ?>
+            <div class="container padding-all-prop" id="action-page">
+                <h1 class="over-text"><?= $pageData->a_title ?></h1>
                 <hr />
-                <?= PostData::showPost($pageData->a_content) ?>
-
-                <?php if ($admin && $admin >= $config->admin) { ?>
-                    <form method="POST" action="" id="del-app">
-                        <input type="hidden" name="app" value="<?= $pageData->a_key ?>" id="page-app" />
-                        <input type="hidden" name="hash" value="<?= $pageData->a_hash ?>" id="page-hash" />
-                    </form>
-                <?php } ?>
+                <article class="margin-top-high">
+                    <?= PostData::showPost($pageData->a_content) ?>
+                </article>
 
                 <script>
                     var $linkId = document.getElementById('link-<?= $pageData->a_hash ?>');
                     smc.spoiler();
                     Prism.highlightAll();
-                    sm_a.managerPage();
                     if (sml.isReady($linkId)) {
                         $linkId.classList.add('active');
                     }
                 </script>
-                <?php
-            } else {
-                include (__DIR__ . '/../error/412.php');
-            }
-            ?>
-        </div>
-        <?php
-        if ($admin && $admin >= $config->admin) {
-            ?>
-            <div class="container padding-all-prop fade-in" id="page-action"></div>
-            <div id="preview-page" class="fade-in"></div>
+            </div>
             <?php
+        } else {
+            include (__DIR__ . '/../error/412.php');
         }
     }
 } catch (ConstException $e) {

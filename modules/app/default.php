@@ -1,6 +1,5 @@
 <?php
 $select = new Select();
-$admin = (isset($session->admin) ? $session->admin : 0);
 $login = (isset($session->user) ? $session->user : false);
 
 switch ($url[0]) {
@@ -43,9 +42,6 @@ try {
                         </div>
                         <div class="col-twothird col-fix">
                             <ul class="bar-menu">
-                                <?php if ($admin && $admin >= $config->admin) { ?>
-                                    <li class="session-add" onclick="sm_a.newPage('<?= $app['key'] ?>');" title="Adicionar Conteúdo"></li>
-                                <?php } ?> 
                                 <li data-open="session-folder" title="Sessões"></li>
                                 <?php if ($login && $config->enable->search == 'y' && $appCount >= $config->rows->search) { ?>
                                     <li data-open="session-search" title="Pesquisa"></li>
@@ -68,7 +64,7 @@ try {
                         <p class="font-large align-center gunship">Pesquisar</p>
                         <hr class="border-dark-black" />
                         <div class="box-x-900 margin-auto">
-                            <form method="POST" action="" id="search-page" onsubmit="return searchPage('app', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                            <form method="POST" action="" id="search-page" onsubmit="return page.search('app', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
                                 <div class="row">
                                     <div class="float-left">
                                         <button class="btn-info box-y-50 text-white">
@@ -112,7 +108,7 @@ try {
             ?>
         </div>
         <script>
-            smc.globalMenu('app');
+            page.menu('app');
         </script>
         <?php
     }
