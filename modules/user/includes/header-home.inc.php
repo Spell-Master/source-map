@@ -11,7 +11,7 @@
             <?php } ?>
             <li class="line-block">
                 <span class="bold">|</span>
-                <a class="padding-lr-min text-dark-red text-white-hover cursor-pointer" onclick="logOut()"><i class="icon-switch"></i> SAIR</a>
+                <a class="padding-lr-min text-dark-red text-white-hover cursor-pointer" onclick="smUser.logOut()"><i class="icon-switch"></i> SAIR</a>
             </li>
         <?php } else { // DESLOGADO ?>
             <?php if ($config->enable->user == 'y') { ?>

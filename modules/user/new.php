@@ -105,7 +105,7 @@ try {
                     </form>
 
                     <div class="margin-top-high align-center">
-                        <button class="btn-info text-white shadow-on-hover" onclick="newUser(['<?= $config->length->minName ?>', '<?= $config->length->maxName ?>', '<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])">
+                        <button class="btn-info text-white shadow-on-hover" onclick="smUser.register(['<?= $config->length->minName ?>', '<?= $config->length->maxName ?>', '<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])">
                             Enviar solicitação de Cadastro
                             <i class="icon-upload5"></i>
                         </button>

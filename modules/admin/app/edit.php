@@ -34,7 +34,7 @@ try {
                     method="POST"
                     action=""
                     id="edit-app"
-                    onsubmit="return saveApp([
+                    onsubmit="return sm_stf.app.save([
                         '<?= $config->length->minPageTitle ?>',
                         '<?= $config->length->maxPageTitle ?>',
                         '<?= $config->length->minPageData ?>',

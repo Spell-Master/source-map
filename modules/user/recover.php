@@ -52,7 +52,7 @@ try {
                                     </form>
 
                                     <div class="margin-top-high align-center">
-                                        <button class="btn-warning text-white shadow-on-hover" onclick="recoverPass(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])"> Redefinir Senha <i class="icon-shield-notice"></i></button>
+                                        <button class="btn-warning text-white shadow-on-hover" onclick="smUser.pass(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])"> Redefinir Senha <i class="icon-shield-notice"></i></button>
                                     </div>
                                 <?php } else { ?>
                                     <i class="icon-wondering text-red icn-4x"></i>

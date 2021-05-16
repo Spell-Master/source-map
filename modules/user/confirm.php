@@ -61,7 +61,7 @@ try {
                                 </div>
                             </div>
                             <div class="margin-top-high align-center">
-                                <button class="btn-info text-white shadow-on-hover" onclick="confirmNew(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])">Validar Cadastro <i class="icon-upload5"></i></button>
+                                <button class="btn-info text-white shadow-on-hover" onclick="smUser.confirm(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])">Validar Cadastro <i class="icon-upload5"></i></button>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@ try {
                             </div>
 
                             <div class="margin-top-high align-center">
-                                <button class="btn-info text-white shadow-on-hover" onclick="reMail(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])"> Enviar nova Confirmação <i class="icon-upload5"></i>
+                                <button class="btn-info text-white shadow-on-hover" onclick="smUser.reMail(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>'])"> Enviar nova Confirmação <i class="icon-upload5"></i>
                                 </button>
                             </div>
                         </div>

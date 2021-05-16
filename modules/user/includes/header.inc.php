@@ -76,7 +76,7 @@
                     </li>
                 <?php } ?>
                 <li class="logout">
-                    <a title="Encerrar Entrada" onclick="logOut()">
+                    <a title="Encerrar Entrada" onclick="smUser.logOut()">
                         <i class="icon-switch"></i>
                         Sair
                     </a>
@@ -126,7 +126,7 @@
                     <input value="123456" type="password" name="pass" id="pass" class="input-line" maxlength="<?= $config->length->maxPass ?>" />
 
                     <div class="margin-top">
-                        <button class="btn-dark button-block text-white shadow-on-hover" onclick="userLogin(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])">
+                        <button class="btn-dark button-block text-white shadow-on-hover" onclick="smUser.login(['<?= $config->length->minMail ?>', '<?= $config->length->maxMail ?>', '<?= $config->length->minPass ?>', '<?= $config->length->maxPass ?>'])">
                             Entrar
                             <i class="icon-enter"></i>
                         </button>
