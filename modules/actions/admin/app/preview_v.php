@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__ . '/../../../system/config.php');
+require_once (__DIR__ . '/../../../../system/config.php');
 $post = GlobalFilter::filterPost();
 $editor = PostData::savePost($post->editor);
 
@@ -31,6 +31,10 @@ try {
                 </button>
             </div>
         </div>
+        <script>
+            smTools.scroll.to('#page-preview');
+            document.getElementById('page-action').classList.add('hide');
+        </script>
         <?php
     }
 } catch (ConstException $e) {
@@ -41,7 +45,7 @@ try {
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            include (__DIR__ . '/../../error/500.php');
+            include (__DIR__ . '/../../../error/500.php');
             break;
     }
 }

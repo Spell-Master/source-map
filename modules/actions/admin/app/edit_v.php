@@ -1,6 +1,6 @@
 <?php
 echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
-require_once (__DIR__ . '/../../../system/config.php');
+require_once (__DIR__ . '/../../../../system/config.php');
 sleep((int) $config->length->colldown);
 
 $post = GlobalFilter::filterPost();
@@ -114,7 +114,7 @@ try {
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            include (__DIR__ . '/../../error/500.php');
+            include (__DIR__ . '/../../../error/500.php');
             break;
         case ConstException::NOT_FOUND:
             ?>
