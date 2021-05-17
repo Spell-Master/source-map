@@ -72,7 +72,7 @@ try {
                                         </button>
                                     </div>
                                     <div class="over-not">
-                                        <input type="text" name="search" id="search" class="input-default" />
+                                        <input type="text" name="search" id="search" class="input-default" maxlength="<?= $config->length->maxSearch ?>" />
                                         <input type="hidden" name="app" value="<?= $app['key'] ?>" />
                                     </div>
                                 </div>

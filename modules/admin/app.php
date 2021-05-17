@@ -43,7 +43,7 @@ try {
                                     <button class="btn-success box-y-50 text-white"><i class="icon-search3"></i></button>
                                 </div>
                                 <div class="over-not">
-                                    <input type="text" name="search" id="search" class="input-default" placeholder="pesquisar..." maxlength="<?= $config->length->maxFind ?>" />
+                                    <input type="text" name="search" id="search" class="input-default" placeholder="pesquisar..." maxlength="<?= $config->length->maxSearch ?>" />
                                 </div>
                             </div>
                             <input type="hidden" name="app" value="<?= $app['key'] ?>"/>

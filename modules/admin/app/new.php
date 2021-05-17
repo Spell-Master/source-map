@@ -36,6 +36,7 @@ try {
                     name="title"
                     id="title"
                     class="input-default"
+                    maxlength="<?= $config->length->maxPageTitle ?>"
                     placeholder="Título da Página"
                     />
 

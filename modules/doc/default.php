@@ -126,7 +126,7 @@ try {
                                         </button>
                                     </div>
                                     <div class="over-not">
-                                        <input type="text" name="search" id="search" class="input-default" placeholder="Procurar páginas" />
+                                        <input type="text" name="search" id="search" class="input-default" placeholder="Procurar páginas" maxlength="<?= $config->length->maxSearch ?>" />
                                     </div>
                                 </div>
                             </form>
