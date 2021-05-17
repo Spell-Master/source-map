@@ -44,9 +44,9 @@ try {
 
                 <script>
                     var $linkId = document.getElementById('link-<?= $pageData->a_hash ?>');
-                    smc.spoiler();
+                    smCore.spoiler();
                     Prism.highlightAll();
-                    if (sml.isReady($linkId)) {
+                    if (smTools.check.isReady($linkId)) {
                         $linkId.classList.add('active');
                     }
                 </script>

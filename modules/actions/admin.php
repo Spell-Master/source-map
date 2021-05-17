@@ -1,5 +1,5 @@
 <?php
-echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
 require (__DIR__ . '/../../system/config.php');
 sleep((int) $config->length->colldown);
 $post = GlobalFilter::filterPost();

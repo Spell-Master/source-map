@@ -69,8 +69,8 @@ foreach ($docResult as $key => $value) {
 
     <script>
         <?php foreach ($category as $nun => $v) { ?>
-            sml.paginator.set('pag-item', 3, 'categ-<?= $nun ?>');
-            sml.paginator.init(1);
+            smTools.paginator.set('pag-item', 3, 'categ-<?= $nun ?>');
+            smTools.paginator.init(1);
         <?php } ?>
     </script>
 </div>

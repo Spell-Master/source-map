@@ -54,7 +54,7 @@ try {
                                     <p>Senha</p>
                                     <div class="row">
                                         <div class="float-right">
-                                            <a class="btn-dark text-white box-y-50" title="Mostrar Senha" style="padding: 6px 14px" onclick="smc.formItens.showPass()">
+                                            <a class="btn-dark text-white box-y-50" title="Mostrar Senha" style="padding: 6px 14px" onclick="smCore.formItens.showPass()">
                                                 <i class="icon-eye font-large" id="pass-icon"></i>
                                             </a>
                                         </div>
@@ -91,7 +91,7 @@ try {
                                         <img src="lib/image/captcha.php" alt="captcha" id="captchaimg" class="border-all-wide border-light-black radius-left-small bg-dark" />
                                     </div>
                                     <div class="col-quarter col-fix">
-                                        <a class="refresh-captcha" title="Trocar Código" onclick="smc.formItens.capctha()">
+                                        <a class="refresh-captcha" title="Trocar Código" onclick="smCore.formItens.capctha()">
                                             <div class="icon-loop3"></div>
                                         </a>
                                     </div>
@@ -141,10 +141,10 @@ try {
             ?>
             <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
             <script>
-                sml.modal.open('Não Autorizado', false);
+                smTools.modal.open('Não Autorizado', false);
                 document.getElementById('modal-load').innerHTML = '<div class="text-red align-center padding-all"><i class="icon-warning icn-4x"></i><div class="font-medium"><?= $e->getMessage() ?></div></div>';
                 setTimeout(function () {
-                    smc.go.href('<?= $baseUri ?>');
+                    smCore.go.href('<?= $baseUri ?>');
                 }, <?= (int) $config->length->reload ?>000);
             </script>
             <?php

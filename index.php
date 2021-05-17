@@ -56,10 +56,10 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <link href="lib/prism/prism.css" rel="stylesheet" type="text/css" />
 
         <script src="lib/javascript/libary.js" type="text/javascript"></script>
-        <script src="lib/javascript/sm-libary.js" type="text/javascript"></script>
+        <script src="lib/javascript/post-data.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-tools.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-core.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-user.js" type="text/javascript"></script>
-        <script src="lib/javascript/sm-postdata.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-page.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-editor.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-stf.js" type="text/javascript"></script>
@@ -106,7 +106,7 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         </div>
         <script>
             var $itemOpen = new ItemOpen();
-            smc.topScroll();
+            smCore.topScroll();
 
             var res = document.getElementById('resolucao').children[0];
             res.innerText = window.innerWidth;

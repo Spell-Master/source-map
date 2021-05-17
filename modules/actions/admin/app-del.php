@@ -1,5 +1,5 @@
 <?php
-echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
 require_once (__DIR__ . '/../../../system/config.php');
 sleep((int) $config->length->colldown);
 $post = GlobalFilter::filterPost();
@@ -35,11 +35,11 @@ try {
         if ($delete->count()) {
             ?>
             <script>
-                sm_stf.app.cancelAction();
-                sml.modal.close();
-                sml.scrollTop();
-                sml.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $app ?>', false);
-                smc.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Apagada</p>', true);
+                smStf.app.cancelAction();
+                smTools.modal.close();
+                smTools.scroll.top();
+                smTools.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $app ?>', false);
+                smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Apagada</p>', true);
             </script>
             <?php
         } else if ($delete->error()) {
@@ -52,7 +52,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo("<script>smc.go.reload();</script>");
+            echo("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
@@ -60,7 +60,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

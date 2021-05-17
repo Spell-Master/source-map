@@ -23,7 +23,7 @@ try {
                 method="POST"
                 action=""
                 id="new-app"
-                onsubmit="return saveApp([
+                onsubmit="return smStf.app.save([
                     '<?= $config->length->minPageTitle ?>',
                     '<?= $config->length->maxPageTitle ?>',
                     '<?= $config->length->minPageData ?>',
@@ -59,14 +59,14 @@ try {
                         type="button"
                         class="btn-info shadow-on-hover"
                         title="Pré visualizar"
-                        onclick="sm_stf.app.previewPage('new')">
+                        onclick="smStf.app.previewPage('new')">
                         <i class="icon-file-eye2"></i>
                     </button>
                     <button
                         type="button"
                         class="btn-warning shadow-on-hover"
                         title="Cancelar"
-                        onclick="sm_stf.app.cancelAction()">
+                        onclick="smStf.app.cancelAction()">
                         <i class="icon-file-minus2"></i>
                     </button>
                 </div>
@@ -74,9 +74,8 @@ try {
         </div>
 
         <script>
-            sm_e.init('editor-page', 'admin');
             var loading = document.querySelector('div.load-local');
-            sm_e.init('editor-page', 'admin');
+            smEditor.init('editor-page', 'admin');
             CKEDITOR.instances['editor-page'].on('instanceReady', function (e) {
                 loading.parentNode.removeChild(loading);
             });
@@ -86,7 +85,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo ("<script>smc.go.reload();</script>");
+            echo ("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();

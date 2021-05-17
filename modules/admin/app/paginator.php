@@ -30,7 +30,7 @@ if (count($appResult)) {
                         <div class="bg-white">
                             <div class="row-pad">
                                 <div class="col-s-half float-right align-right">
-                                    <button class="btn-info text-white maximize-min shadow-on-hover" onclick="sm_stf.app.editPage('<?= $value->a_hash ?>')">
+                                    <button class="btn-info text-white maximize-min shadow-on-hover" onclick="smStf.app.editPage('<?= $value->a_hash ?>')">
                                         &nbsp; <i class="icon-pencil5"></i> Editar &nbsp;
                                     </button>
                                 </div>
@@ -65,7 +65,7 @@ if (count($appResult)) {
                     </div>
 
                     <div class="padding-all-min align-right">
-                        <a class="text-black-hover cursor-pointer" onclick="sm_stf.app.delPage('<?= $value->a_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                        <a class="text-black-hover cursor-pointer" onclick="smStf.app.delPage('<?= $value->a_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
                         <a href="<?= $value->a_key ?>-padrao/<?= $value->a_link ?>" target="_blank" class="href-link"><i class="icon-earth"></i> Acessar</a>
                     </div>
                 </div>
@@ -83,8 +83,8 @@ if (count($appResult)) {
     </div>
 
     <script>
-        sml.paginator.set('pag-item', <?= $config->rows->pag ?>, 'paginator');
-        sml.paginator.init(1);
+        smTools.paginator.set('pag-item', <?= $config->rows->pag ?>, 'paginator');
+        smTools.paginator.init(1);
     </script>
     <?php
 } else {

@@ -101,9 +101,9 @@ try {
 
                     <script>
                         var $linkId = document.getElementById('link-<?= $pageData->p_hash ?>');
-                        smc.spoiler();
+                        smCore.spoiler();
                         Prism.highlightAll();
-                        if (sml.isReady($linkId)) {
+                        if (smTools.check.isReady($linkId)) {
                             $linkId.classList.add('active');
                         }
                     </script>

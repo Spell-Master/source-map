@@ -25,7 +25,7 @@ try {
             <div class="container padding-all align-right">
                 <button
                     class="btn-info shadow-on-hover text-white"
-                    onclick="sm_stf.app.cancelPreview()">
+                    onclick="smStf.app.cancelPreview()">
                     <i class="icon-minus-circle"></i>
                     Fechar Visualização
                 </button>
@@ -36,7 +36,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo ("<script>smc.go.reload();</script>");
+            echo ("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();

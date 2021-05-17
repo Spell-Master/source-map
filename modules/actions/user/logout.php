@@ -10,6 +10,6 @@ $user->logOut();
 </div>
 <script>
     setTimeout(function () {
-       smc.go.reload();
+       smCore.go.reload();
     }, <?= (int) $config->length->reload ?>000);
 </script>

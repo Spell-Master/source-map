@@ -70,7 +70,7 @@ try {
                 $html .= '<div class="bg-white">';
                 $html .= '<div class="row-pad">';
                 $html .= '<div class="col-s-half float-right align-right">';
-                $html .= '<button class="btn-info text-white maximize-min shadow-on-hover" onclick="sm_stf.app.editPage(\'' . $value->a_hash . '\')"> &nbsp; <i class="icon-pencil5"></i> Editar &nbsp; </button>';
+                $html .= '<button class="btn-info text-white maximize-min shadow-on-hover" onclick="smStf.app.editPage(\'' . $value->a_hash . '\')"> &nbsp; <i class="icon-pencil5"></i> Editar &nbsp; </button>';
                 $html .= '</div>';
                 $html .= '<div class="col-s-half">';
                 $html .= '<table>';
@@ -100,7 +100,7 @@ try {
                 $html .= '</div>';
                 $html .= '</div>';
                 $html .= '<div class="padding-all-min align-right">';
-                $html .= '<a class="text-black-hover cursor-pointer" onclick="sm_stf.app.delPage(\'' . $value->a_hash . '\')"><i class="icon-bin2"></i> Apagar</a> &nbsp; ';
+                $html .= '<a class="text-black-hover cursor-pointer" onclick="smStf.app.delPage(\'' . $value->a_hash . '\')"><i class="icon-bin2"></i> Apagar</a> &nbsp; ';
                 $html .= '<a href="' . $value->a_key . '-padrao/' . $value->a_link . '" target="_blank" class="href-link"><i class="icon-earth"></i> Acessar</a>';
                 $html .= '</div>';
                 $html .= '</div>';
@@ -122,11 +122,11 @@ try {
                     document.getElementById('paginator').classList.remove('hide');
                 }
                 document.getElementById('search').value = '';
-                sml.paginator.set('pag-item', <?= $config->rows->pag ?>);
-                sml.paginator.init(1);
-                sml.modal.close();
-                sml.scrollTop();
-                smc.notify('<i class="icon-bubble-notification icn-2x"></i><p><?= $count ?> resultado<?= ($count > 1 ? "s encontrados" : " encontrado") ?></p>', true);
+                smTools.paginator.set('pag-item', <?= $config->rows->pag ?>);
+                smTools.paginator.init(1);
+                smTools.modal.close();
+                smTools.scroll.top();
+                smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p><?= $count ?> resultado<?= ($count > 1 ? "s encontrados" : " encontrado") ?></p>', true);
                 window.$itemOpen.forceClose();
             </script>
             <?php
@@ -139,7 +139,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo("<script>smc.go.reload();</script>");
+            echo("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
@@ -147,7 +147,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

@@ -61,11 +61,11 @@ try {
             if ($insert->count()) {
                 ?>
                 <script>
-                    sm_stf.app.cancelAction();
-                    sml.modal.close();
-                    sml.scrollTop();
-                    sml.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $save['a_key'] ?>', false);
-                    smc.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Criada</p>', true);
+                    smStf.app.cancelAction();
+                    smTools.modal.close();
+                    smTools.scroll.top();
+                    smTools.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $save['a_key'] ?>', false);
+                    smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Criada</p>', true);
                 </script>
                 <?php
             } else if ($insert->error()) {
@@ -79,7 +79,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo ("<script>smc.go.reload();</script>");
+            echo ("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
@@ -87,7 +87,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

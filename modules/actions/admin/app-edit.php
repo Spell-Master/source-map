@@ -81,11 +81,11 @@ try {
                 if ($update->count()) {
                     ?>
                     <script>
-                        sm_stf.app.cancelAction();
-                        sml.modal.close();
-                        sml.scrollTop();
-                        sml.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $appKey ?>', false);
-                        smc.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Editada</p>', true);
+                        smStf.app.cancelAction();
+                        smTools.modal.close();
+                        smTools.scroll.top();
+                        smTools.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $appKey ?>', false);
+                        smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Editada</p>', true);
                     </script>
                     <?php
                 } else if ($update->error()) {
@@ -104,7 +104,7 @@ try {
 } catch (ConstException $e) {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
-            echo("<script>smc.go.reload();</script>");
+            echo("<script>smCore.go.reload();</script>");
             break;
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
@@ -114,16 +114,16 @@ try {
         case ConstException::NOT_FOUND:
             ?>
             <script>
-                smc.modal.error('<?= $e->getMessage() ?>', false);
-                sml.modal.hiddenX();
+                smCore.modal.error('<?= $e->getMessage() ?>', false);
+                smTools.modal.hiddenX();
                 setTimeout(function () {
-                    smc.go.reload();
+                    smCore.go.reload();
                 }, <?= (int) $config->length->reload ?>000);
             </script>
             <?php
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

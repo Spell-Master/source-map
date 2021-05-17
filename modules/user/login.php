@@ -66,10 +66,10 @@ try {
             ?>
             <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
             <script>
-                sml.modal.open('Não Autorizado', false);
+                smTools.modal.open('Não Autorizado', false);
                 document.getElementById('modal-load').innerHTML = '<div class="text-red align-center padding-all"><i class="icon-warning icn-4x"></i><div class="font-medium"><?= $e->getMessage() ?></div></div>';
                 setTimeout(function () {
-                    smc.go.href('<?= $baseUri ?>');
+                    smCore.go.href('<?= $baseUri ?>');
                 }, <?= (int) $config->length->reload ?>000);
             </script>
             <?php

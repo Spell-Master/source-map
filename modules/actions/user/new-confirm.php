@@ -108,7 +108,7 @@ try {
                     </div>
                     <script>
                         setTimeout(function () {
-                            smc.go.href('perfil/<?= $tempData->ut_link ?>');
+                            smCore.go.href('perfil/<?= $tempData->ut_link ?>');
                         }, <?= (int) $config->length->reload ?>000);
                     </script>
                     <?php
@@ -143,7 +143,7 @@ try {
             include (__DIR__ . '/../../error/denied.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

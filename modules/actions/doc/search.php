@@ -1,5 +1,5 @@
 <?php
-echo ("<script>sml.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
 require (__DIR__ . '/../../../system/config.php');
 sleep((int) $config->length->colldown);
 
@@ -91,12 +91,12 @@ try {
                 var $paginator = document.getElementById('target-action');
                 $paginator.innerHTML = `<?= $html ?>`;
                 document.getElementById('search').value = '';
-                sml.paginator.set('pag-item', <?= $config->rows->pag ?>, 'target-action');
-                sml.paginator.init(1);
-                sml.modal.close();
-                sml.scrollTop();
-                smc.crumbs(['doc']);
-                smc.notify('<i class="icon-bubble-notification icn-2x"></i><p><?= $count ?> resultado<?= ($count > 1 ? "s encontrados" : " encontrado") ?></p>', true);
+                smTools.paginator.set('pag-item', <?= $config->rows->pag ?>, 'target-action');
+                smTools.paginator.init(1);
+                smTools.modal.close();
+                smTools.scroll.top();
+                smCore.crumbs(['doc']);
+                smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p><?= $count ?> resultado<?= ($count > 1 ? "s encontrados" : " encontrado") ?></p>', true);
                 window.$itemOpen.forceClose();
                 window.history.replaceState(null, null, 'doc');
             </script>
@@ -118,7 +118,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::INVALID_POST:
-            echo ("<script>smc.modal.error('{$e->getMessage()}', false);</script>");
+            echo ("<script>smCore.modal.error('{$e->getMessage()}', false);</script>");
             break;
     }
 }

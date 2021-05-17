@@ -24,8 +24,8 @@
     var $selector = document.getElementById('select-lang');
     var $textArea = document.getElementById('insert-code');
 
-    $selector.value = (sml.isReady(CODE_MEMORY.model) ? CODE_MEMORY.model : 'language-markup');
-    $textArea.value = (sml.isReady(CODE_MEMORY.text) ? decodeURI(CODE_MEMORY.text) : '');
+    $selector.value = (smTools.check.isReady(CODE_MEMORY.model) ? CODE_MEMORY.model : 'language-markup');
+    $textArea.value = (smTools.check.isReady(CODE_MEMORY.text) ? decodeURI(CODE_MEMORY.text) : '');
 
     var $codeEditor = CodeMirror.fromTextArea($textArea, {
         lineNumbers: false,
@@ -39,7 +39,7 @@
             $codeEditor.setOption('mode', getLangCode(e.target.value));
         }
     }, false);
-    sml.select.init();
+    smTools.select.init();
 
     function getLangCode(changed) {
         switch (changed ? changed : $selector.value) {
@@ -73,6 +73,6 @@
         CODE_MEMORY.model = null;
         CODE_MEMORY.text = null;
 
-        sml.modal.close();
+        smTools.modal.close();
     }
 </script>

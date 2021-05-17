@@ -52,8 +52,8 @@ try {
                 </div>
 
                 <script>
-                    sml.paginator.set('pag-item', <?= $config->rows->pag ?>, null);
-                    sml.paginator.init(1);
+                    smTools.paginator.set('pag-item', <?= $config->rows->pag ?>, null);
+                    smTools.paginator.init(1);
                 </script>
                 <?php
             } else {

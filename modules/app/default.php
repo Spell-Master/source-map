@@ -64,7 +64,7 @@ try {
                         <p class="font-large align-center gunship">Pesquisar</p>
                         <hr class="border-dark-black" />
                         <div class="box-x-900 margin-auto">
-                            <form method="POST" action="" id="search-page" onsubmit="return page.search('app', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
+                            <form method="POST" action="" id="search-page" onsubmit="return smPage.search('app', [<?= $config->length->minSearch ?>, <?= $config->length->maxSearch ?>])">
                                 <div class="row">
                                     <div class="float-left">
                                         <button class="btn-info box-y-50 text-white">
@@ -108,7 +108,7 @@ try {
             ?>
         </div>
         <script>
-            page.menu('app');
+            smPage.menu('app');
         </script>
         <?php
     }
