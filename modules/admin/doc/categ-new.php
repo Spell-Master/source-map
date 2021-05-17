@@ -14,9 +14,9 @@ try {
                 action=""
                 id="new-categ"
                 onsubmit="return smStf.doc.saveCateg([
-                            '<?= $config->length->minPageTitle ?>',
-                            '<?= $config->length->maxPageTitle ?>'
-                        ], 'new')">
+                    '<?= $config->length->minPageTitle ?>',
+                    '<?= $config->length->maxPageTitle ?>'
+                ], 'new')">
 
                 <p class="list margin-left font-medium">Título</p>
                 <input
@@ -24,6 +24,7 @@ try {
                     name="title"
                     id="title"
                     class="input-default"
+                    maxlength="<?= $config->length->maxPageTitle ?>"
                     placeholder="Título da Categoria"
                     />
 
@@ -32,7 +33,7 @@ try {
                         type="submit"
                         class="btn-success shadow-on-hover"
                         title="Publicar Categoria"
-                        onclick="">
+                        >
                         <i class="icon-file-plus2"></i>
                     </button>
                     <button

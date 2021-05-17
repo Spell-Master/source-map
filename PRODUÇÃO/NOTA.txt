@@ -8,5 +8,10 @@ Se não for idênticos bloquear o login da conta e só liberar depois de
 confirmar por e-mail.
 
 *************************************************************************
+* REVISAR
+*************************************************************************
+* Checar os input's e adicionar o atributo maxlength naqueles que não tem.
+
+*************************************************************************
 * REMOVER
 *************************************************************************
