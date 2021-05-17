@@ -76,7 +76,7 @@ try {
         case ConstException::SYSTEM_ERROR:
             $log = new LogRegister();
             $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
-            include (__DIR__ . '/error/500.php');
+            include (__DIR__ . '/../error/500.php');
             break;
     }
 }

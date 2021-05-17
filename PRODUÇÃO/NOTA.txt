@@ -10,5 +10,3 @@ confirmar por e-mail.
 *************************************************************************
 * REMOVER
 *************************************************************************
-* Remover criação e edição de páginas no app padrão.
-Essas funções contará apenas no painel administrativo.

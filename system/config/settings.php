@@ -9,6 +9,13 @@ return [
     'developer' => 2, // Desenvolvedor
     'manager' => 3, // Coordenador
     'admin' => 4, // Administrador
+    
+    /*
+     * Níveis de acesso para administrar conteúdo
+     */
+    'docCategory' => 4,
+    'docSector' => 4,
+    'docPage' => 4,
 
     /*
      * Conexão com o banco de dados 
@@ -26,5 +33,4 @@ return [
     'mailPort' => 587, // Porta de acesso ao servidor SMTP
     'mailUser' => '', // Endereço do usuário do servidor SMTP
     'mailPass' => '', // Senha do usuário do servidor SMTP
-
 ];

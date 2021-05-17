@@ -49,14 +49,18 @@ try {
                         </li>
                     <?php } ?>
 
-                    <?php if ($admin >= $config->developer) { ?>
+                    <?php if ($admin >= $config->docCategory || $admin >= $config->docCategory || $admin >= $config->docSector || $admin >= $config->docPage) { ?>
                         <li>
                             <a data-open="doc-menu"><i class="icon-book3"></i> &nbsp; Documentação Web</a>
                             <ul class="sub-menu doc-menu">
                                 <li><a data-open="session-menu"><i class="icon-menu8"></i> &nbsp; Menu</a></li>
-                                <li><a href="admin/"><i class="icon-archive"></i> &nbsp; Categorias</a></a></li>
-                                <li><a href="admin/"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
-                                <li><a href="admin/"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
+                                <?php if ($admin >= $config->docCategory) { ?>
+                                    <li><a href="admin/doc-categoria"><i class="icon-archive"></i> &nbsp; Categorias</a></a></li>
+                                <?php } if ($admin >= $config->docSector) { ?>
+                                    <li><a href="admin/"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
+                                <?php } if ($admin >= $config->docPage) { ?>
+                                    <li><a href="admin/"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
+                                <?php } ?>
                             </ul>
                         </li>
                     <?php } ?>
@@ -77,8 +81,14 @@ try {
                 case 'padrao-js':
                     include (__DIR__ . '/app.php');
                     break;
-                case 'web-docs':
-                    echo 'web-docs';
+                case 'doc-categoria':
+                    include (__DIR__ . '/doc-category.php');
+                    break;
+                case 'doc-setor':
+                    include (__DIR__ . '/doc-sector.php');
+                    break;
+                case 'doc-page':
+                    include (__DIR__ . '/doc-page.php');
                     break;
                 default:
                     echo "início";
