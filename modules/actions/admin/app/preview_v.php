@@ -25,7 +25,7 @@ try {
             <div class="container padding-all align-right">
                 <button
                     class="btn-info shadow-on-hover text-white"
-                    onclick="smStf.app.cancelPreview()">
+                    onclick="smStf.pageAction.exitPreview()">
                     <i class="icon-minus-circle"></i>
                     Fechar Visualização
                 </button>

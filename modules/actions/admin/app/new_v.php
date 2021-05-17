@@ -66,7 +66,7 @@ try {
             if ($insert->count()) {
                 ?>
                 <script>
-                    smStf.app.cancelAction();
+                    smStf.pageAction.cancel();
                     smTools.modal.close();
                     smTools.scroll.top();
                     smTools.ajax.send('paginator', 'modules/admin/app/paginator.php?reload=<?= $save['a_key'] ?>', false);

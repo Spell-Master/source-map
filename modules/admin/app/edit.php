@@ -72,14 +72,14 @@ try {
                             type="button"
                             class="btn-info shadow-on-hover"
                             title="Pré visualizar"
-                            onclick="smStf.app.previewPage('edit')">
+                            onclick="smStf.app.pageAction.preview('edit-app', 'app')">
                             <i class="icon-file-eye2"></i>
                         </button>
                         <button
                             type="button"
                             class="btn-warning shadow-on-hover"
                             title="Cancelar"
-                            onclick="smStf.app.cancelAction()">
+                            onclick="smStf.pageAction.cancel()">
                             <i class="icon-file-minus2"></i>
                         </button>
                     </div>
