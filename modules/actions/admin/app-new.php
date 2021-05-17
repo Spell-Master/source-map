@@ -1,4 +1,9 @@
 <?php
+echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
+require_once (__DIR__ . '/../../../system/config.php');
+sleep((int) $config->length->colldown);
+
+$post = GlobalFilter::filterPost();
 $len = new LenMaxMin();
 $code = new CreateCode();
 $clear = new StrClean();
