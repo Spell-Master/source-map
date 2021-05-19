@@ -19,7 +19,7 @@ try {
             </div>
             <hr />
             <p class="font-medium">Adicionar</p>
-            <button class="btn-success text-white" onclick="smStf.doc.add('categ', false)">
+            <button class="btn-success text-white" onclick="smStf.doc.addCateg()">
                 Criar <i class="icon-file-plus2"></i>
             </button>
         </div>
