@@ -47,7 +47,7 @@ if (count($categoryResult)) {
                     </div>
 
                     <div class="padding-all-min align-right">
-                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.del('<?= $value->c_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.delCateg('<?= $value->c_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
                     </div>
                 </div>
             </div>

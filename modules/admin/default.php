@@ -57,7 +57,7 @@ try {
                                 <?php if ($admin >= $config->docCategory) { ?>
                                     <li><a href="admin/doc-categoria"><i class="icon-archive"></i> &nbsp; Categorias</a></a></li>
                                 <?php } if ($admin >= $config->docSector) { ?>
-                                    <li><a href="admin/"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
+                                    <li><a href="admin/doc-sector"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
                                 <?php } if ($admin >= $config->docPage) { ?>
                                     <li><a href="admin/"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
                                 <?php } ?>
@@ -84,7 +84,7 @@ try {
                 case 'doc-categoria':
                     include (__DIR__ . '/doc-category.php');
                     break;
-                case 'doc-setor':
+                case 'doc-sector':
                     include (__DIR__ . '/doc-sector.php');
                     break;
                 case 'doc-page':
@@ -102,6 +102,11 @@ try {
     switch ($e->getCode()) {
         case ConstException::INVALID_ACESS:
             header('Location: ' . $baseUri); // $baseUri (index.php)
+            break;
+        case ConstException::SYSTEM_ERROR:
+            $log = new LogRegister();
+            $log->registerError($e->getFile(), $e->getMessage(), 'Linha:' . $e->getLine());
+            include (__DIR__ . '/../error/500.php');
             break;
     }
 }
