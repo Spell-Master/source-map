@@ -9,7 +9,7 @@ try {
         $get = GlobalFilter::filterGet();
         $clear = new StrClean();
         $sector = new Select();
-        
+
         $filter = (isset($get->filter) ? $clear->formatStr($get->filter) : '');
         switch ($filter) {
             case '':
@@ -97,11 +97,9 @@ try {
                                                 </td>
                                             </tr>
                                         </table>
-                                        <div class="spoiler">
-                                            <div class="spoiler-read">Descrição</div>
-                                            <div class="spoiler-body">
-                                                <?= PostData::showPost($value->s_info) ?>
-                                            </div>
+                                        <button class="acc-button">Descrição</button>
+                                        <div class="acc-container">
+                                            <?= PostData::showPost($value->s_info) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +121,9 @@ try {
             </div>
 
             <script>
-                smCore.spoiler();
                 smTools.paginator.set('pag-item', <?= $config->rows->pag ?>, 'paginator');
                 smTools.paginator.init(1);
+                smTools.acc.init();
             </script>
             <?php
         } else if ($sector->error()) {
