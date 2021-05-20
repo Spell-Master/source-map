@@ -46,21 +46,20 @@ if ($admin < $config->docSector) { // Executa pelo default.php
 
         <div class="margin-top">
             <div id="paginator" class="fade-in">
-                <?php
-                include (__DIR__ . '/doc/doc-paginator.php');
-                ?>
+                <?php include (__DIR__ . '/doc/sector-paginator.php'); ?>
             </div>
             <div id="page-action"></div>
             <div id="page-preview"></div>
         </div>
 
         <script>
-            var last = '', curret;
+            var $last = null, $filter = null;
             smTools.select.init();
             document.getElementById('filter-sector').addEventListener('change', function (e) {
-                curret = (e.target).value;
-                if (last !== curret) {
-                    window.last = curret;
+                $filter = (e.target).value;
+                if ($last !== $filter) {
+                    window.last = $filter;
+                    smStf.doc.filterSector($filter);
                 }
             }, false);
         </script>

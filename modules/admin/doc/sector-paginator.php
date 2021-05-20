@@ -6,8 +6,22 @@ try {
     } else if ($session->admin < $config->docSector) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else {
-        $sector = new Select();
+        $get = GlobalFilter::filterGet();
         $clear = new StrClean();
+        $sector = new Select();
+        
+        $filter = (isset($get->filter) ? $clear->formatStr($get->filter) : '');
+        switch ($filter) {
+            case '':
+                $query = "";
+                break;
+            case 'lock':
+                $query = "WHERE doc_sectors.s_status = '0'";
+                break;
+            default:
+                $query = "WHERE doc_sectors.s_category = '{$filter}'";
+                break;
+        }
 
         $sector->setQuery("
             SELECT
@@ -28,6 +42,7 @@ try {
                 doc_category
             ON
                 doc_sectors.s_category = doc_category.c_hash
+                {$query}
             ORDER BY
                 s_link
         ");
