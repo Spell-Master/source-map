@@ -3,7 +3,16 @@ if ($admin < $config->docSector) { // Executa pelo default.php
     throw new ConstException(null, ConstException::INVALID_ACESS);
 } else {
     $category = new Select();
-    $category->setQuery("SELECT * FROM doc_category ORDER BY c_order ASC");
+    $category->setQuery("
+        SELECT
+            c_hash AS h,
+            c_title AS t,
+            c_order AS o
+        FROM
+            doc_category
+        ORDER BY
+            o ASC
+    ");
     if ($category->count()) {
         ?>
         <div class="container padding-all-prop">
@@ -31,7 +40,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
                         <option value="">Tudo</option>
                         <option value="lock">Bloqueados</option>
                         <?php foreach ($category->result() as $c) { ?>
-                            <option value="<?= $c->c_hash ?>"><?= $c->c_title ?></option>
+                            <option value="<?= $c->h ?>"><?= $c->t ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -53,12 +62,14 @@ if ($admin < $config->docSector) { // Executa pelo default.php
         </div>
 
         <script>
+            MEMORY.catList = JSON.parse('<?= json_encode($category->result()) ?>');
+
             var $last = null, $filter = null;
             smTools.select.init();
             document.getElementById('filter-sector').addEventListener('change', function (e) {
                 $filter = (e.target).value;
                 if ($last !== $filter) {
-                    window.last = $filter;
+                    $last = $filter;
                     smStf.doc.filterSector($filter);
                 }
             }, false);

@@ -32,6 +32,10 @@
         <maxPageTitle>30</maxPageTitle> <!-- Máximo de caracteres em títulos de página -->
         <minPageData>1</minPageData> <!-- Mínimo de caracteres em conteúdo de página -->
         <maxPageData>100000</maxPageData> <!-- Máximo de caracteres em conteúdo de página -->
+        <minSectorTitle>3</minSectorTitle> <!-- Mínimo de caracteres em títulos de setores -->
+        <maxSectorTitle>30</maxSectorTitle> <!-- Máximo de caracteres em títulos de página -->
+        <minSectorDesc>1</minSectorDesc> <!-- Mínimo de caracteres na descrição de setores -->
+        <maxSectorDesc>100000</maxSectorDesc> <!-- Máximo de caracteres na descrição de setores -->
     </length>
     
     <rows>
