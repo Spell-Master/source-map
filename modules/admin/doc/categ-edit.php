@@ -37,7 +37,7 @@ try {
         }
 
 
-        if ($count) {
+        if ($count && $categoryData) {
             ?>
             <div class="container padding-lr-prop fade-in">
                 <form

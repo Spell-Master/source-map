@@ -16,7 +16,7 @@ foreach ($docResult as $key => $value) {
         <?php
         foreach ($category as $idx => $categ) {
             ?>
-            <div id="categ-<?= $idx ?>">
+            <div id="sector-<?= $idx ?>">
                 <div<?= ($idx != 0 ? ' class="border-top border-dark padding-top" style="margin-top: 100px"' : null) ?>>
                     <div class="row">
                         <div class="col-twothird padding-right-prop over-not">
@@ -69,7 +69,7 @@ foreach ($docResult as $key => $value) {
 
     <script>
         <?php foreach ($category as $nun => $v) { ?>
-            smTools.paginator.set('pag-item', 3, 'categ-<?= $nun ?>');
+            smTools.paginator.set('pag-item', 3, 'sector-<?= $nun ?>');
             smTools.paginator.init(1);
         <?php } ?>
     </script>
