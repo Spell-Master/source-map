@@ -31,11 +31,11 @@ try {
                     action=""
                     id="edit-sector"
                     onsubmit="return smStf.doc.saveSector([
-                                            '<?= $config->length->minSectorTitle ?>',
-                                            '<?= $config->length->maxSectorTitle ?>',
-                                            '<?= $config->length->minSectorDesc ?>',
-                                            '<?= $config->length->maxSectorDesc ?>'
-                                        ], 'edit')">
+                        '<?= $config->length->minSectorTitle ?>',
+                        '<?= $config->length->maxSectorTitle ?>',
+                        '<?= $config->length->minSectorDesc ?>',
+                        '<?= $config->length->maxSectorDesc ?>'
+                    ], 'edit')">
                     <div class="row-pad">
                         <div class="col-twothird">
                             <p class="font-medium">Título</p>
