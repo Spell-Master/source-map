@@ -17,7 +17,7 @@ if ($admin < $config->docCategory) { // Executa pelo default.php
         </div>
         <hr />
         <p class="font-medium">Adicionar</p>
-        <button class="btn-success text-white" onclick="smStf.doc.addCateg()">
+        <button class="btn-success text-white" onclick="smStf.doc.openNew('categ')">
             Criar <i class="icon-file-plus2"></i>
         </button>
     </div>

@@ -46,7 +46,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
                 </div>
                 <div class="col-quarter">
                     <p class="font-medium">Adicionar</p>
-                    <button class="btn-success button-block text-white" onclick="smStf.doc.addSector()">
+                    <button class="btn-success button-block text-white" onclick="smStf.doc.openNew('sector')">
                         Criar <i class="icon-file-plus2"></i>
                     </button>
                 </div>
@@ -70,7 +70,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
                 $filter = (e.target).value;
                 if ($last !== $filter) {
                     $last = $filter;
-                    smStf.doc.filterSector($filter);
+                    smStf.doc.filterView('sector', $filter);
                 }
             }, false);
         </script>

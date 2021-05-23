@@ -26,7 +26,7 @@ if (count($categoryResult)) {
                         <div class="bg-white">
                             <div class="row-pad">
                                 <div class="col-s-half float-right align-right">
-                                    <button class="btn-info text-white maximize-min shadow-on-hover" onclick="smStf.doc.editCateg('<?= $value->c_hash ?>')">
+                                    <button class="btn-info text-white maximize-min shadow-on-hover" onclick="smStf.doc.openEdit('categ' ,'<?= $value->c_hash ?>')">
                                         &nbsp; <i class="icon-pencil5"></i> Editar &nbsp;
                                     </button>
                                 </div>
@@ -47,7 +47,7 @@ if (count($categoryResult)) {
                     </div>
 
                     <div class="padding-all-min align-right">
-                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.delCateg('<?= $value->c_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('categ' ,'<?= $value->c_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
                     </div>
                 </div>
             </div>
