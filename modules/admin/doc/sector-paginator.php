@@ -8,11 +8,12 @@ try {
     } else {
         $get = GlobalFilter::filterGet();
         $clear = new StrClean();
-        $sector = new Select();
+        $sectors = new Select();
 
         $filter = (isset($get->filter) ? $clear->formatStr($get->filter) : '');
         switch ($filter) {
             case '':
+            case 'all':
                 $query = "";
                 break;
             case 'lock':
@@ -23,7 +24,7 @@ try {
                 break;
         }
 
-        $sector->setQuery("
+        $sectors->setQuery("
             SELECT
                 doc_sectors.s_status,
                 doc_sectors.s_date,
@@ -46,13 +47,13 @@ try {
             ORDER BY
                 s_link
         ");
-        if ($sector->count()) {
+        if ($sectors->count()) {
             ?>
             <div class="container padding-lr-prop">
                 <div class="align-right margin-top">
                     <div data-paginator=""></div>
                 </div>
-                <?php foreach ($sector->result() as $value) { ?>
+                <?php foreach ($sectors->result() as $value) { ?>
                     <div class="shadow margin-top pag-item">
                         <div class="bg-black padding-all-min font-large text-white">
                             <div class="margin-lr over-text">
@@ -73,7 +74,7 @@ try {
                                             <i class="icon-pencil5"></i> Editar
                                         </button>
                                         <div class="align-center padding-all">
-                                            <img src="<?= (empty($value->s_icon) ? 'lib/image/sector-icon.png' : 'uploads/icons/' . $value->s_icon) ?>" alt="" alt="" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'"/>
+                                            <img src="<?= (empty($value->s_icon) ? 'lib/image/sector-icon.png' : 'uploads/icons/' . $value->s_icon) ?>" alt="" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'" />
                                         </div>
                                     </div>
                                     <div class="col-threequarter">
@@ -126,8 +127,8 @@ try {
                 smTools.acc.init();
             </script>
             <?php
-        } else if ($sector->error()) {
-            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        } else if ($sectors->error()) {
+            throw new ConstException($sectors->error(), ConstException::SYSTEM_ERROR);
         } else {
             throw new ConstException(null, ConstException::NOT_FOUND);
         }

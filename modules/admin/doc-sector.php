@@ -37,7 +37,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
                 <div class="col-quarter">
                     <p class="font-medium">Filtragem</p>
                     <select class="select-options" id="filter-sector">
-                        <option value="">Tudo</option>
+                        <option value="all">Tudo</option>
                         <option value="lock">Bloqueados</option>
                         <?php foreach ($category->result() as $c) { ?>
                             <option value="<?= $c->h ?>"><?= $c->t ?></option>
@@ -64,12 +64,12 @@ if ($admin < $config->docSector) { // Executa pelo default.php
         <script>
             MEMORY.catList = JSON.parse('<?= json_encode($category->result()) ?>');
 
-            var $last = null, $filter = null;
+            var $last = 'all', $filter = null;
             smTools.select.init();
             document.getElementById('filter-sector').addEventListener('change', function (e) {
                 $filter = (e.target).value;
                 if ($last !== $filter) {
-                    $last = $filter;
+                    window.$last = $filter;
                     smStf.doc.filterView('sector', $filter);
                 }
             }, false);
@@ -78,6 +78,21 @@ if ($admin < $config->docSector) { // Executa pelo default.php
     } else if ($category->error()) { // Executa pelo default.php
         throw new ConstException($category->error(), ConstException::SYSTEM_ERROR);
     } else {
-        echo "Não tem categoria";
+        ?>
+        <div class="bg-light-orange patern-bg align-center box-y-250 vertical-wrap">
+            <div class="box-x-500 margin-auto">
+                <p class="font-jumbo text-red">Não existem categorias registradas</p>
+                <?php if ($session->admin >= $config->docCategory) { ?>
+                    <div class="margin-top">
+                        <a href="admin/doc-categoria" class="btn-warning text-white shadow-on-hover">
+                            Ir para categorias
+                        </a>
+                    </div>
+                <?php } else { ?>
+                    <i class="icon-confused icn-4x text-red"></i>
+                <?php } ?>
+            </div>
+        </div>
+        <?php
     }
 }

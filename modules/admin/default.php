@@ -59,7 +59,7 @@ try {
                                 <?php } if ($admin >= $config->docSector) { ?>
                                     <li><a href="admin/doc-sector"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
                                 <?php } if ($admin >= $config->docPage) { ?>
-                                    <li><a href="admin/"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
+                                    <li><a href="admin/doc-page"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
                                 <?php } ?>
                             </ul>
                         </li>
