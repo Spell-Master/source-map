@@ -40,6 +40,10 @@ try {
             ON
                 p.p_created = u.u_hash
             {$query}
+            ORDER BY
+                p.p_link ASC,
+                p.p_date ASC,
+                s.s_title ASC
             LIMIT 100
         ");
         if ($pages->count()) {

@@ -64,7 +64,7 @@ try {
                             <button
                                 type="submit"
                                 class="btn-success shadow-on-hover"
-                                title="Publicar Página"
+                                title="Publicar Setor"
                                 onclick="">
                                 <i class="icon-file-plus2"></i>
                             </button>

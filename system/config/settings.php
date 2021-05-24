@@ -11,11 +11,12 @@ return [
     'admin' => 4, // Administrador
     
     /*
-     * Níveis de acesso para administrar conteúdo
+     * Níveis de acesso para manipular conteúdo
      */
-    'docCategory' => 4,
-    'docSector' => 4,
-    'docPage' => 4,
+    'insertSource' => 4, // Quem pode salvar scripts no banco de dados
+    'docCategory' => 4, // Quem pode administrar categorias
+    'docSector' => 4, // Quem pode administrar setores
+    'docPage' => 4, // Quem pode administrar páginas
 
     /*
      * Conexão com o banco de dados 
