@@ -36,7 +36,6 @@ try {
             }
         }
 
-
         if ($count && $categoryData) {
             ?>
             <div class="container padding-lr-prop fade-in">
@@ -98,6 +97,7 @@ try {
             </div>
             <script>
                 smTools.select.init();
+                document.getElementById('page-tools').classList.add('hide');
             </script>
             <?php
         } else {

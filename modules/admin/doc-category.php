@@ -16,10 +16,12 @@ if ($admin < $config->docCategory) { // Executa pelo default.php
             <h1 class="gunship over-text">Categorias</h1>
         </div>
         <hr />
-        <p class="font-medium">Adicionar</p>
-        <button class="btn-success text-white" onclick="smStf.doc.openNew('categ')">
-            Criar <i class="icon-file-plus2"></i>
-        </button>
+        <div id="page-tools">
+            <p class="font-medium">Adicionar</p>
+            <button class="btn-success text-white" onclick="smStf.doc.openNew('categ')">
+                Criar <i class="icon-file-plus2"></i>
+            </button>
+        </div>
     </div>
 
     <div class="margin-top">

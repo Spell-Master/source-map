@@ -14,13 +14,13 @@ if ($admin < $config->docPage) { // Executa pelo default.php
             l ASC
     ");
     if ($sector->count()) {
-?>
+        ?>
         <div class="container padding-all-prop">
             <div class="padding-right-prop over-not">
                 <h1 class="gunship over-text">Páginas</h1>
             </div>
             <hr />
-            <div class="row-pad">
+            <div class="row-pad" id="page-tools">
                 <div class="col-half">
                     <p class="font-medium">Localizar Página</p>
                     <form method="POST" id="search-app" onsubmit="return false;">

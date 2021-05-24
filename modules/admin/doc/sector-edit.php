@@ -126,6 +126,7 @@ try {
                     CKEDITOR.instances['editor-sector'].on('instanceReady', function (e) {
                         loading.parentNode.removeChild(loading);
                     });
+                    document.getElementById('page-tools').classList.add('hide');
                 } else {
                     document.getElementById('page-load').innerHTML = null;
                     smCore.modal.error('Falha ao carregar objeto global\n\

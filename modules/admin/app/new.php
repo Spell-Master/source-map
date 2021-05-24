@@ -60,7 +60,7 @@ try {
                         type="button"
                         class="btn-info shadow-on-hover"
                         title="Pré visualizar"
-                        onclick="smStf.app.pageAction.preview('new-app', 'app')">
+                        onclick="smStf.pageAction.preview('new-app', 'app')">
                         <i class="icon-file-eye2"></i>
                     </button>
                     <button
@@ -80,6 +80,7 @@ try {
             CKEDITOR.instances['editor-page'].on('instanceReady', function (e) {
                 loading.parentNode.removeChild(loading);
             });
+            document.getElementById('page-tools').classList.add('hide');
         </script>
         <?php
     }

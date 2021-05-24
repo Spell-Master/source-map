@@ -46,6 +46,9 @@ try {
                 </div>
             </form>
         </div>
+        <script>
+            document.getElementById('page-tools').classList.add('hide');
+        </script>
         <?php
     }
 } catch (ConstException $e) {

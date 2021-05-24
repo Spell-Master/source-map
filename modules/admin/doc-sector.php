@@ -20,7 +20,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
                 <h1 class="gunship over-text">Setores</h1>
             </div>
             <hr />
-            <div class="row-pad">
+            <div class="row-pad" id="page-tools">
                 <div class="col-half">
                     <p class="font-medium">Localizar Setor</p>
                     <form method="POST" id="search-app" onsubmit="return false;">

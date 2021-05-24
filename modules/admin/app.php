@@ -27,7 +27,7 @@ try {
                 <h1 class="gunship over-text"><?= $app['name'] ?> Padrão</h1>
             </div>
             <hr />
-            <div class="row-pad">
+            <div class="row-pad" id="page-tools">
                 <div class="col-quarter">
                     <p class="font-medium">Adicionar</p>
                     <button class="btn-success button-block text-white" onclick="smStf.app.newPage('<?= $app['key'] ?>')">
