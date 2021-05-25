@@ -105,3 +105,4 @@ try {
             break;
     }
 }
+exit();

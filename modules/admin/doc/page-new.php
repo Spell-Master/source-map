@@ -122,4 +122,3 @@ try {
             break;
     }
 }
-exit();

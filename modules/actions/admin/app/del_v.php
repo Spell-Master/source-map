@@ -64,3 +64,4 @@ try {
             break;
     }
 }
+exit();
