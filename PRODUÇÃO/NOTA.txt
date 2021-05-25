@@ -11,9 +11,9 @@ confirmar por e-mail.
 *************************************************************************
 * REVISAR
 *************************************************************************
+* Aplicar os conceitos feitos no doc para os apps também.
 * Revisar a função exit() nos arquivos carregados por AJAX.
-* Ao realizar edição de conteúdo não fazer select no alvo, o update pode
- ser lançado diretamente.
+
 
 *************************************************************************
 * REMOVER

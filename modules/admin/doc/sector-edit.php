@@ -22,7 +22,7 @@ try {
         $select = new Select();
         $clear = new StrClean();
         $select->query("doc_sectors", "s_hash = :sh", "sh={$clear->formatStr($hash)}");
-        if (!$select->count()) {
+        if ($select->count()) {
             $sectorData = $select->result()[0];
             ?>
             <div class="container padding-lr-prop fade-in">

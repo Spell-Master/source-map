@@ -51,69 +51,61 @@ try {
     }
     //
     else {
-        $scripts = preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->editor);
+        $sectorHash = $clear->formatStr($hash);
+        $info = preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->editor);
         $save = [
             's_status' => (isset($post->view) ? 1 : 0),
             's_title' => htmlentities($title),
             's_link' => mb_strtolower($clear->formatStr($title)),
             's_category' => $clear->formatStr($category),
-            's_info' => PostData::savePost($scripts)
+            's_info' => PostData::savePost($info)
         ];
-
-        $select->query("doc_category", "c_hash = :ch", "ch={$save['s_category']}");
-        $selectB->query("doc_sectors");
+        $select->query(
+            "doc_sectors",
+            "s_hash != :sh AND s_link = :sl AND s_category = :sc",
+            "sh={$sectorHash}&sl={$save['s_link']}&sc={$save['s_category']}"
+        );
+        $selectB->query(
+            "doc_category",
+            "c_hash = :ch",
+            "ch={$save['s_category']}"
+        );
 
         if ($select->error() || $selectB->error()) {
             $error = "";
             $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
             $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
             throw new ConstException($error, ConstException::SYSTEM_ERROR);
-        } else if (!$select->count()) {
-            throw new ConstException('No momento não é possível salvar o setor na categoria selecionada', ConstException::INVALID_POST);
+        } if ($select->count()) {
+            throw new ConstException('Já existe um setor nessa categoria com esse título'
+            . '<p class="font-small">Use um título diferente ou selecione outra categoria</p>', ConstException::INVALID_POST);
         } else if (!$selectB->count()) {
-            throw new ConstException('No momento não é possível localizar o setor para edição', ConstException::INVALID_POST);
+            throw new ConstException('No momento não é possível salvar o setor'
+            . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
         } else {
-            $sectorHash = $clear->formatStr($hash);
-            $title = 0;
-            foreach ($selectB->result() as $value) {
-                if ($value->s_hash == $sectorHash) {
-                    $sectorData = $value;
-                }
-                if ($value->s_hash != $sectorHash && $save['s_link'] == $value->s_link) {
-                    $title += 1;
-                }
-            }
-            if (!isset($sectorData)) {
-                throw new ConstException('Não foi possível localizar o setor para edição'
-                . '<p class="font-small">Recarregue a página para corrigir</p>', ConstException::INVALID_POST);
-            } else if ($title >= 1) {
-                throw new ConstException('No momento não é possível salvar o setor'
-                . '<p class="font-small">Use um título diferente ou tente novamente mais tarde</p>', ConstException::INVALID_POST);
-            } else {
-                $update->query(
-                    "doc_sectors",
-                    $save,
-                    "s_hash = :sh",
-                    "sh={$sectorData->s_hash}"
-                );
+            $update->query(
+                "doc_sectors",
+                $save,
+                "s_hash = :sh",
+                "sh={$sectorHash}"
+            );
+            if ($update->count()) {
+                ?>
+                <script>
+                    MEMORY.selectedIndex = 'all';
+                    smStf.pageAction.cancel();
+                    smTools.modal.close();
+                    smTools.scroll.top();
+                    smTools.ajax.send('paginator', 'modules/admin/doc/sector-paginator.php', false);
+                    smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Setor Editado</p>', true);
+                </script>
+                <?php
 
-                if ($update->count()) {
-                    ?>
-                    <script>
-                        MEMORY.selectedIndex = 'all';
-                        smStf.pageAction.cancel();
-                        smTools.modal.close();
-                        smTools.scroll.top();
-                        smTools.ajax.send('paginator', 'modules/admin/doc/sector-paginator.php', false);
-                        smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Setor Editado</p>', true);
-                    </script>
-                    <?php
-                } else if ($update->error()) {
-                    throw new ConstException($update->error(), ConstException::SYSTEM_ERROR);
-                } else {
-                    throw new ConstException('No momento não foi possível salvar o setor'
-                    . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
-                }
+            } else if ($update->error()) {
+                throw new ConstException($update->error(), ConstException::SYSTEM_ERROR);
+            } else {
+                throw new ConstException('No momento não foi possível salvar o setor'
+                . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
             }
         }
     }
@@ -132,3 +124,4 @@ try {
             break;
     }
 }
+exit();

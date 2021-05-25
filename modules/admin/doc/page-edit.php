@@ -23,7 +23,7 @@ try {
         $select = new Select();
         $clear = new StrClean();
         $select->query("doc_pages", "p_hash = :ph", "ph={$clear->formatStr($hash)}");
-        if (!$select->count()) {
+        if ($select->count()) {
             $pageData = $select->result()[0];
             ?>
             <div class="container padding-lr-prop fade-in">
