@@ -16,7 +16,6 @@ confirmar por e-mail.
  ser lançado diretamente.
 * Ao carregar por ajax conteúdo para edição adicionar um comando para
  voltar a páginação.
-Ao salvar/editar/apagar conteúdo reiniciar a opção do seletor de paginação.
 
 *************************************************************************
 * REMOVER

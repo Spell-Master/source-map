@@ -63,13 +63,13 @@ if ($admin < $config->docPage) { // Executa pelo default.php
 
         <script>
             MEMORY.secList = JSON.parse('<?= json_encode($sector->result()) ?>');
-
-            var $last = 'all', $filter = null;
+            MEMORY.selectedIndex = 'all';
+            var $filter = null;
             smTools.select.init();
             document.getElementById('filter-page').addEventListener('change', function (e) {
                 $filter = (e.target).value;
-                if ($last !== $filter) {
-                    window.$last = $filter;
+                if (MEMORY.selectedIndex !== $filter) {
+                    MEMORY.selectedIndex = $filter;
                     smStf.doc.filterView('page', $filter);
                 }
             }, false);

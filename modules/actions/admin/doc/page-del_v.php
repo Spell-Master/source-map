@@ -28,6 +28,7 @@ try {
         if ($delete->count()) {
             ?>
             <script>
+                MEMORY.selectedIndex = 'all';
                 smStf.pageAction.cancel();
                 smTools.modal.close();
                 smTools.scroll.top();
