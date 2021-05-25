@@ -23,7 +23,7 @@ try {
         $select = new Select();
         $clear = new StrClean();
         $select->query("doc_pages", "p_hash = :ph", "ph={$clear->formatStr($hash)}");
-        if ($select->count()) {
+        if (!$select->count()) {
             $pageData = $select->result()[0];
             ?>
             <div class="container padding-lr-prop fade-in">
@@ -32,11 +32,11 @@ try {
                     action=""
                     id="edit-page"
                     onsubmit="return smStf.doc.savePage([
-                                            '<?= $config->length->minPageTitle ?>',
-                                            '<?= $config->length->maxPageTitle ?>',
-                                            '<?= $config->length->minPageData ?>',
-                                            '<?= $config->length->maxPageData ?>'
-                                        ], 'edit')">
+                        '<?= $config->length->minPageTitle ?>',
+                        '<?= $config->length->maxPageTitle ?>',
+                        '<?= $config->length->minPageData ?>',
+                        '<?= $config->length->maxPageData ?>'
+                    ], 'edit')">
                     <div class="row-pad">
                         <div class="col-twothird">
                             <p class="font-medium">Título</p>
@@ -160,9 +160,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::NOT_FOUND:
-            include (__DIR__ . '/../../error/412.php');
+            echo ("<script>smStf.doc.filterView('page', 'all');</script>");
             break;
     }
 }
-
-

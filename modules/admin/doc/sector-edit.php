@@ -22,7 +22,7 @@ try {
         $select = new Select();
         $clear = new StrClean();
         $select->query("doc_sectors", "s_hash = :sh", "sh={$clear->formatStr($hash)}");
-        if ($select->count()) {
+        if (!$select->count()) {
             $sectorData = $select->result()[0];
             ?>
             <div class="container padding-lr-prop fade-in">
@@ -152,7 +152,7 @@ try {
             include (__DIR__ . '/../../error/500.php');
             break;
         case ConstException::NOT_FOUND:
-            include (__DIR__ . '/../../error/412.php');
+            echo ("<script>smStf.doc.filterView('sector', 'all');</script>");
             break;
     }
 }

@@ -14,8 +14,6 @@ confirmar por e-mail.
 * Revisar a função exit() nos arquivos carregados por AJAX.
 * Ao realizar edição de conteúdo não fazer select no alvo, o update pode
  ser lançado diretamente.
-* Ao carregar por ajax conteúdo para edição adicionar um comando para
- voltar a páginação.
 
 *************************************************************************
 * REMOVER
