@@ -130,8 +130,15 @@ try {
                                     <?= SeoData::longText($value->p_text, $config->length->longStr) ?>
                                 </article>
                             </div>
+                            <div class="padding-all-min align-right">
+                                <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('page', '<?= $value->p_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                            </div>
                         </div>
                     </div>
+
+                    <form method="POST" action="" id="del-<?= $value->p_hash ?>">
+                        <input type="hidden" name="hash" value="<?= $value->p_hash ?>" />
+                    </form>
                 <?php } ?>
 
                 <div class="padding-all align-center">
