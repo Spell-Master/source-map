@@ -6,10 +6,17 @@ Quando logar lovamente comparar os dados dos dispositivos anterior e
 atual.
 Se não for idênticos bloquear o login da conta e só liberar depois de
 confirmar por e-mail.
+* Alterar a classe LogRegister para estática.
 
 *************************************************************************
 * REVISAR
 *************************************************************************
+* Revisar a função exit() nos arquivos carregados por AJAX.
+* Ao realizar edição de conteúdo não fazer select no alvo, o update pode
+ ser lançado diretamente.
+* Ao carregar por ajax conteúdo para edição adicionar um comando para
+ voltar a páginação.
+Ao salvar/editar/apagar conteúdo reiniciar a opção do seletor de paginação.
 
 *************************************************************************
 * REMOVER

@@ -56,7 +56,7 @@ try {
             'p_title' => htmlentities($title),
             'p_link' => $clear->formatStr($title),
             'p_sector' => $clear->formatStr($sector),
-            'p_content' => PostData::savePost($content),
+            'p_content' => $content,
             'p_text' => $editor,
             'p_created' => $session->user->hash,
             'p_date' => date('Y-m-d')

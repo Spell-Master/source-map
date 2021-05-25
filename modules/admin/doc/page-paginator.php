@@ -69,7 +69,7 @@ try {
                             <div class="bg-white">
                                 <div class="row-pad">
                                     <div class="col-quarter float-right">
-                                        <button class="btn-info button-block text-white shadow-on-hover" onclick="sm_stf.doc.openEdit('page', '<?= $value->p_hash ?>');">
+                                        <button class="btn-info button-block text-white shadow-on-hover" onclick="smStf.doc.openEdit('page', '<?= $value->p_hash ?>');">
                                             &nbsp; <i class="icon-pencil5"></i> Editar &nbsp;
                                         </button>
                                     </div>
