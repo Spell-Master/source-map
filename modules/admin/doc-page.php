@@ -65,7 +65,7 @@ if ($admin < $config->docPage) { // Executa pelo default.php
         </div>
 
         <script>
-            MEMORY.secList = JSON.parse('<?= json_encode($sector->result()) ?>');
+            MEMORY.refList = JSON.parse('<?= json_encode($sector->result()) ?>');
             MEMORY.selectedIndex = 'all';
             var $filter = null;
             smTools.select.init();

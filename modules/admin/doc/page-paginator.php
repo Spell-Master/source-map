@@ -131,7 +131,14 @@ try {
                                 </article>
                             </div>
                             <div class="padding-all-min align-right">
-                                <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('page', '<?= $value->p_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                                <ul class="list-none">
+                                    <li class="line-block padding-right-min">
+                                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openMove('page', '<?= $value->p_hash ?>', '<?= $value->p_sector ?>');"><i class="icon-new-tab2"></i> Mover</a>
+                                    </li>
+                                    <li class="line-block padding-right-min">
+                                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('page', '<?= $value->p_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

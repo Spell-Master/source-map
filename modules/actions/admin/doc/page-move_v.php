@@ -9,43 +9,42 @@ $clear = new StrClean();
 $select = new Select();
 $update = new Update();
 
-$category = (isset($post->move[0]) ? trim($post->move[0]) : false);
-$sector = (isset($post->target) ? trim($post->target) : false);
+$sector = (isset($post->move[0]) ? trim($post->move[0]) : false);
+$page = (isset($post->target) ? trim($post->target) : false);
 
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docSector) {
+    } else if ($session->admin < $config->docPage) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //
-    else if (!$category) {
+    else if (!$sector) {
         throw new ConstException('Não recebido dados de $_POST[\'move\'][]', ConstException::SYSTEM_ERROR);
-    } else if (!$valid->strInt($category)) {
+    } else if (!$valid->strInt($sector)) {
         throw new ConstException('$_POST[\'move\'][] não é um identificador válido', ConstException::SYSTEM_ERROR);
     }
     //
-    else if (!$sector) {
+    else if (!$page) {
         throw new ConstException('Não recebido dados de $_POST[\'target\']', ConstException::SYSTEM_ERROR);
-    } else if (!$valid->strInt($sector)) {
+    } else if (!$valid->strInt($page)) {
         throw new ConstException('$_POST[\'target\'] não é um identificador válido', ConstException::SYSTEM_ERROR);
     }
     //
     else {
         $save = [
-            'category' => $clear->formatStr($category),
-            'sector' => $clear->formatStr($sector)
+            'sector' => $clear->formatStr($sector),
+            'page' => $clear->formatStr($page)
         ];
 
-        $select->query("doc_category", "c_hash = :ch", "ch={$save['category']}");
+        $select->query("doc_sectors", "s_hash = :sh", "sh={$save['sector']}");
         if ($select->count()) {
-            $categoryData = $select->result()[0];
-
+            $sectorData = $select->result()[0];
             $update->query(
-                "doc_sectors",
-                ['s_category' => $save['category']],
-                "s_hash = :sh",
-                "sh={$save['sector']}"
+                "doc_pages",
+                ['p_sector' => $save['sector']],
+                "p_hash = :ph",
+                "ph={$save['page']}"
             );
             if ($update->count()) {
                 ?>
@@ -54,14 +53,14 @@ try {
                     smStf.pageAction.cancel();
                     smTools.modal.close();
                     smTools.scroll.top();
-                    smTools.ajax.send('paginator', 'modules/admin/doc/sector-paginator.php', false);
-                    smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Setor movido para <?= $categoryData->c_title ?></p>', true);
+                    smTools.ajax.send('paginator', 'modules/admin/doc/page-paginator.php', false);
+                    smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página movida para <?= $sectorData->s_title ?></p>', true);
                 </script>
                 <?php
             } else if ($update->error()) {
                 throw new ConstException($update->error(), ConstException::SYSTEM_ERROR);
             } else {
-                throw new ConstException('No momento não é possível mover o setor'
+                throw new ConstException('No momento não é possível mover a página'
                 . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
             }
         } else if ($select->error()) {

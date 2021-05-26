@@ -89,10 +89,10 @@ try {
         </div>
 
         <script>
-            if (smTools.check.isReady(MEMORY.secList)) {
+            if (smTools.check.isReady(MEMORY.refList)) {
                 var $sector = document.getElementById('sector'), $option;
 
-                MEMORY.secList.forEach(function (e) {
+                MEMORY.refList.forEach(function (e) {
                     $option = document.createElement('option');
                     $option.value = e.h;
                     $option.innerText = e.t;
@@ -110,7 +110,7 @@ try {
                 document.getElementById('page-load').innerHTML = null;
                 smCore.modal.error('Falha ao carregar objeto global\n\
                 <p class="font-small">Recarregue a página para tentar corrigir o problema</p>', true);
-                console.error('Falha ao carregar objeto global secList');
+                console.error('Falha ao carregar objeto global refList');
             }
         </script>
         <?php
