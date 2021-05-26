@@ -11,9 +11,6 @@ confirmar por e-mail.
 *************************************************************************
 * REVISAR
 *************************************************************************
-* Aplicar os conceitos feitos no doc para os apps também.
-* Revisar a função exit() nos arquivos carregados por AJAX.
-
 
 *************************************************************************
 * REMOVER

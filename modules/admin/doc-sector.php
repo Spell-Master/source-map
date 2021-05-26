@@ -23,7 +23,10 @@ if ($admin < $config->docSector) { // Executa pelo default.php
             <div class="row-pad" id="page-tools">
                 <div class="col-half">
                     <p class="font-medium">Localizar Setor</p>
-                    <form method="POST" id="search-app" onsubmit="return false;">
+                    <form method="POST" id="search-sector" onsubmit="return smStf.doc.search([
+                            <?= $config->length->minSearch ?>,
+                            <?= $config->length->maxSearch ?>
+                        ], 'sector');">
                         <div class="row">
                             <div class="float-right">
                                 <button class="btn-success box-y-50 text-white"><i class="icon-search3"></i></button>

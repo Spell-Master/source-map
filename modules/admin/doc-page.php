@@ -23,7 +23,10 @@ if ($admin < $config->docPage) { // Executa pelo default.php
             <div class="row-pad" id="page-tools">
                 <div class="col-half">
                     <p class="font-medium">Localizar Página</p>
-                    <form method="POST" id="search-app" onsubmit="return false;">
+                    <form method="POST" id="search-page" onsubmit="return smStf.doc.search([
+                            <?= $config->length->minSearch ?>,
+                            <?= $config->length->maxSearch ?>
+                        ], 'page');">
                         <div class="row">
                             <div class="float-right">
                                 <button class="btn-success box-y-50 text-white"><i class="icon-search3"></i></button>
