@@ -406,13 +406,21 @@ Abaixo da header
     transform: translateX(0)
 }
 
-
-
-
 /* **** */
 #page-load {
     margin-top: 105px;
     min-height: 250px
+}
+
+/* Caixas check-box / label's */
+.check-input input {
+    display: none
+}
+.check-input input + label {
+    opacity: .5
+}
+.check-input input:checked + label {
+    opacity: 1
 }
 
 /*

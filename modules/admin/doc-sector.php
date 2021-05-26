@@ -65,7 +65,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
         </div>
 
         <script>
-            MEMORY.catList = JSON.parse('<?= json_encode($category->result()) ?>');
+            MEMORY.refList = JSON.parse('<?= json_encode($category->result()) ?>');
             MEMORY.selectedIndex = 'all';
             var $filter = null;
             smTools.select.init();

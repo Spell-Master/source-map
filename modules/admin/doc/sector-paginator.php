@@ -70,7 +70,7 @@ try {
                             <div class="break bg-white padding-all">
                                 <div class="row-pad">
                                     <div class="col-quarter">
-                                        <button class="btn-info button-block text-white shadow-on-hover" onclick="smStf.doc.openEdit('sector' ,'<?= $value->s_hash ?>')">
+                                        <button class="btn-info button-block text-white shadow-on-hover" onclick="smStf.doc.openEdit('sector', '<?= $value->s_hash ?>')">
                                             <i class="icon-pencil5"></i> Editar
                                         </button>
                                         <div class="align-center padding-all">
@@ -106,7 +106,14 @@ try {
                                 </div>
                             </div>
                             <div class="padding-all-min align-right">
-                                <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('sector' ,'<?= $value->s_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                                <ul class="list-none">
+                                    <li class="line-block padding-right-min">
+                                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openMove('sector', '<?= $value->s_hash ?>', '<?= $value->s_category ?>');"><i class="icon-new-tab2"></i> Mover</a>
+                                    </li>
+                                    <li class="line-block padding-right-min">
+                                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('sector', '<?= $value->s_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

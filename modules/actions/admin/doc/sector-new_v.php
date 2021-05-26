@@ -19,7 +19,7 @@ $editor = (isset($post->editor) ? PostData::parseStr($post->editor) : false);
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docCategory) {
+    } else if ($session->admin < $config->docSector) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //

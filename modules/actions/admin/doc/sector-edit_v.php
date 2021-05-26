@@ -20,7 +20,7 @@ $hash = (isset($post->hash) ? trim($post->hash) : false);
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docCategory) {
+    } else if ($session->admin < $config->docSector) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //
@@ -100,7 +100,6 @@ try {
                     smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Setor Editado</p>', true);
                 </script>
                 <?php
-
             } else if ($update->error()) {
                 throw new ConstException($update->error(), ConstException::SYSTEM_ERROR);
             } else {
