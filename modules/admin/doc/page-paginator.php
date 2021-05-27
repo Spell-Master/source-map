@@ -99,11 +99,11 @@ try {
                                                             <span class="bold">Status:</span>
                                                             <?php
                                                             if ($value->p_status == '0') {
-                                                                echo ("<span class=\"text-red\">OCULTADA</span>");
+                                                                echo ("<span data-lock=\"span\" class=\"text-red\">OCULTADA</span>");
                                                             } else if ($value->s_status == '0') {
-                                                                echo ("<span class=\"text-red\">OCULTADA (SETOR INATIVO)</span>");
+                                                                echo ("<span data-lock=\"span\" class=\"text-red\">OCULTADA (SETOR INATIVO)</span>");
                                                             } else {
-                                                                echo ("<span class=\"text-green\">VISÍVEL</span>");
+                                                                echo ("<span data-lock=\"span\" class=\"text-green\">VISÍVEL</span>");
                                                             }
                                                             ?>
                                                         </td>
@@ -132,9 +132,11 @@ try {
                             </div>
                             <div class="padding-all-min align-right">
                                 <ul class="list-none">
-                                    <li class="line-block padding-right-min">
-                                        <a data-lock="" class="text-black-hover cursor-pointer" onclick="smStf.doc.openLock('page', '<?= $value->p_hash ?>');"><?= $value->p_status == 0 ? '<i class="icon-unlocked"></i> Desbloquear' : '<i class="icon-lock4"></i> Bloquear' ?></a>
-                                    </li>
+                                    <?php if ($value->s_status == '1') { ?>
+                                        <li class="line-block padding-right-min">
+                                            <a data-lock="button" class="text-black-hover cursor-pointer" onclick="smStf.doc.openLock('page', '<?= $value->p_hash ?>');"><?= $value->p_status == 0 ? '<i class="icon-unlocked"></i> Desocultar' : '<i class="icon-lock4"></i> Ocultar' ?></a>
+                                        </li>
+                                    <?php } ?>
                                     <li class="line-block padding-right-min">
                                         <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openMove('page', '<?= $value->p_hash ?>', '<?= $value->p_sector ?>');"><i class="icon-new-tab2"></i> Mover</a>
                                     </li>
