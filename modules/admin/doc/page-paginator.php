@@ -65,7 +65,7 @@ try {
                             </div>
                         </div>
 
-                        <div class="bg-light<?= ($value->p_status == '0' || $value->s_status == '0' ? '-red' : false) ?>" style="padding: 5px">
+                        <div id="row-<?= $value->p_hash ?>" class="bg-light<?= ($value->p_status == '0' || $value->s_status == '0' ? '-red' : false) ?>" style="padding: 5px">
                             <div class="bg-white">
                                 <div class="row-pad">
                                     <div class="col-quarter float-right">
@@ -133,6 +133,9 @@ try {
                             <div class="padding-all-min align-right">
                                 <ul class="list-none">
                                     <li class="line-block padding-right-min">
+                                        <a data-lock="" class="text-black-hover cursor-pointer" onclick="smStf.doc.openLock('page', '<?= $value->p_hash ?>');"><?= $value->p_status == 0 ? '<i class="icon-unlocked"></i> Desbloquear' : '<i class="icon-lock4"></i> Bloquear' ?></a>
+                                    </li>
+                                    <li class="line-block padding-right-min">
                                         <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openMove('page', '<?= $value->p_hash ?>', '<?= $value->p_sector ?>');"><i class="icon-new-tab2"></i> Mover</a>
                                     </li>
                                     <li class="line-block padding-right-min">
@@ -143,7 +146,7 @@ try {
                         </div>
                     </div>
 
-                    <form method="POST" action="" id="del-<?= $value->p_hash ?>">
+                    <form method="POST" action="" id="target-<?= $value->p_hash ?>">
                         <input type="hidden" name="hash" value="<?= $value->p_hash ?>" />
                     </form>
                 <?php } ?>

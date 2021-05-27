@@ -66,7 +66,7 @@ try {
                             </div>
                         </div>
 
-                        <div class="bg-light<?= $value->s_status == '0' ? '-red' : false ?>" style="padding: 5px">
+                        <div id="row-<?= $value->s_hash ?>" class="bg-light<?= $value->s_status == '0' ? '-red' : false ?>" style="padding: 5px">
                             <div class="break bg-white padding-all">
                                 <div class="row-pad">
                                     <div class="col-quarter">
@@ -82,7 +82,7 @@ try {
                                             <tr>
                                                 <td>
                                                     <span class="bold">Status:</span>
-                                                    <?= ($value->s_status == '1' ? "<span class=\"text-green\">ATIVO</span>" : "<span class=\"text-red\">INATIVO</span>") ?>
+                                                    <?= ($value->s_status == '1' ? "<span data-lock=\"span\" class=\"text-green\">ATIVO</span>" : "<span data-lock=\"span\" class=\"text-red\">INATIVO</span>") ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -108,6 +108,9 @@ try {
                             <div class="padding-all-min align-right">
                                 <ul class="list-none">
                                     <li class="line-block padding-right-min">
+                                        <a data-lock="button" class="text-black-hover cursor-pointer" onclick="smStf.doc.openLock('sector', '<?= $value->s_hash ?>');"><?= $value->s_status == 0 ? '<i class="icon-unlocked"></i> Desbloquear' : '<i class="icon-lock4"></i> Bloquear' ?></a>
+                                    </li>
+                                    <li class="line-block padding-right-min">
                                         <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openMove('sector', '<?= $value->s_hash ?>', '<?= $value->s_category ?>');"><i class="icon-new-tab2"></i> Mover</a>
                                     </li>
                                     <li class="line-block padding-right-min">
@@ -118,7 +121,7 @@ try {
                         </div>
                     </div>
 
-                    <form method="POST" action="" id="del-<?= $value->s_hash ?>">
+                    <form method="POST" action="" id="target-<?= $value->s_hash ?>">
                         <input type="hidden" name="hash" value="<?= $value->s_hash ?>" />
                     </form>
                 <?php } ?>
