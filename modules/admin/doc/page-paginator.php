@@ -82,7 +82,6 @@ try {
                                                             <?= $value->u_name ?>
                                                         </a>
                                                     </p>
-                                                    (<?= $clear->dateTime($value->p_date) ?>)
                                                     <img src="<?= (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) ?>" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'" />
                                                 </div>
                                             </div>
@@ -116,10 +115,18 @@ try {
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <span class="bold">Versão:</span>
-                                                            <?= $clear->dateTime(strtotime($value->p_last_date) > strtotime($value->p_date) ? $value->p_last_date : $value->p_date) ?>
+                                                            <span class="bold">Criada em:</span>
+                                                            <?= $clear->dateTime($value->p_date) ?>
                                                         </td>
                                                     </tr>
+                                                    <?php if (strtotime($value->p_last_date) > strtotime($value->p_date)) { ?>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="bold">Versão:</span>
+                                                                <?= $clear->dateTime($value->p_last_date) ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
                                                 </table>
                                             </div>
                                         </div>
