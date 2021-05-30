@@ -74,7 +74,7 @@ try {
                                             <i class="icon-pencil5"></i> Editar
                                         </button>
                                         <div class="align-center padding-all">
-                                            <img src="<?= (empty($value->s_icon) ? 'lib/image/sector-icon.png' : 'uploads/icons/' . $value->s_icon) ?>" alt="" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'" />
+                                            <img src="<?= (empty($value->s_icon) ? 'lib/image/sector-icon.png' : 'uploads/icons/' . $value->s_icon) ?>" alt="" class="img-default radius-circle" id="icon-<?= $value->s_hash ?>" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'" />
                                         </div>
                                     </div>
                                     <div class="col-threequarter">
@@ -115,6 +115,9 @@ try {
                                     </li>
                                     <li class="line-block padding-right-min">
                                         <a class="text-black-hover cursor-pointer" onclick="smStf.doc.openDel('sector', '<?= $value->s_hash ?>')"><i class="icon-bin2"></i> Apagar</a> &nbsp; 
+                                    </li>
+                                    <li class="line-block">
+                                        <a class="text-black-hover cursor-pointer" onclick="smStf.doc.secIcon('<?= $value->s_hash ?>', '<?= $config->store->iconSize ?>');"><i class="icon-image3"></i> Ícone</a>
                                     </li>
                                 </ul>
                             </div>

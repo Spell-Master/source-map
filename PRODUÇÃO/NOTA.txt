@@ -7,6 +7,9 @@ atual.
 Se não for idênticos bloquear o login da conta e só liberar depois de
 confirmar por e-mail.
 * Alterar a classe LogRegister para estática.
+* Adicionar um objeto global que amazenará todas entradas necessárias do
+config.xml no javascript, assim removendo o uso dessas entradas como
+parâmetro na iniciação de funções.
 
 *************************************************************************
 * REVISAR

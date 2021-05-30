@@ -37,10 +37,17 @@
         <minSectorDesc>1</minSectorDesc> <!-- Mínimo de caracteres na descrição de setores -->
         <maxSectorDesc>100000</maxSectorDesc> <!-- Máximo de caracteres na descrição de setores -->
     </length>
-    
+
+    <!-- Determinar quantidades de retornos -->
     <rows>
         <search>3</search> <!-- Quantos registros devem existir para habilitar uma pesquisa? -->
-        <pag>3</pag> <!-- quantos registros devem ser exibidos por página em uma paginação? -->
+        <pag>3</pag> <!-- Quantos registros devem ser exibidos por página em uma paginação? -->
     </rows>
+    
+    <!-- Armazenamento de arquivos -->
+    <store>
+        <uploadSize>40000000</uploadSize> <!-- Limite no tamanho de arquivos -->
+        <iconSize>40000000</iconSize> <!-- Limite no tamanho de ícones -->
+    </store>
 
 </settings>
