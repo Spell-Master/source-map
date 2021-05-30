@@ -52,7 +52,7 @@ if (count($categoryResult)) {
                 </div>
             </div>
 
-            <form method="POST" action="" id="del-<?= $value->c_hash ?>">
+            <form method="POST" action="" id="target-<?= $value->c_hash ?>">
                 <input type="hidden" name="hash" value="<?= $value->c_hash ?>" />
             </form>
         <?php } ?>

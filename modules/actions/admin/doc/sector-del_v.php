@@ -7,6 +7,7 @@ $post = GlobalFilter::filterPost();
 $valid = new StrValid();
 $select = new Select();
 $delete = new Delete();
+$selectB = clone $select;
 
 $hash = (isset($post->hash) ? $post->hash : false);
 
@@ -27,14 +28,28 @@ try {
         $sectorHash = htmlentities($hash);
 
         $select->query("doc_pages", "p_sector = :ps", "ps={$sectorHash}");
-        if ($select->count()) {
+        $selectB->query("doc_sectors", "s_hash = :sh", "sh={$sectorHash}");
+
+        if ($select->error() || $selectB->error()) {
+            $error = "";
+            $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
+            $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
+            throw new ConstException($error, ConstException::SYSTEM_ERROR);
+        } else if ($select->count()) {
             throw new ConstException('Não é possível apagar o setor enquanto houver páginas anexadas a ele'
             . '<p class="font-small">As páginas devem ser removidas do setor para poder apagar-lo</p>', ConstException::INVALID_POST);
-        } else if ($select->error()) {
-            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        } else if (!$selectB->count()) {
+            throw new ConstException('No momento não foi possível localizar o setor alvo'
+            . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
         } else {
-            $delete->query("doc_sectors", "s_hash = :sh", "sh={$sectorHash}");
+            $sectorData = $selectB->result()[0];
+
+            $delete->query("doc_sectors", "s_hash = :sh", "sh={$sectorData->s_hash}");
             if ($delete->count()) {
+                $iconDir = __DIR__ . '/../../../../uploads/icons/';
+                if (!empty($sectorData->s_icon) && file_exists($iconDir . $sectorData->s_icon)) {
+                    unlink($iconDir . $sectorData->s_icon);
+                }
                 ?>
                 <script>
                     MEMORY.selectedIndex = 'all';
