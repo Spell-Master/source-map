@@ -98,7 +98,7 @@ CREATE TABLE `users` (
     `u_pass` varchar(500) NOT NULL DEFAULT '' COMMENT 'Senha de acesso',
     `u_level` int(1) NOT NULL DEFAULT 0 COMMENT 'Nível de acesso',
     `u_name` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nome do usuário',
-    `u_link` varchar(50) NOT NULL DEFAULT '' COMMENT 'Link do perfil',
+    `u_link` varchar(100) NOT NULL DEFAULT '' COMMENT 'Link do perfil',
     `u_photo` varchar(100) NOT NULL DEFAULT '' COMMENT 'Imagem do perfil',
     `u_date` date COMMENT 'Data do registro',
     `u_warn` int(1) NOT NULL DEFAULT 0 COMMENT 'Quantidade de alertas',

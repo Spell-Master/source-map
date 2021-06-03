@@ -85,7 +85,8 @@ try {
             'mail' => htmlentities($mail),
             'pass' => password_hash(htmlentities($pass), PASSWORD_DEFAULT),
             'name' => htmlentities($name),
-            'link' => $clear->formatStr(mb_strtolower($name)),
+            //'link' => $clear->formatStr(mb_strtolower($name)),
+            'link' => $clear->formatStr(mb_strtolower($name)) . '_' . $code->intCode(20),
             'date' => date('Y-m-d')
         ];
 
