@@ -5,7 +5,7 @@
     <!-- Habilitar ou desabilitar recursos (y: SIM / n: NÃO) -->
     <enable>
         <user>y</user> <!-- Habilitar cadastro e login para usuários comuns -->
-        <mail>y</mail> <!-- Habilitar sistema de e-mail -->
+        <mail>n</mail> <!-- Habilitar sistema de e-mail -->
         <newConfirm>n</newConfirm> <!-- Solicitar confirmação de cadastros por e-mail -->
         <captchaSensitive>n</captchaSensitive> <!-- O código captcha deve diferenciar letras minúsculas de maiúsculas -->
         <loginError>y</loginError> <!-- Quando errar o login registrar o erro para bloquear acesso da máquina -->

@@ -29,6 +29,8 @@ if ($admin < $config->admCategory) { // Executa pelo default.php
             <?php
             if ($count) {
                 include (__DIR__ . '/doc/categ-paginator.php');
+            } else {
+                include (__DIR__ . '/../error/412.php');
             }
             ?>
         </div>

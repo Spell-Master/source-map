@@ -1,8 +1,10 @@
-<?php
-echo __FILE__;
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<div class="box-x-600 margin-auto table align-center padding-lr-prop">
+    <div class="table-cell box-y-300 vertical-middle">
+        <div class="text-red">
+            <i class="icon-shocked icn-4x"></i>
+            <p class="font-jumbo">Ops!?</p>
+        </div>
+        <span class="font-medium">Nada para mostrar</span>
+    </div>
+</div>
 
