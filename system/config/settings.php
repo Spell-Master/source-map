@@ -17,6 +17,7 @@ return [
     'admCategory' => 4, // Quem pode administrar categorias
     'admSector' => 4, // Quem pode administrar setores
     'admPage' => 4, // Quem pode administrar páginas
+    'admUser' => 4, // Quem pode administrar usuários
 
     /*
      * Conexão com o banco de dados 

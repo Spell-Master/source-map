@@ -1,5 +1,21 @@
 <?php
 
+/*
+ *  Dar nome ao cargo conforme o nv do usuário
+ * @param {INT} $nv
+ * Nível da coluna u_level no banco de dados
+ */
+function LevelToName($nv) {
+    $name = [
+        /* 0 => '<span class="text-black italic">Membro</span>', */
+        1 => '<span class="text-orange italic bold">Moderador</span>',
+        2 => '<span class="text-green italic bold">Desenvolvedor</span>',
+        3 => '<span class="text-indigo italic bold">Coordernador</span>',
+        4 => '<span class="text-red italic bold">Administrador</span>'
+    ];
+    return (array_key_exists($nv, $name) ? $name[$nv] : '<span class="text-black italic bold">Membro</span>');
+}
+
 /**
  * Função para converter numero em formato de tamanho
  * @param {INT} $fileSize
