@@ -17,7 +17,7 @@ $icon = (isset($_FILES['icon']) ? $_FILES['icon'] : false);
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docSector) {
+    } else if ($session->admin < $config->admSector) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //

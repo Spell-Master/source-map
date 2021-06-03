@@ -49,16 +49,16 @@ try {
                         </li>
                     <?php } ?>
 
-                    <?php if ($admin >= $config->docCategory || $admin >= $config->docCategory || $admin >= $config->docSector || $admin >= $config->docPage) { ?>
+                    <?php if ($admin >= $config->admCategory || $admin >= $config->admSector || $admin >= $config->admPage) { ?>
                         <li>
                             <a data-open="doc-menu"><i class="icon-book3"></i> &nbsp; Documentação Web</a>
                             <ul class="sub-menu doc-menu">
                                 <li><a data-open="session-menu"><i class="icon-menu8"></i> &nbsp; Menu</a></li>
-                                <?php if ($admin >= $config->docCategory) { ?>
+                                <?php if ($admin >= $config->admCategory) { ?>
                                     <li><a href="admin/doc-categoria"><i class="icon-archive"></i> &nbsp; Categorias</a></a></li>
-                                <?php } if ($admin >= $config->docSector) { ?>
+                                <?php } if ($admin >= $config->admSector) { ?>
                                     <li><a href="admin/doc-sector"><i class="icon-folder2"></i> &nbsp; Setores</a></a></li>
-                                <?php } if ($admin >= $config->docPage) { ?>
+                                <?php } if ($admin >= $config->admPage) { ?>
                                     <li><a href="admin/doc-page"><i class="icon-book"></i> &nbsp; Páginas</a></a></li>
                                 <?php } ?>
                             </ul>

@@ -1,5 +1,5 @@
 <?php
-if ($admin < $config->docCategory) { // Executa pelo default.php
+if ($admin < $config->admCategory) { // Executa pelo default.php
     throw new ConstException(null, ConstException::INVALID_ACESS);
 } else {
     $select = new Select();

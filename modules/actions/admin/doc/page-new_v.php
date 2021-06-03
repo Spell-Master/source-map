@@ -18,7 +18,7 @@ $editor = (isset($post->editor) ? PostData::parseStr($post->editor) : false);
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docCategory) {
+    } else if ($session->admin < $config->admPage) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else if (!isset($session->user->hash)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
@@ -45,7 +45,7 @@ try {
     }
     //
     else {
-        if ($session->admin < $config->insertSource) {
+        if ($session->admin < $config->admSource) {
             $content = PostData::savePost(preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->editor));
         } else {
             $content = PostData::savePost($post->editor);

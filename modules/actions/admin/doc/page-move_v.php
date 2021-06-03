@@ -15,7 +15,7 @@ $page = (isset($post->target) ? trim($post->target) : false);
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docPage) {
+    } else if ($session->admin < $config->admPage) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     }
     //

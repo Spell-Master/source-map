@@ -13,10 +13,10 @@ return [
     /*
      * Níveis de acesso para manipular conteúdo
      */
-    'insertSource' => 4, // Quem pode salvar scripts no banco de dados
-    'docCategory' => 4, // Quem pode administrar categorias
-    'docSector' => 4, // Quem pode administrar setores
-    'docPage' => 4, // Quem pode administrar páginas
+    'admSource' => 4, // Quem pode salvar scripts no banco de dados
+    'admCategory' => 4, // Quem pode administrar categorias
+    'admSector' => 4, // Quem pode administrar setores
+    'admPage' => 4, // Quem pode administrar páginas
 
     /*
      * Conexão com o banco de dados 

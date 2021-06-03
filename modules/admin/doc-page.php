@@ -1,5 +1,5 @@
 <?php
-if ($admin < $config->docPage) { // Executa pelo default.php
+if ($admin < $config->admPage) { // Executa pelo default.php
     throw new ConstException(null, ConstException::INVALID_ACESS);
 } else {
     $sector = new Select();
@@ -85,7 +85,7 @@ if ($admin < $config->docPage) { // Executa pelo default.php
         <div class="bg-light-orange patern-bg align-center box-y-250 vertical-wrap">
             <div class="box-x-500 margin-auto">
                 <p class="font-jumbo text-red">Não existem setores registrados</p>
-                <?php if ($session->admin >= $config->docSector) { ?>
+                <?php if ($session->admin >= $config->admSector) { ?>
                     <div class="margin-top">
                         <a href="admin/doc-sector" class="btn-warning text-white shadow-on-hover">
                             Ir para setores

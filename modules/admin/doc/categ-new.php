@@ -4,7 +4,7 @@ require_once (__DIR__ . '/../../../system/config.php');
 try {
     if (!isset($session->admin)) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
-    } else if ($session->admin < $config->docCategory) {
+    } else if ($session->admin < $config->admCategory) {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else {
         ?>

@@ -1,5 +1,5 @@
 <?php
-if ($admin < $config->docSector) { // Executa pelo default.php
+if ($admin < $config->admSector) { // Executa pelo default.php
     throw new ConstException(null, ConstException::INVALID_ACESS);
 } else {
     $category = new Select();
@@ -85,7 +85,7 @@ if ($admin < $config->docSector) { // Executa pelo default.php
         <div class="bg-light-orange patern-bg align-center box-y-250 vertical-wrap">
             <div class="box-x-500 margin-auto">
                 <p class="font-jumbo text-red">Não existem categorias registradas</p>
-                <?php if ($session->admin >= $config->docCategory) { ?>
+                <?php if ($session->admin >= $config->admCategory) { ?>
                     <div class="margin-top">
                         <a href="admin/doc-categoria" class="btn-warning text-white shadow-on-hover">
                             Ir para categorias
