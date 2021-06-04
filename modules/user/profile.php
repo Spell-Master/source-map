@@ -139,7 +139,7 @@ try {
             SeoData::breadCrumbs($url);
             if ($profilePage) {
                 if ($count) {
-                    echo "Perfil do usuário";
+                    include (__DIR__ . '/profile/user-page.php');
                 } else {
                     include (__DIR__ . '/../error/404.php');
                 }
@@ -152,7 +152,6 @@ try {
             }
             ?>
         </div>
-
         <?php
     }
 } catch (ConstException $e) {
