@@ -23,7 +23,7 @@ $hostUrl = substr($uri->HTTP_REFERER, 0, strpos($uri->HTTP_REFERER, 'cadastro'))
 $name = (isset($post->name) ? trim($post->name) : false);
 $mail = (isset($post->mail) ? trim($post->mail) : false);
 $pass = (isset($post->pass) ? trim($post->pass) : false);
-$passb = (isset($post->pass) ? $post->passb : false);
+$passb = (isset($post->passb) ? $post->passb : false);
 $terms = (isset($post->terms) ? $post->terms : false);
 $captcha = (isset($post->captcha) ? trim($post->captcha) : false);
 
@@ -57,7 +57,7 @@ try {
     //
     else if (!$pass) {
         throw new ConstException('Não recebido dados de $_POST[\'pass\']', ConstException::SYSTEM_ERROR);
-    } else if ($len->strLen($mail, $config->length->minPass, $config->length->maxPass, '$_POST[\'pass\']')) {
+    } else if ($len->strLen($pass, $config->length->minPass, $config->length->maxPass, '$_POST[\'pass\']')) {
         throw new ConstException($len->getAnswer(), ConstException::SYSTEM_ERROR);
     } else if (!$passb) {
         throw new ConstException('Não recebido dados de $_POST[\'passb\']', ConstException::SYSTEM_ERROR);

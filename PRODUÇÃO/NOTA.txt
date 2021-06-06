@@ -10,6 +10,11 @@ confirmar por e-mail.
 * Adicionar um objeto global que amazenará todas entradas necessárias do
 config.xml no javascript, assim removendo o uso dessas entradas como
 parâmetro na iniciação de funções.
+* Remover a possibilidade de apagar conteúdo pela equipe, uma nova
+configuração será necessária para definir qual o nível que pode executar
+essa ação.
+* Criar bloqueio impedindo alterar o nome do perfil num periodo de
+90 dias pelo menos.
 
 *************************************************************************
 * REVISAR

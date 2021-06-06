@@ -14,8 +14,8 @@
                                 <img src="<?= (empty($login->photo) ? 'lib/image/profile.png' : $login->photo) ?>" class="radius-circle" data-open="user-box" alt="" />
                                 <div class="arrow-top user-box"></div>
                             </li>
-                            <li class="line-block login-name over-text" data-open="user-box" title="Perfil">
-                                <?= $login->name ?>
+                            <li class="line-block login-name over-text" data-open="user-box" title="Perfil" id="user-name">
+                                <?= $session->user->name ?>
                             </li>
                             <?php if ($config->enable->notification == 'y') { ?>
                                 <li class="line-block" data-open="note-box" title="Notificações">
@@ -60,7 +60,7 @@
         <div id="user-box" class="user-box" data-open="fix">
             <ul class="top-menu list-none">
                 <li>
-                    <a href="perfil/<?= $login->link ?>" alt="<?= $login->name ?>">Meu perfil</a>
+                    <a href="perfil/<?= $session->user->link ?>" alt="<?= $session->user->name ?>" id="user-link">Meu perfil</a>
                 </li>
                 <?php if ($config->enable->notification == 'y' && $url[0] != 'notificacoes') { ?>
                     <li>

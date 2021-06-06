@@ -21,7 +21,7 @@ if (!isset($userData)) { // Executa a partir do profile.php
         // Se quem está acessando é o próprio usuário dono do perfil
         $userPage = ($login && $login->hash == $userData->u_hash ? true : false);
         ?>
-        <div class="container padding-all-prop" id="profile-display">
+        <div class="container padding-all-prop fade-in" id="profile-display">
             <div class="align-center">
                 <p><?= LevelToName($userData->u_level); ?></p>
                 <img src="<?= (empty($userData->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $userData->u_photo) ?>" alt="" class="radius-circle margin-top img-default" onerror="this.src='lib/image/profile.png'" />
@@ -61,32 +61,37 @@ if (!isset($userData)) { // Executa a partir do profile.php
                 <div class="row-pad">
                     <?php if ($userPage) { ?>
                         <div class="col-quarter text-white hide-large">
-                            <button class="btn-dark button-block shadow-on-hover">
+                            <button class="btn-dark button-block shadow-on-hover"
+                                    onclick="smUser.openEdit('data');">
                                 <i class="icon-certificate"></i> Dados
                             </button>
                         </div>
                         <div class="col-quarter text-white hide-large">
-                            <button class="btn-dark button-block shadow-on-hover">
+                            <button class="btn-dark button-block shadow-on-hover"
+                                    onclick="smUser.openEdit('info');">
                                 <i class="icon-profile"></i> Informações
                             </button>
                         </div>
                         <div class="col-quarter text-white hide-large">
-                            <button  class="btn-dark button-block shadow-on-hover">
+                            <button  class="btn-dark button-block shadow-on-hover"
+                                     onclick="smUser.openEdit('img');">
                                 <i class="icon-images2"></i> Imagens
                             </button>
                         </div>
-                        <div class="col-quarter text-white hide-large">
+                        <div class="col-quarter text-white hide-large"
+                             onclick="smUser.openEdit('content');">
                             <button  class="btn-dark button-block shadow-on-hover">
                                 <i class="icon-stack3"></i> Conteúdos
                             </button>
                         </div>
                     <?php } else { ?>
-                        <div class="col-half col-fix text-white">
-                            <button  class="btn-dark button-block shadow-on-hover">
-                                <i class="icon-bubble-lines3"></i> Mensagem
-                            </button>
-                        </div>
-                        <?php if ($admin >= $config->admUser) { ?>
+                        <?php if ($config->enable->message == 'y') { ?>
+                            <div class="col-half col-fix text-white">
+                                <button  class="btn-dark button-block shadow-on-hover">
+                                    <i class="icon-bubble-lines3"></i> Mensagem
+                                </button>
+                            </div>
+                        <?php } if ($admin >= $config->admUser) { ?>
                             <div class="col-half col-fix text-white">
                                 <button  class="btn-dark button-block shadow-on-hover">
                                     <i class="icon-stamp"></i> Administrar
@@ -103,7 +108,7 @@ if (!isset($userData)) { // Executa a partir do profile.php
                 <!-- CONTATOS -->
                 <div class="col-third">
                     <div class="bg-light padding-all">
-                        <span class="gunship">Contatos</span>
+                        <p class="list margin-left gunship">Contatos</p>
                         <hr class="border-bottom border-dark" />
                         <div class="over-not">
                             <?php include (__DIR__ . '/../includes/contact.inc.php'); ?>
@@ -114,7 +119,7 @@ if (!isset($userData)) { // Executa a partir do profile.php
                 <!-- SOBRE -->
                 <div class="col-twothird">
                     <div class="bg-light padding-all">
-                        <span class="gunship">Sobre</span>
+                        <p class="list margin-left gunship">Sobre</p>
                         <hr class="border-bottom border-dark" />
                         <?php if (!empty($userData->ui_about)) { ?>
                             <pre class="pre-default"><?= $userData->ui_about ?></pre>
@@ -127,10 +132,8 @@ if (!isset($userData)) { // Executa a partir do profile.php
                 <!-- ATIVIDADES -->
                 <div class="col-single">
                     <div class="bg-light padding-all margin-top">
-                        <div class="padding-lr-prop">
-                            <p class="gunship">Atividades</p>
-                            <hr class="border-bottom border-dark" />
-                        </div>
+                        <p class="list margin-left gunship">Atividades</p>
+                        <hr class="border-bottom border-dark" />
                         <div id="pag-activity">
                             <?php include (__DIR__ . '/../includes/activity.inc.php'); ?>
                         </div>

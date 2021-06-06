@@ -107,22 +107,22 @@ try {
                     <div class="session-menu">
                         <ul id="global-menu" class="align-center">
                             <li>
-                                <a href="#" title="Editar dados cadastrais">
+                                <a title="Editar dados cadastrais" onclick="smUser.openEdit('data');">
                                     <i class="font-large icon-certificate"></i><p>Dados Cadastrais</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Editar dados informacionais">
+                                <a title="Editar dados informacionais" onclick="smUser.openEdit('info');">
                                     <i class="font-large icon-profile"></i><p>Dados de Informação</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Editar dados imagens">
+                                <a title="Editar dados imagens" onclick="smUser.openEdit('img');">
                                     <i class="font-large icon-images2"></i><p>Dados de Imagem</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Editar dados de Conteúdos">
+                                <a title="Editar dados de Conteúdos" onclick="smUser.openEdit('content');">
                                     <i class="font-large icon-stack3"></i><p>Dados de Conteúdo</p>
                                 </a>
                             </li>

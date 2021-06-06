@@ -2,7 +2,7 @@
     <ul class="list-none align-center">
         <?php if ($login) { // LOGADO ?>
             <li class="line-block">
-                <a href="perfil/" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> PERFIL</a>
+                <a href="perfil/<?= $login->link ?>" class="padding-lr-min text-white-hover"><i class="icon-user3"></i> PERFIL</a>
             </li>
             <?php if (isset($session->admin)) { ?>
                 <li class="line-block">
