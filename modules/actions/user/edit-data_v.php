@@ -4,6 +4,7 @@ require_once (__DIR__ . '/../../../system/config.php');
 sleep((int) $config->length->colldown);
 
 $post = GlobalFilter::filterPost();
+$valid = new StrValid();
 $len = new LenMaxMin();
 $social = new SocialLink();
 $clear = new StrClean();
@@ -18,6 +19,8 @@ try {
     //
     else if (!isset($session->user->hash) || empty($session->user->hash)) {
         throw new ConstException('Dados de $_SESSION[\'user\'][\'hash\'] não definido', ConstException::SYSTEM_ERROR);
+    } else if (!$valid->strInt($session->user->hash)) {
+        throw new ConstException('$_SESSION[\'user\'][\'hash\'] não é um identificador válido', ConstException::SYSTEM_ERROR);
     } else if (!isset($session->user->name) || empty($session->user->name)) {
         throw new ConstException('Dados de $_SESSION[\'user\'][\'name\'] não definido', ConstException::SYSTEM_ERROR);
     } else if (!isset($session->user->mail) || empty($session->user->mail)) {
@@ -31,7 +34,7 @@ try {
     } else if (strlen($post->name) >= 1 && $len->strLen($post->name, $config->length->minName, $config->length->maxName, '$_POST[\'name\']')) {
         throw new ConstException($len->getAnswer(), ConstException::SYSTEM_ERROR);
     } else if (strlen($post->name) >= 1 && !preg_match('/^([a-zA-Z À-ú 0-9 _ . -]+)$/i', $post->name)) {
-        
+        throw new ConstException('$_POST[\'name\'] não é válido', ConstException::SYSTEM_ERROR);
     }
     //
     else if (!isset($post->mail)) {

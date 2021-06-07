@@ -110,7 +110,7 @@ if (!isset($userData)) { // Executa a partir do profile.php
                     <div class="bg-light padding-all">
                         <p class="list margin-left gunship">Contatos</p>
                         <hr class="border-bottom border-dark" />
-                        <div class="over-not">
+                        <div class="over-not" id="user-contact">
                             <?php include (__DIR__ . '/../includes/contact.inc.php'); ?>
                         </div>
                     </div>
@@ -121,11 +121,13 @@ if (!isset($userData)) { // Executa a partir do profile.php
                     <div class="bg-light padding-all">
                         <p class="list margin-left gunship">Sobre</p>
                         <hr class="border-bottom border-dark" />
-                        <?php if (!empty($userData->ui_about)) { ?>
-                            <pre class="pre-default"><?= $userData->ui_about ?></pre>
-                        <?php } else { ?>
-                            <span class="italic font-small">Não há informações disponíveis</span>
-                        <?php } ?>
+                        <div id="user-about">
+                            <?php if (!empty($userData->ui_about)) { ?>
+                                <?= PostData::showPost($userData->ui_about) ?>
+                            <?php } else { ?>
+                                <span class="italic font-small">Não há informações disponíveis</span>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
 
