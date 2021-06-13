@@ -24,7 +24,22 @@ if (!isset($userData)) { // Executa a partir do profile.php
         <div class="container padding-all-prop fade-in" id="profile-display">
             <div class="align-center">
                 <p><?= LevelToName($userData->u_level); ?></p>
-                <img src="<?= (empty($userData->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $userData->u_photo) ?>" alt="" class="radius-circle margin-top img-default" onerror="this.src='lib/image/profile.png'" />
+                <div class="box-xy-300 margin-auto relative">
+                    <img
+                        src="<?= (empty($userData->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $userData->u_photo) ?>"
+                        alt=""
+                        class="radius-circle margin-top img-default"
+                        data-photo=""
+                        onerror="this.src='lib/image/profile.png'"
+                        />
+                    <?php if ($userPage) { ?>
+                        <div class="pos-bottom-right padding-bottom">
+                            <button class="btn-success shadow-on-hover text-white" onclick="smUser.getPhoto()">
+                                <i class="icon-camera"></i> Foto do Perfil
+                            </button>
+                        </div>
+                    <?php } ?>
+                </div>
                 <h1 class="gunship text-light-blue"><?= $userData->u_name ?></h1>
                 <p>Membro desde: <?= $clear->dateTime($userData->u_date); ?></p>
                 <?php

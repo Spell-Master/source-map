@@ -36,13 +36,13 @@ class SmUser {
                     'mail' => $loginData['mail'],
                     'name' => $loginData['name'],
                     'link' => $loginData['link'],
-                    'level' => $loginData['level']
+                    'level' => $loginData['level'],
+                    'photo' => $loginData['photo']
         ]);
         if ($loginData['level'] >= 1) {
             $session->admin = $loginData['level'];
         }
         setcookie('clienthash', $loginData['hash'], time() + 3600 * 24 * 365, '/', $this->serve->HTTP_HOST, false);
-        setcookie('loginerror', null, time() - 1000, '/', $this->serve->HTTP_HOST, false);
     }
 
     /**
@@ -106,6 +106,7 @@ class SmUser {
         $this->getAgent();
         $delete = new Delete();
         $delete->query("user_error", "ue_bound=:e", "e={$this->userAcess}");
+        setcookie('loginerror', null, time() - 1000, '/', $this->serve->HTTP_HOST, false);
     }
 
 }

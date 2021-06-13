@@ -77,7 +77,7 @@ try {
                 $html .= '<div class="col-quarter col-fix">';
                 $html .= '<div class="align-center">';
                 $html .= '<p><span class="bold">Autor:</span> <a href="users/' . $value->u_link . '" target="_blank" class="href-link">' . $value->u_name . '</a></p>';
-                $html .= '<img src="' . (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) . '" class="img-default radius-circle" style="max-width: 100px" onerror="this.src=\'lib/image/sector-icon.png\'" />';
+                $html .= '<img src="' . (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) . '" class="img-default radius-circle" style="max-width: 100px" onerror="this.src=\'lib/image/profile.png\'" />';
                 $html .= '</div>';
                 $html .= '</div>';
                 $html .= '<div class="col-threequarter col-fix">';

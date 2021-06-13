@@ -70,7 +70,8 @@ try {
                         'mail' => $userData->u_mail,
                         'name' => $userData->u_name,
                         'link' => $userData->u_link,
-                        'level' => $userData->u_level
+                        'level' => $userData->u_level,
+                        'photo' => $userData->u_photo
                     ]);
                 }
                 SeoData::showProgress();

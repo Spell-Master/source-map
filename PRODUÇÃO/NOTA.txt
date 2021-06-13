@@ -23,3 +23,10 @@ essa ação.
 *************************************************************************
 * REMOVER
 *************************************************************************
+
+*************************************************************************
+* CORRIGIR
+*************************************************************************
+* Ao trazer textos do banco de dados para o editor quando são emoticons
+os ícones dos mesmos não aparecem no editor. Possivelmente será necessário
+uma análise de string e repor cada emoji no texto dentro do editor.

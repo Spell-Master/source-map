@@ -11,7 +11,14 @@
                         if ($login) { // LOGADO
                             ?>
                             <li class="line-block" title="Perfil">
-                                <img src="<?= (empty($login->photo) ? 'lib/image/profile.png' : $login->photo) ?>" class="radius-circle" data-open="user-box" alt="" />
+                                <img
+                                    src="<?= (empty($login->photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $login->photo) ?>"
+                                    class="radius-circle"
+                                    data-open="user-box"
+                                    data-photo=""
+                                    alt=""
+                                    onerror="this.src='lib/image/profile.png'"
+                                    />
                                 <div class="arrow-top user-box"></div>
                             </li>
                             <li class="line-block login-name over-text" data-open="user-box" title="Perfil" id="user-name">

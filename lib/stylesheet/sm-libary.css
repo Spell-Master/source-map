@@ -243,3 +243,24 @@ ul.paginator > li > a.amount, ul.paginator > li > a.pag-nuns:hover {
 .tab-body.active {
     display: block !important
 }
+
+/* UserPhoto */
+#photo-progress {
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+}
+#photo-progress.hide-progress {
+    transition: 3s;
+    opacity: 0
+}
+#photo-progress > .progress-bar {
+    background: #3b7fe7;
+    border-top: 1px solid #0051b4;
+    height: 4px;
+    width: 0;
+    transition: 1s
+}

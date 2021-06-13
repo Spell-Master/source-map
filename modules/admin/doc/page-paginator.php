@@ -82,7 +82,7 @@ try {
                                                             <?= $value->u_name ?>
                                                         </a>
                                                     </p>
-                                                    <img src="<?= (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) ?>" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/sector-icon.png'" />
+                                                    <img src="<?= (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) ?>" class="img-default radius-circle" style="max-width: 100px" onerror="this.src='lib/image/profile.png'" />
                                                 </div>
                                             </div>
                                             <div class="col-threequarter col-fix">
