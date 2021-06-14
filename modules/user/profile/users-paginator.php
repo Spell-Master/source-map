@@ -16,7 +16,7 @@ $clear = new StrClean();
                 <div class="col-third pag-item">
                     <div class="relative">
                         <div class="absolute pos-top-center">
-                            <img src="<?= (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $userData->u_photo) ?>" alt="" class="box-x-100 radius-circle" onerror="this.src='lib/image/profile.png'" />
+                            <img src="<?= (empty($value->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $value->u_photo) ?>" alt="" class="box-x-100 radius-circle" onerror="this.src='lib/image/profile.png'" />
                         </div>
                     </div>
                     <div class="card" style="margin-top: 50px">
