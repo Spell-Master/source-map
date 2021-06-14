@@ -98,51 +98,30 @@ try {
     else {
         $userHash = $clear->formatStr($session->user->hash);
         $save = [
-            'ui_website' => (strlen($post->site) > 10 ? htmlentities($post->site) : null),
-            'ui_mail' => (strlen($post->mail) > $config->length->minMail ? htmlentities($post->mail) : null),
-            'ui_git' => (strlen($post->git) > 10 ? htmlentities($post->git) : null),
-            'ui_face' => (strlen($post->face) > 10 ? htmlentities($post->face) : null),
-            'ui_insta' => (strlen($post->insta) > 10 ? htmlentities($post->insta) : null),
-            'ui_twit' => (strlen($post->twit) > 10 ? htmlentities($post->twit) : null),
-            'ui_tube' => (strlen($post->tube) > 10 ? htmlentities($post->tube) : null),
-            'ui_whats' => (strlen($post->what) > 10 ? htmlentities($post->what) : null),
-            'ui_about' => (strlen($about) >= $config->length->minText ? PostData::savePost(preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->about)) : null)
+            'ui_website' => htmlentities($post->site),
+            'ui_mail' => htmlentities($post->mail),
+            'ui_git' => htmlentities($post->git),
+            'ui_face' => htmlentities($post->face),
+            'ui_insta' => htmlentities($post->insta),
+            'ui_twit' => htmlentities($post->twit),
+            'ui_tube' => htmlentities($post->tube),
+            'ui_whats' => htmlentities($post->what),
+            'ui_about' => PostData::savePost(preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->about))
         ];
-        $filter = array_filter($save);
 
         $select->query("users_info", "ui_hash = :uh", "uh={$userHash}");
 
-        if (count($filter) >= 1) { // Algum campo deve ser preenchido
-            if ($select->count()) { // Se já exitir registro (ATUALIZA)
-                $update->query("users_info", $filter, "ui_hash = :uh", "uh={$userHash}");
-                if ($update->count()) {
-                    $sqlSuccess = true;
-                } else if ($update->error()) {
-                    throw new ConstException($update->error(), ConstException::SYSTEM_ERROR);
-                } else {
-                    $sqlSuccess = false;
-                }
-            } else if ($select->error()) {
-                throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
-            } else {  // Se não exitir registro (INSERE)
-                $filter['ui_hash'] = $userHash;
-                $insert->query("users_info", $filter);
-                if ($insert->count()) {
-                    $sqlSuccess = true;
-                } else if ($insert->error()) {
-                    throw new ConstException($insert->error(), ConstException::SYSTEM_ERROR);
-                } else {
-                    $sqlSuccess = false;
-                }
-            }
-        } else {
-            $sqlSuccess = false;
+        if ($select->count()) { // Se já existir registro (ATUALIZA)
+            $update->query("users_info", $save, "ui_hash = :uh", "uh={$userHash}");
+        } else if ($select->error()) {
+            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        } else { // Se não existir registro (INSERE)
+            $save['ui_hash'] = $userHash;
+            $insert->query("users_info", $save);
         }
 
-        //////////////////////////////
-        // VERIFICAÇÂO DO PROCESSO
-        //////////////////////////////
-        if ($sqlSuccess) { // Houve registro
+        // ========================================
+        if ($update->count() || $insert->count()) {
             $contact = [];
             $key = 0;
             if (strlen($post->site) > 10) {
@@ -212,17 +191,22 @@ try {
             } else {
                 $html = '<span class="italic font-small">Não há informações disponíveis</span>';
             }
+
+            $aboutStr = (strlen($about) >= 1 ? PostData::showPost($filter['ui_about']) : '<span class="italic font-small">Não há informações disponíveis</span>');
             ?>
             <script>
-                <?php if (strlen($about) >= $config->length->minText) { ?>
-                    document.getElementById('user-about').innerHTML = `<?= PostData::showPost($filter['ui_about']) ?>`;
-                <?php } ?>
+                document.getElementById('user-about').innerHTML = `<?= $aboutStr ?>`;
                 document.getElementById('user-contact').innerHTML = `<?= $html ?>`;
                 smUser.cancelEdit();
                 smTools.modal.close();
                 smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Dados de informações alterados</p>', true);
             </script>
             <?php
+        } else if ($update->error() || $insert->error()) {
+            $error = "";
+            $error .= (($update->error() !== null) ? '<p>' . $update->error() . '</p>' : null);
+            $error .= (($insert->error() !== null) ? '<p>' . $insert->error() . '</p>' : null);
+            throw new ConstException($error, ConstException::SYSTEM_ERROR);
         } else {
             throw new ConstException('Nenhuma alteração foi realizada', ConstException::INVALID_POST);
         }
@@ -242,3 +226,4 @@ try {
             break;
     }
 }
+exit();
