@@ -5,7 +5,7 @@ try {
         throw new ConstException(null, ConstException::INVALID_ACESS);
     } else if ($config->enable->loginError == 'y' && isset($cookie->loginerror)) {
         throw new ConstException('Devido errar dados de acesso por mais de ' . $config->length->loginError . ' vezes'
-                                 . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
+                . '<p class="font-small">Por segurança seu dispositivo foi bloqueado por 24 horas</p>', ConstException::MISC_RETURN);
     } else {
         ?>
         <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
@@ -56,6 +56,12 @@ try {
                 </div>
             </div>
         </div>
+        <div class="modal" id="default-modal">
+            <div class="modal-box zoom-in" style="max-width: 600px">
+                <div class="modal-header"></div>
+                <div class="modal-content over-y" id="modal-load"></div>
+            </div>
+        </div>
         <?php
     }
 } catch (ConstException $e) {
@@ -65,13 +71,17 @@ try {
         case ConstException::MISC_RETURN:
             ?>
             <div class="patern-bg fixed bg-dark-red" style="height: 100vh; width: 100vw"></div>
-            <script>
-                smTools.modal.open('Não Autorizado', false);
-                document.getElementById('modal-load').innerHTML = '<div class="text-red align-center padding-all"><i class="icon-warning icn-4x"></i><div class="font-medium"><?= $e->getMessage() ?></div></div>';
-                setTimeout(function () {
-                    smCore.go.href('<?= $baseUri ?>');
-                }, <?= (int) $config->length->reload ?>000);
-            </script>
+            <div class="vertical-wrap" style="height: 100vh">
+                <div class="box-x-900 bg-white shadow" style="z-index: 1">
+                    <div class="align-center font-medium padding-all-prop">
+                        <div class="text-red">
+                            <i class="icon-user-lock2 icn-5x"></i>
+                            <h2 class="text-red">Permissão Negada</h2>
+                            <?= $e->getMessage() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php
             break;
     }

@@ -76,44 +76,57 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         </script>
     </head>
     <body>
-        <header>
-            <div class="modal" id="default-modal">
-                <div class="modal-box zoom-in" style="max-width: 600px">
-                    <div class="modal-header"></div>
-                    <div class="modal-content over-y" id="modal-load"></div>
-                </div>
-            </div>
-            <?php include ('modules/default/header.php'); ?>
-        </header>
-        <main><?php include (LoadModule($url[0])); ?></main>
-        <footer>
-            <?php include ('modules/default/footer.php'); ?>
-            <a id="scoll-top" class="fixed cursor-pointer">
-                <i class="icon-circle-up4 icn-3x text-dark-blue text-blue-hover"></i>
-            </a>
-            <audio id="notify-wav">
-                <source src="lib/wav/notify.wav" type="audio/x-wav">
-            </audio>
-        </footer>
-
-        <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
-            W: <div class="line-block"></div> <span class="text-red">|</span>
-            <?php
-            foreach ($url as $key => $value) {
-                echo ("url[{$key}] = {$value} <span class=\"text-red\">|</span> ");
-            }
+        <?php
+        if ($url[0] == 'cadastro') {
+            include ('modules/user/new.php');
+        } else if ($url[0] == 'confirmar') {
+            include ('modules/user/confirm.php');
+        } else if ($url[0] == 'recuperar-senha') {
+            include ('modules/user/recover.php');
+        } else if ($url[0] == 'entrar') {
+            include ('modules/user/login.php');
+        } else {
             ?>
-            <a href="teste" class="href-link">TESTES</a>
-        </div>
-        <script>
-            var $itemOpen = new ItemOpen();
-            smCore.topScroll();
+            <header><?php include ('modules/default/header.php'); ?></header>
+            <main><?php include (LoadModule($url[0])); ?></main>
+            <footer>
+                <?php include ('modules/default/footer.php'); ?>
 
-            var res = document.getElementById('resolucao').children[0];
-            res.innerText = window.innerWidth;
-            window.onresize = function () {
+                <a id="scoll-top" class="fixed cursor-pointer">
+                    <i class="icon-circle-up4 icn-3x text-dark-blue text-blue-hover"></i>
+                </a>
+                <div class="modal" id="default-modal">
+                    <div class="modal-box zoom-in" style="max-width: 600px">
+                        <div class="modal-header"></div>
+                        <div class="modal-content over-y" id="modal-load"></div>
+                    </div>
+                </div>
+                <audio id="notify-wav">
+                    <source src="lib/wav/notify.wav" type="audio/x-wav">
+                </audio>
+            </footer>
+
+            <div id="resolucao" style="position: fixed; bottom: 0; left: 10px; padding: 10px 20px; background: black; color: white;">
+                W: <div class="line-block"></div> <span class="text-red">|</span>
+                <?php
+                foreach ($url as $key => $value) {
+                    echo ("url[{$key}] = {$value} <span class=\"text-red\">|</span> ");
+                }
+                ?>
+                <a href="teste" class="href-link">TESTES</a>
+            </div>
+            <script>
+                var $itemOpen = new ItemOpen();
+                smCore.topScroll();
+
+                var res = document.getElementById('resolucao').children[0];
                 res.innerText = window.innerWidth;
-            };
-        </script>
+                window.onresize = function () {
+                    res.innerText = window.innerWidth;
+                };
+            </script>
+            <?php
+        }
+        ?>
     </body>
 </html>

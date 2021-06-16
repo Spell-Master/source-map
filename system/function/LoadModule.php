@@ -13,21 +13,25 @@
  */
 
 function LoadModule($module) {
-    $fileName = '';
-    switch ($module) {
-        case 'teste': $fileName = 'teste.php'; break;
-
-        case 'admin': $fileName = 'admin/default.php'; break;
-        case 'inicio': $fileName = 'default/home.php'; break;
-        case 'cadastro': $fileName = 'user/new.php'; break;
-        case 'confirmar': $fileName = 'user/confirm.php'; break;
-        case 'recuperar-senha': $fileName = 'user/recover.php'; break;
-        case 'entrar': $fileName = 'user/login.php'; break;
-        case 'perfil': $fileName = 'user/profile.php'; break;
-        case 'termos': $fileName = 'info/terms.php'; break;
-        case 'css-padrao': case 'js-padrao': $fileName = 'app/default.php'; break;
-        case 'doc': $fileName = 'doc/default.php'; break;
-        default: $fileName = 'error/404.php'; break;
+    if ($module == 'teste') { /* Testes de produção */
+        return ('modules/teste.php');
     }
-    return ('modules/' . $fileName);
+    //
+    else if ($module == 'inicio') {
+        return ('modules/default/home.php');
+    } else {
+        switch ($module) {
+            case 'admin': $folder = 'admin'; break;
+            case 'perfil': $folder = 'user'; break;
+            case 'css-padrao': case 'js-padrao': $folder = 'app'; break;
+            case 'doc': $folder = 'doc'; break;
+            case 'termos': $folder = 'info'; break;
+            default: $folder = false; break;
+        }
+        if ($folder) {
+            return ('modules/' . $folder . '/default.php');
+        } else {
+            return ('modules/error/404.php');
+        }
+    }
 }
