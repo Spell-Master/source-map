@@ -7,6 +7,7 @@ $post = GlobalFilter::filterPost();
 $valid = new StrValid();
 $clear = new StrClean();
 $delete = new Delete();
+$deleteB = clone $delete;
 
 $hash = (isset($post->hash) ? $post->hash : false);
 $app = (isset($post->hash) ? $post->app : false);
@@ -31,8 +32,26 @@ try {
     }
     //
     else {
-        $delete->query("app_page", "a_hash = :ah", "ah={$clear->formatStr($hash)}");
-        if ($delete->count()) {
+        $pageHash = $clear->formatStr($hash);
+        // Apagar a página
+        $delete->query(
+            "app_page",
+            "a_hash = :ah",
+            "ah={$pageHash}"
+        );
+        // Apagar atividades vinculadas a página
+        $deleteB->query(
+            "users_activity",
+            "ua_bound = :ub",
+            "ub={$pageHash}"
+        );
+
+        if ($delete->error() || $deleteB->error()) {
+            $error = "";
+            $error .= (($delete->error() !== null) ? '<p>' . $delete->error() . '</p>' : null);
+            $error .= (($deleteB->error() !== null) ? '<p>' . $deleteB->error() . '</p>' : null);
+            throw new ConstException($error, ConstException::SYSTEM_ERROR);
+        } else if ($delete->count()) {
             ?>
             <script>
                 smStf.pageAction.cancel();
@@ -42,8 +61,6 @@ try {
                 smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Página Apagada</p>', true);
             </script>
             <?php
-        } else if ($delete->error()) {
-            throw new ConstException($delete->error(), ConstException::SYSTEM_ERROR);
         } else {
             throw new ConstException('Não é possível apagar a página'
             . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);

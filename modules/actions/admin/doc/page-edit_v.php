@@ -9,8 +9,9 @@ $valid = new StrValid();
 $select = new Select();
 $clear = new StrClean();
 $update = new Update();
-
+$user = new SmUser();
 $selectB = clone $select;
+$updateB = clone $update;
 
 $title = (isset($post->title) ? trim($post->title) : false);
 $sector = (isset($post->sector) ? trim($post->sector) : false);
@@ -54,11 +55,13 @@ try {
     //
     else {
         $pageHash = $clear->formatStr($hash);
+
         if ($session->admin < $config->admSource) {
             $content = PostData::savePost(preg_replace('/<script[^>]*>([\S\s]*?)<\/script>/', '', $post->editor));
         } else {
             $content = PostData::savePost($post->editor);
         }
+
         $save = [
             'p_status' => (isset($post->view) ? 1 : 0),
             'p_title' => htmlentities($title),
@@ -71,29 +74,51 @@ try {
         ];
 
         $select->query(
-            "doc_pages",
-            "p_hash != :ph AND p_link = :pl AND p_sector = :ps",
-            "ph={$pageHash}&pl={$save['p_link']}&ps={$save['p_sector']}"
-        );
-        $selectB->query(
             "doc_sectors",
             "s_hash = :sh",
             "sh={$save['p_sector']}"
         );
+
+        $selectB->query(
+            "doc_pages",
+            "p_hash != :ph AND p_link = :pl AND p_sector = :ps",
+            "ph={$pageHash}&pl={$save['p_link']}&ps={$save['p_sector']}"
+        );
+
         if ($select->error() || $selectB->error()) {
             $error = "";
             $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
             $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
             throw new ConstException($error, ConstException::SYSTEM_ERROR);
-        } else if ($select->count()) {
-            throw new ConstException('No momento não é possível salvar a página'
-            . '<p class="font-small">Use um título diferente ou tente novamente mais tarde</p>', ConstException::INVALID_POST);
-        } else if (!$selectB->count()) {
+        } else if (!$select->count()) {
             throw new ConstException('Não foi possível localizar o setor para edição'
-            . '<p class="font-small">Recarregue a página para corrigir</p>', ConstException::INVALID_POST);
+            . '<p class="font-small">Tente selecionar outro setor</p>', ConstException::INVALID_POST);
+        } else if ($selectB->count()) {
+            throw new ConstException('No momento não é possível salvar a página'
+            . '<p class="font-small">Use um título diferente ou selecione outro setor</p>', ConstException::INVALID_POST);
         } else {
+            $sectorData = $select->result()[0];
             $update->query("doc_pages", $save, "p_hash = :ph", "ph={$pageHash}");
+
             if ($update->count()) {
+                /////////////////////////
+                // Registrar atividade
+                /////////////////////////
+                // Atualizar os links das atividades vinculadas a página
+                $updateB->query(
+                    "users_activity",
+                    ['ua_link' => $sectorData->s_link . '/' . $save['p_link']],
+                    "ua_bound = :ub",
+                    "ub={$pageHash}"
+                );
+                // Definir nova atividade
+                $user->setActivity(
+                    $clear->formatStr($session->user->hash),
+                    $pageHash,
+                    htmlentities('Editou a página ' . $title . ' em <span class="bold">' . $sectorData->s_title) . '</span>',
+                    $sectorData->s_link . '/' . $save['p_link'],
+                    SeoData::longText($editor, $config->length->longStr)
+                );
                 ?>
                 <script>
                     MEMORY.selectedIndex = 'all';

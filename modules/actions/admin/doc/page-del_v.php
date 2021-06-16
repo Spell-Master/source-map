@@ -7,6 +7,7 @@ $post = GlobalFilter::filterPost();
 $valid = new StrValid();
 $delete = new Delete();
 $clear = new StrClean();
+$deleteB = clone $delete;
 
 $hash = (isset($post->hash) ? $post->hash : false);
 
@@ -24,8 +25,11 @@ try {
     }
     //
     else {
-        $delete->query("doc_pages", "p_hash = :ph", "ph={$clear->formatStr($hash)}");
+        $pageHash = $clear->formatStr($hash);
+        $delete->query("doc_pages", "p_hash = :ph", "ph={$pageHash}");
         if ($delete->count()) {
+            // Apagar todas atividades vinculadas a página
+            $deleteB->query("users_activity", "ua_bound = :ab", "ab={$pageHash}");
             ?>
             <script>
                 MEMORY.selectedIndex = 'all';

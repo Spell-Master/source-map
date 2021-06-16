@@ -10,6 +10,8 @@ $code = new CreateCode();
 $clear = new StrClean();
 $select = new Select();
 $insert = new Insert();
+$user = new SmUser();
+$selectB = clone $select;
 
 $title = (isset($post->title) ? trim($post->title) : false);
 $sector = (isset($post->sector) ? trim($post->sector) : false);
@@ -63,17 +65,43 @@ try {
         ];
 
         $select->query(
+            "doc_sectors",
+            "s_hash = :sh",
+            "sh={$save['p_sector']}"
+        );
+        $selectB->query(
             "doc_pages",
             "p_link = :pl AND p_sector = :ps",
             "pl={$save['p_link']}&ps={$save['p_sector']}"
         );
-        if ($select->count()) {
-            throw new ConstException('Já existe uma página com o mesmo título no setor selecionado', ConstException::INVALID_POST);
-        } else if ($select->error()) {
-            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+
+        if ($select->error() || $selectB->error()) {
+            $error = "";
+            $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
+            $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
+            throw new ConstException($error, ConstException::SYSTEM_ERROR);
+        } else if (!$select->count()) {
+            throw new ConstException('No momento não é possível salvar a página no setor selecionado'
+            . '<p class="font-small">Tente outro setor ou tente novamente mais tarde</p>', ConstException::INVALID_POST);
+        } if ($selectB->count()) {
+            throw new ConstException('Já existe uma página com o mesmo título no setor selecionado'
+            . '<p class="font-small">Tente outro ítulo ou tente em outro setor</p>', ConstException::INVALID_POST);
         } else {
+            $sectorData = $select->result()[0];
             $insert->query("doc_pages", $save);
             if ($insert->count()) {
+                /////////////////////////
+                // Registrar atividade
+                /////////////////////////
+                if ($sectorData->s_status == 1 && $save['p_status'] == 1) {
+                    $user->setActivity(
+                        $clear->formatStr($session->user->hash),
+                        $save['p_hash'],
+                        htmlentities('Publicou uma nova página em <span class="bold">' . $sectorData->s_title) . '</span>',
+                        $sectorData->s_link . '/' . $save['p_link'],
+                        SeoData::longText($editor, $config->length->longStr)
+                    );
+                }
                 ?>
                 <script>
                     MEMORY.selectedIndex = 'all';

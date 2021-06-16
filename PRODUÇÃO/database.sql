@@ -64,11 +64,50 @@ CREATE TABLE `app_page` (
     PRIMARY KEY (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+
+
+
+-- ----------------------------
+-- Usuários
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+    `u_id` int(11) NOT NULL AUTO_INCREMENT,
+    `u_mail` varchar(90) NOT NULL DEFAULT '' COMMENT 'Endereço de email',
+    `u_hash` varchar(50) NOT NULL DEFAULT '' COMMENT 'Hash identificador',
+    `u_pass` varchar(500) NOT NULL DEFAULT '' COMMENT 'Senha de acesso',
+    `u_level` int(1) NOT NULL DEFAULT 0 COMMENT 'Nível de acesso',
+    `u_name` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nome do usuário',
+    `u_link` varchar(100) NOT NULL DEFAULT '' COMMENT 'Link do perfil',
+    `u_photo` varchar(100) NOT NULL DEFAULT '' COMMENT 'Imagem do perfil',
+    `u_date` date COMMENT 'Data do registro',
+    `u_warn` int(1) NOT NULL DEFAULT 0 COMMENT 'Quantidade de alertas',
+    `u_ban` ENUM('0','1') NOT NULL DEFAULT '0' COMMENT 'Banido permanente / 0 = acessivel, 1 = banido',
+    `u_bandate` date COMMENT 'Data de desbanimento',
+    PRIMARY KEY (`u_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Atividades de usuários
+-- ----------------------------
+DROP TABLE IF EXISTS `users_activity`;
+CREATE TABLE `users_activity` (
+    `ua_id` int(9) NOT NULL AUTO_INCREMENT,
+    `ua_user` varchar(50) NOT NULL DEFAULT '' COMMENT 'hash do usuário',
+    `ua_bound` varchar(50) NOT NULL DEFAULT '' COMMENT 'hash do vínculo da atividade',
+    `ua_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'título',
+    `ua_link` varchar(200) NOT NULL DEFAULT '' COMMENT 'link para um local',
+    `ua_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'conteúdo simplificado da atividade',
+    `ua_date` datetime COMMENT 'data da criação',
+    PRIMARY KEY (`ua_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -- ----------------------------
 -- Erros de login
 -- ----------------------------
-DROP TABLE IF EXISTS `user_error`;
-CREATE TABLE `user_error` (
+DROP TABLE IF EXISTS `users_error`;
+CREATE TABLE `users_error` (
     `ue_count` int(1) NOT NULL DEFAULT '1' COMMENT 'contagem de quantas vezes errou',
     `ue_bound` text NOT NULL DEFAULT '' COMMENT 'dados da máquina que errou o login',
     `ue_time` date COMMENT 'tempo para desbloquear'
@@ -104,26 +143,6 @@ CREATE TABLE `users_temp` (
     `ut_name` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nome do usuário',
     `ut_link` varchar(50) NOT NULL DEFAULT '' COMMENT 'Link do perfil',
     `ut_date` date COMMENT 'Data do registro'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Usuários
--- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-    `u_id` int(11) NOT NULL AUTO_INCREMENT,
-    `u_mail` varchar(90) NOT NULL DEFAULT '' COMMENT 'Endereço de email',
-    `u_hash` varchar(50) NOT NULL DEFAULT '' COMMENT 'Hash identificador',
-    `u_pass` varchar(500) NOT NULL DEFAULT '' COMMENT 'Senha de acesso',
-    `u_level` int(1) NOT NULL DEFAULT 0 COMMENT 'Nível de acesso',
-    `u_name` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nome do usuário',
-    `u_link` varchar(100) NOT NULL DEFAULT '' COMMENT 'Link do perfil',
-    `u_photo` varchar(100) NOT NULL DEFAULT '' COMMENT 'Imagem do perfil',
-    `u_date` date COMMENT 'Data do registro',
-    `u_warn` int(1) NOT NULL DEFAULT 0 COMMENT 'Quantidade de alertas',
-    `u_ban` ENUM('0','1') NOT NULL DEFAULT '0' COMMENT 'Banido permanente / 0 = acessivel, 1 = banido',
-    `u_bandate` date COMMENT 'Data de desbanimento',
-    PRIMARY KEY (`u_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------

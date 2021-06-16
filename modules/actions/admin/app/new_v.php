@@ -9,6 +9,7 @@ $code = new CreateCode();
 $clear = new StrClean();
 $select = new Select();
 $insert = new Insert();
+$user = new SmUser();
 
 $title = (isset($post->title) ? trim($post->title) : false);
 $editor = (isset($post->editor) ? PostData::parseStr($post->editor) : false);
@@ -63,7 +64,18 @@ try {
             throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
         } else {
             $insert->query("app_page", $save);
+
             if ($insert->count()) {
+                /////////////////////////
+                // Registrar atividade
+                /////////////////////////
+                $user->setActivity(
+                    $clear->formatStr($session->user->hash),
+                    $save['a_hash'],
+                    htmlentities('Publicou uma nova página em <span class="bold">' . $save['a_key'] . '-padrao</span>'),
+                    $save['a_key'] . '-padrao' . '/' . $save['a_link'],
+                    SeoData::longText($editor, $config->length->longStr)
+                );
                 ?>
                 <script>
                     smStf.pageAction.cancel();

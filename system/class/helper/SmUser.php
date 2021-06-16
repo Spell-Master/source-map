@@ -71,15 +71,15 @@ class SmUser {
         $update = new Update();
         $insert = new Insert();
 
-        $select->query("user_error", "ue_bound=:e", "e={$this->userAcess}");
+        $select->query("users_error", "ue_bound=:e", "e={$this->userAcess}");
         $count = (int) $select->result()[0]->ue_count;
         if (!$count) {
-            $insert->query("user_error", ['ue_count' => 1, 'ue_bound' => $this->userAcess]);
+            $insert->query("users_error", ['ue_count' => 1, 'ue_bound' => $this->userAcess]);
         } else if ($count >= (int) ($quant - 1)) {
             setcookie('loginerror', true, time() + 86400, '/', $this->serve->HTTP_HOST, false);
-            $update->query("user_error", ['ue_time' => date('Y-m-d', strtotime('+1 day'))], "ue_bound=:b", "b={$this->userAcess}");
+            $update->query("users_error", ['ue_time' => date('Y-m-d', strtotime('+1 day'))], "ue_bound=:b", "b={$this->userAcess}");
         } else {
-            $update->query("user_error", ['ue_count' => $count += 1], "ue_bound=:b", "b={$this->userAcess}");
+            $update->query("users_error", ['ue_count' => $count += 1], "ue_bound=:b", "b={$this->userAcess}");
         }
     }
 
@@ -98,7 +98,7 @@ class SmUser {
             return false;
         }
     }
-    
+
     /**
      * Apaga o bloqueiro de login da máquina
      */
@@ -107,6 +107,53 @@ class SmUser {
         $delete = new Delete();
         $delete->query("user_error", "ue_bound=:e", "e={$this->userAcess}");
         setcookie('loginerror', null, time() - 1000, '/', $this->serve->HTTP_HOST, false);
+    }
+
+    /**
+     * Registrar atividade
+     * @param {STR} $user
+     * Hash identificador do usuário
+     * @param {STR} $bound
+     * Hash identificador do vínculo da atividade
+     * @param {STR} $title
+     * Título da atividade
+     * @param {STR} $link
+     * Link para a postagem
+     * @param {STR} $info
+     * Conteúdo simplificado da postagem
+     */
+    public function setActivity($user, $bound, $title, $link, $info) {
+        $query = new Insert();
+        $query->query("users_activity", [
+            'ua_user' => $user,
+            'ua_bound' => $bound,
+            'ua_title' => $title,
+            'ua_link' => $link,
+            'ua_info' => $info,
+            'ua_date' => date('Y-m-d H:i:s')
+        ]);
+        if ($query->count()) {
+            $this->oldActivity($user); // Apagar antigas atividades
+        }
+    }
+
+    /**
+     * Apagar atividades antigas com mais de 1 mês
+     * @param {STR} $user
+     * Hash identificador do usuário
+     */
+    public function oldActivity($user) {
+        $month = date('Y-m-d', strtotime(date('Y-m-d') . ' -1 month'));
+        $sel = new Select();
+        $del = new Delete();
+        $sel->setQuery("SELECT ua_id, ua_user, ua_date FROM users_activity WHERE ua_user = '{$user}' AND ua_date < '{$month}'");
+        if ($sel->count()) {
+            foreach ($sel->result() as $key => $value) {
+                if ($key < 10) {
+                    $del->query("users_activity", "ua_id = :hash ", "hash={$value->ua_id}");
+                }
+            }
+        }
     }
 
 }

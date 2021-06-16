@@ -8,6 +8,8 @@ $valid = new StrValid();
 $clear = new StrClean();
 $select = new Select();
 $update = new Update();
+$selectB = clone $select;
+$updateB = clone $update;
 
 $sector = (isset($post->move[0]) ? trim($post->move[0]) : false);
 $page = (isset($post->target) ? trim($post->target) : false);
@@ -37,15 +39,40 @@ try {
             'page' => $clear->formatStr($page)
         ];
 
-        $select->query("doc_sectors", "s_hash = :sh", "sh={$save['sector']}");
-        if ($select->count()) {
-            $sectorData = $select->result()[0];
+        $select->query("doc_pages", "p_hash = :ph", "ph={$save['page']}");
+        $selectB->query("doc_sectors", "s_hash = :sh", "sh={$save['sector']}");
+
+        if ($select->error() || $selectB->error()) {
+            $error = "";
+            $error .= (($select->error() !== null) ? '<p>' . $select->error() . '</p>' : null);
+            $error .= (($selectB->error() !== null) ? '<p>' . $selectB->error() . '</p>' : null);
+            throw new ConstException($error, ConstException::SYSTEM_ERROR);
+        } else if (!$select->count()) {
+            throw new ConstException('No momento não é possível mover a página'
+            . '<p class=font-small>Tente outra página ou tente novamente mais tarde</p>', ConstException::INVALID_POST);
+        } else if (!$selectB->count()) {
+            throw new ConstException('No momento não é possível mover a página'
+            . '<p class=font-small>Tente outro setor ou tente novamente mais tarde</p>', ConstException::INVALID_POST);
+        } else {
+            $pageData = $select->result()[0];
+            $sectorData = $selectB->result()[0];
+
+            // Atualizara página
             $update->query(
                 "doc_pages",
-                ['p_sector' => $save['sector']],
+                ['p_sector' => $sectorData->s_hash],
                 "p_hash = :ph",
-                "ph={$save['page']}"
+                "ph={$pageData->p_hash}"
             );
+
+            // Atualizar links das atividades vinculadas a página
+            $updateB->query(
+                "users_activity",
+                ['ua_link' => $sectorData->s_link . '/' . $pageData->p_link],
+                "ua_bound = :ub",
+                "ub={$pageData->p_hash}"
+            );
+
             if ($update->count()) {
                 ?>
                 <script>
@@ -63,11 +90,6 @@ try {
                 throw new ConstException('No momento não é possível mover a página'
                 . '<p class="font-small">Tente novamente mais tarde</p>', ConstException::INVALID_POST);
             }
-        } else if ($select->error()) {
-            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
-        } else {
-            throw new ConstException('Não encontrado dados da categoria selecionada'
-            . '<p class="font-small">Tente recarregar a página para corrigir o problema</p>', ConstException::INVALID_POST);
         }
     }
 } catch (ConstException $e) {

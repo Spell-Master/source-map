@@ -9,6 +9,8 @@ $valid = new StrValid();
 $clear = new StrClean();
 $select = new Select();
 $update = new Update();
+$user = new SmUser();
+$updateB = clone $update;
 
 $title = (isset($post->title) ? trim($post->title) : false);
 $editor = (isset($post->editor) ? PostData::parseStr($post->editor) : false);
@@ -84,6 +86,25 @@ try {
             } else {
                 $update->query("app_page", $save, "a_hash = :ah", "ah={$pageData->a_hash}");
                 if ($update->count()) {
+                    /////////////////////////
+                    // Registrar atividade
+                    /////////////////////////
+                    $user->setActivity(
+                        $clear->formatStr($session->user->hash),
+                        $pageData->a_hash,
+                        htmlentities('Editou a página ' . $title . ' em <span class="bold">' . $appKey . '-padrao</span>'),
+                        $appKey . '-padrao' . '/' . $save['a_link'],
+                        SeoData::longText($editor, $config->length->longStr)
+                    );
+                    // Atualizar os links das atividades vinculadas a página
+                    if ($pageData->a_link != $save['a_link']) {
+                        $updateB->query(
+                            "users_activity",
+                            ['ua_link' => $appKey . '-padrao' . '/' . $save['a_link']],
+                            "ua_bound = :ub",
+                            "ub={$pageData->a_hash}"
+                        );
+                    }
                     ?>
                     <script>
                         smStf.pageAction.cancel();
