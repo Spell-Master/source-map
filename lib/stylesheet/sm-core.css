@@ -423,6 +423,30 @@ Abaixo da header
     opacity: 1
 }
 
+/* Segmentos do editor */
+.textarea {
+    min-height: 200px;
+    resize: none
+}
+/* area do editor */
+.editor-area {
+    display: block;
+    border: 1px solid #e7e7e7
+}
+/* videos */
+.smvideo {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0
+}
+.smvideo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
 /*
 Outros
 */
@@ -438,16 +462,6 @@ Outros
 }
 #scoll-top.show {
     display: block
-}
-
-.editor-area {
-    display: block;
-    border: 1px solid #e7e7e7
-}
-
-.textarea {
-    min-height: 200px;
-    resize: none
 }
 
 #box-notify {

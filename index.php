@@ -62,14 +62,14 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <script src="lib/javascript/sm-core.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-user.js" type="text/javascript"></script>
         <script src="lib/javascript/sm-page.js" type="text/javascript"></script>
-        <script src="lib/javascript/sm-editor.js" type="text/javascript"></script>
+        <script src="lib/javascript/sm-editor.js?r=<?= time() ?>" type="text/javascript"></script>
         <script src="lib/javascript/sm-stf.js" type="text/javascript"></script>
 
         <script src="lib/codemirror/codemirror.js"></script>
         <script src="lib/codemirror/mode.js" type="text/javascript"></script>
         <script src="lib/codemirror/hint.js" type="text/javascript"></script>
         <script src="lib/prism/prism.js" type="text/javascript"></script>
-        <script src="lib/editor/ckeditor.js" type="text/javascript"></script>
+        <script src="lib/editor/ckeditor.js?r=<?= time() ?>" type="text/javascript"></script>
         <script>
             const BASE_URI = '<?= $baseUri ?>';
             const MEMORY = {};
