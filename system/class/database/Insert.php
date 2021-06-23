@@ -23,7 +23,6 @@ class Insert extends Connect {
 
     /** @Attr: Armazena se houve sucesso na incerssão * */
     private $insertData;
-    private $insertCount;
 
     /** @Attr: Armazena o erro para personalizar a saída * */
     private $insertError;
@@ -52,7 +51,11 @@ class Insert extends Connect {
      * ****************************************
      */
     public function count() {
-        return ($this->insertSyntax->rowCount());
+        if ($this->insertData) {
+            return ($this->insertSyntax->rowCount());
+        } else {
+            return (0);
+        }
     }
 
     /**
@@ -116,10 +119,8 @@ class Insert extends Connect {
         try {
             $this->insertSyntax->execute($this->insertFilds);
             $this->insertData = $this->insertConn->lastInsertId();
-            $this->insertCount = 1;
         } catch (PDOException $error) {
             $this->insertData = null;
-            $this->insertCount = null;
             $this->insertError = "Erro ao inserir dados: {$error->getMessage()} {$error->getCode()}";
         }
     }

@@ -29,7 +29,7 @@ require_once (__DIR__ . '/../../../system/config.php');
             enctype="multipart/form-data"
             class="margin-top align-center"
             onsubmit="return (false);">
-            <input id="file-send" name="file" type="file" accept="*" class="hide" />
+            <input id="file-send" name="upload" type="file" accept="*" class="hide" />
             <div class="row">
                 <div class="float-left">
                     <label for="file-send" class="btn-info text-white font-large box-y-50" style="line-height: 27px">

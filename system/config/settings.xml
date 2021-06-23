@@ -50,6 +50,8 @@
     <store>
         <uploadSize>40000000</uploadSize> <!-- Limite no tamanho de arquivos -->
         <iconSize>40000000</iconSize> <!-- Limite no tamanho de ícones -->
+        <maxFiles>5</maxFiles> <!-- Quantidade de arquivos que um usuário pode hospedar -->
+        <maxSize>10000000</maxSize> <!-- Tamanho de bit's total de todos arquivos que um usuário pode hospedar -->
     </store>
 
 </settings>

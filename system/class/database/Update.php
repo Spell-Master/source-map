@@ -30,6 +30,9 @@ class Update extends Connect {
 
     /** @Attr: Armazena o erro para personalizar a saída * */
     private $updateError;
+    
+    /** @Attr: Armazena se houve sucesso na incerssão * */
+    private $updateData;
 
     /**
      * ********************************************
@@ -62,7 +65,11 @@ class Update extends Connect {
      * ********************************************
      */
     public function count() {
-        return ($this->updateSyntax->rowCount());
+        if ($this->updateData) { 
+            return ($this->updateSyntax->rowCount());
+        } else {
+            return (0);
+        }
     }
 
     /**
@@ -115,7 +122,9 @@ class Update extends Connect {
         $this->updateConnect();
         try {
             $this->updateSyntax->execute(array_merge($this->updateColumn, $this->updateValues));
+            $this->updateData = true;
         } catch (PDOException $error) {
+            $this->updateData = false;
             $this->updateError = "Erro ao alterar dados: {$error->getMessage()} {$error->getCode()}";
         }
     }

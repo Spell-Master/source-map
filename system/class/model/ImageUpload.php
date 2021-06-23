@@ -115,7 +115,7 @@ class ImageUpload {
             @imagedestroy($this->image);
             $this->result = false;
         } else {
-            $this->exif = exif_read_data($this->file['tmp_name']);
+            @$this->exif = exif_read_data($this->file['tmp_name']);
             $this->setImageResize();
         }
     }

@@ -60,6 +60,8 @@ class Delete extends Connect {
     public function count() {
         if ($this->deleteData) {
             return ($this->deleteSyntax->rowCount());
+        } else {
+            return (0);
         }
     }
 
