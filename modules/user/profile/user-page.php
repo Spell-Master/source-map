@@ -89,8 +89,8 @@ if (!isset($userData)) { // Executa a partir do profile.php
                         </div>
                         <div class="col-quarter text-white hide-large">
                             <button  class="btn-dark button-block shadow-on-hover"
-                                     onclick="smUser.openEdit('img');">
-                                <i class="icon-images2"></i> Imagens
+                                     onclick="smUser.openEdit('attachment');">
+                                <i class="icon-archive"></i> Anexos
                             </button>
                         </div>
                         <div class="col-quarter text-white hide-large"

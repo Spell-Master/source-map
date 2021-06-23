@@ -117,8 +117,8 @@ try {
                                 </a>
                             </li>
                             <li>
-                                <a title="Editar dados imagens" onclick="smUser.openEdit('img');">
-                                    <i class="font-large icon-images2"></i><p>Dados de Imagem</p>
+                                <a title="Editar dados imagens" onclick="smUser.openEdit('attachment');">
+                                    <i class="font-large icon-archive"></i><p>Dados de Anexos</p>
                                 </a>
                             </li>
                             <li>
