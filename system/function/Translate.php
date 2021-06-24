@@ -26,5 +26,9 @@ function LevelToName($nv) {
 function sizeName($fileSize) {
     $path = ['Bit\'s', 'KB\'s', 'MB\'s', 'GB\'s', 'TB\'s'];
     $comb = ($fileSize > 0 ? floor(log($fileSize, 1024)) : 0);
-    return (number_format($fileSize / pow(1024, $comb), 2, '.', ',') . ' ' . $path[$comb]);
+    if ($comb < 5) {
+        return (number_format($fileSize / pow(1024, $comb), 2, '.', ',') . ' ' . $path[$comb]);
+    } else {
+        return ('Maior que 1 Peta-byte');
+    }
 }
