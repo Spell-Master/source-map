@@ -483,8 +483,24 @@ Outros
 .img-default {
     width: 100%;
     height: 100%;
-    max-width: 250px;
+    max-width: 250px
+}
+
+.user-attachment {
+    width: 250px;
+    margin: 20px;
+    display: inline-block;
+    overflow: hidden
+}
+.user-attachment > img {
+    vertical-align: top;
+    width: inherit;
+    height: auto;
     max-height: 250px
+}
+.user-attachment i {
+    font-size: 25px;
+    line-height: 50px
 }
 
 /* Spoiler */

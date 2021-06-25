@@ -24,11 +24,11 @@ if (!isset($userData)) { // Executa a partir do profile.php
         <div class="container padding-all-prop fade-in" id="profile-display">
             <div class="align-center">
                 <p><?= LevelToName($userData->u_level); ?></p>
-                <div class="box-xy-300 margin-auto relative">
+                <div class="box-xy-250 margin-auto relative">
                     <img
                         src="<?= (empty($userData->u_photo) ? 'lib/image/profile.png' : 'uploads/photos/' . $userData->u_photo) ?>"
                         alt=""
-                        class="radius-circle margin-top img-default"
+                        class="radius-circle img-default"
                         data-photo=""
                         onerror="this.src='lib/image/profile.png'"
                         />

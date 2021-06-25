@@ -51,8 +51,8 @@ if (isset($cookie->clienthash) && $config->enable->users == 'y' && !isset($sessi
         <link href="lib/stylesheet/sm-default.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/sm-libary.css" rel="stylesheet" type="text/css" />
         <link href="lib/stylesheet/icomoon.css" rel="stylesheet" type="text/css" />
-        <link href="lib/stylesheet/sm-core.css" rel="stylesheet" type="text/css" />
-        <link href="lib/stylesheet/media.css" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/sm-core.css?r=<?= time() ?>" rel="stylesheet" type="text/css" />
+        <link href="lib/stylesheet/media.css?r=<?= time() ?>" rel="stylesheet" type="text/css" />
         <link href="lib/codemirror/codemirror.css" rel="stylesheet" type="text/css" />
         <link href="lib/prism/prism.css" rel="stylesheet" type="text/css" />
 

@@ -65,6 +65,13 @@
     .cke_button__textcolor {
         display: none !important
     }
+    .user-attachment {
+        width: 100%;
+        margin: 20px 0
+    }
+    .user-attachment > img {
+        max-height: 600px
+    }
 }
 
 @media (max-width: 530px) {

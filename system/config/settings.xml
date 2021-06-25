@@ -38,6 +38,8 @@
         <maxSectorDesc>100000</maxSectorDesc> <!-- Máximo de caracteres na descrição de setores -->
         <minText>1</minText> <!-- Mínimo de caracteres em comentários e mensagens -->
         <maxText>100000</maxText> <!-- Máximo de caracteres em comentários e mensagens -->
+        <minFileName>1</minFileName> <!-- Mínimo de caracteres para nome de arquivos -->
+        <maxFileName>150</maxFileName> <!-- Máximo de caracteres para nome de arquivos -->
     </length>
 
     <!-- Determinar quantidades de retornos -->

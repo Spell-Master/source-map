@@ -1,10 +1,9 @@
 <?php
 require_once (__DIR__ . '/../../../system/config.php');
-sleep((int) $config->length->colldown);
+//sleep((int) $config->length->colldown);
 
 $valid = new StrValid();
 $finfo = new finfo(FILEINFO_MIME);
-$len = new LenMaxMin();
 $clear = new StrClean();
 $select = new Select();
 $insert = new Insert();
@@ -32,7 +31,10 @@ try {
         throw new ConstException('Não é possível determinar o mime-type do arquivo', ConstException::SYSTEM_ERROR);
     }
     //
-    else if ($len->strLen($file['name'], $config->length->minName, $config->length->maxName, '$_FILES[\'file\'][\'name\']')) {
+    else if (strlen($file['name']) < $config->length->minFileName) {
+        throw new ConstException('O nome do arquivo é muito curto'
+        . '<p class=font-small>Envie um arquivo com o nome maior</p>', ConstException::INVALID_POST);
+    } else if (strlen($file['name']) > $config->length->maxFileName) {
         throw new ConstException('O nome do arquivo é muito grande'
         . '<p class=font-small>Envie um arquivo com o nome menor</p>', ConstException::INVALID_POST);
     }
@@ -103,7 +105,7 @@ try {
                 if ($upload->getResult()) {
                     $save = [
                         'up_name' => $upload->getImgName(),
-                        'up_size' => $file['size'],
+                        'up_size' => filesize($fileDir . $upload->getImgName()),
                         'up_user' => $userHash,
                         'up_date' => date('Y-m-d'),
                         'up_type' => 'image'
@@ -113,20 +115,20 @@ try {
                 if (move_uploaded_file($file['tmp_name'], $fileDir . $fileName . '.' . $extension) && is_writable($fileDir)) {
                     $save = [
                         'up_name' => $fileName . '.' . $extension,
-                        'up_size' => $file['size'],
+                        'up_size' => filesize($fileDir . $fileName . '.' . $extension),
                         'up_user' => $userHash,
                         'up_date' => date('Y-m-d'),
                         'up_type' => 'file'
                     ];
                 }
             } else { // Qualquer outro tipo de arquivo "COMPACTAR ELE ENTÂO"
-                $zip = new ZipArchive;
+                $zip = new ZipArchive();
                 if ($zip->open($fileDir . $fileName . '.zip', ZipArchive::CREATE) === true) {
                     $zip->addFromString($file['name'], file_get_contents($file['tmp_name']));
                     $zip->close();
                     $save = [
                         'up_name' => $fileName . '.zip',
-                        'up_size' => $file['size'],
+                        'up_size' => filesize($fileDir . $fileName . '.zip'),
                         'up_user' => $userHash,
                         'up_date' => date('Y-m-d'),
                         'up_type' => 'file'
@@ -143,7 +145,6 @@ try {
                 <script>
                     var $form = document.getElementById('upload-file');
                     $form.removeChild($form.querySelector('div.load-form'));
-                    $form.removeChild($form.querySelector('button'));
                     document.getElementById('file-send').value = '';
                     document.getElementById('file-name').innerText = '';
                     smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Arquivo Enviado</p>', true);
