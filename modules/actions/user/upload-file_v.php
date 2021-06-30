@@ -1,5 +1,6 @@
 <?php
 require_once (__DIR__ . '/../../../system/config.php');
+require_once (__DIR__ . '/../../../system/function/Translate.php');
 //sleep((int) $config->length->colldown);
 
 $valid = new StrValid();
@@ -65,7 +66,6 @@ try {
 
         $pathInfo = pathinfo($file['name']);
         $maxStore = 0;
-        $count = 0;
         $fileName = mb_strtolower($clear->formatStr($pathInfo['filename']) . '_' . time());
         $extension = strtolower($pathInfo['extension']);
         $userHash = $clear->formatStr($session->user->hash);
@@ -75,25 +75,24 @@ try {
         if (!file_exists($fileDir) && !is_dir($fileDir)) {
             mkdir($fileDir, 0777);
         }
-        // Checagem se o usuário ainda pode armazenar arquivos
-        if ($admin < $config->admin) {
-            $select->query("uploads", "up_user = :u", "u={$userHash}");
-            $count = $select->count();
 
-            if ($count) {
-                foreach ($select->result() as $value) {
-                    $maxStore += $value->up_size;
-                }
-            } else if ($select->error()) {
-                throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        $select->query("uploads", "up_user = :u", "u={$userHash}");
+        $count = ($select->count() ? $select->count() : 0);
+        if ($select->error()) {
+            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+        } else if ($count) {
+            foreach ($select->result() as $value) {
+                $maxStore += $value->up_size;
             }
         }
-        if ($count > $config->store->maxFiles) {
+
+        // Checagem se o usuário ainda pode armazenar arquivos
+        if ($admin < $config->admin && $count > $config->store->maxFiles) {
             throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
             . ' <span class="bold">' . $config->store->maxFiles . '</span>'
             . ' em arquivos no armazenamento'
             . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
-        } else if ($maxStore > $config->store->maxSize) {
+        } else if ($admin < $config->admin && $maxStore > $config->store->maxSize) {
             throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
             . ' <span class="bold">' . sizeName($config->store->maxSize) . '</span>'
             . ' em espaço no armazenamento'
@@ -143,11 +142,17 @@ try {
             if ($insert->count()) {
                 ?>
                 <script>
-                    var $form = document.getElementById('upload-file');
-                    $form.removeChild($form.querySelector('div.load-form'));
-                    document.getElementById('file-send').value = '';
-                    document.getElementById('file-name').innerText = '';
-                    smCore.notify('<i class="icon-bubble-notification icn-2x"></i><p>Arquivo Enviado</p>', true);
+                    smUser.uploadAtt(
+                        params = {
+                            model: `<?= ($storeModel) ?>`,
+                            hash: `<?= $userHash ?>`,
+                            size: `<?= sizeName($save['up_size']) ?>`,
+                            date: `<?= $clear->dateTime($save['up_date']) ?>`,
+                            name: `<?= $save['up_name'] ?>`,
+                            idx: `<?= ($count + 1) ?>`,
+                            img: `<?= ($storeModel == 'image' ? $upload->getImgName() : '') ?>`
+                        }
+                    );
                 </script>
                 <?php
             } else if ($insert->error()) {

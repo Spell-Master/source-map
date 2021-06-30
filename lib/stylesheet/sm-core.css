@@ -83,6 +83,8 @@ button [class^="icon-"]:before {
 
 .input-default:invalid:not(:placeholder-shown){color:#f55!important; box-shadow:0 0}
 
+#shopping-cart{z-index:4}
+
 /** ****************************************
  * Código capcha
  * *****************************************/
@@ -422,6 +424,18 @@ Abaixo da header
 .check-input input:checked + label {
     opacity: 1
 }
+.checkbox {
+    display: none
+}
+.checkbox + label:before {
+    font-family: 'icomoon-ultimate';
+    content: "\ee6f";
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24px;
+    cursor: pointer;
+}
+.checkbox:checked + label:before {content: "\ee6e"}
 
 /* Segmentos do editor */
 .textarea {

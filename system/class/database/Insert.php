@@ -61,6 +61,8 @@ class Insert extends Connect {
     /**
      * ****************************************
      * Informa se o registro foi concluído.
+     * Se verdadeito informa a última chave
+     *  primaria AUTO_INCREMENT (ID).
      * @Return: (bool) TRUE or FALSE
      * ****************************************
      */

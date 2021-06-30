@@ -74,21 +74,27 @@ try {
                     <li><a class="tab-link"><p class="font-large icon-archive"></p>Arquivos</a></li>
                 </ul>
                 <div class="tab-body">
-                    <div class="align-center">
+                    <div class="align-center" id="img-att">
                         <?php
+                        $idx = 0;
                         if (count($upImg)) {
                             foreach ($upImg as $img) {
+                                $idx++;
                                 ?>
                                 <div class="user-attachment">
                                     <img src="uploads/<?= $img->up_user ?>/<?= $img->up_name ?>" alt="" />
-                                    <p><?= sizeName($img->up_size) ?></p>
-                                    <?= $clear->dateTime($img->up_date) ?>
+                                    <p>
+                                        <?= sizeName($img->up_size) ?>
+                                        (<?= $clear->dateTime($img->up_date) ?>)
+                                    </p>
+                                    <input id="delfile-<?= $idx ?>" name="delfile[]" type="checkbox" value="<?= $img->up_name ?>" class="checkbox" />
+                                    <label for="delfile-<?= $idx ?>"> <span class="italic">Apagar</span></label>
                                 </div>
                                 <?php
                             }
                         } else {
                             ?>
-                            <div style="opacity: .5">
+                            <div style="opacity: .5" id="not-img">
                                 <i class="icon-images3 icn-5x"></i>
                                 <p class="padding-top">Você não possui imagens</p>
                             </div>
@@ -98,10 +104,11 @@ try {
                     </div>
                 </div>
                 <div class="tab-body">
-                    <div class="align-center">
+                    <div class="align-center" id="file-att">
                         <?php
                         if (count($upFile)) {
                             foreach ($upFile as $file) {
+                                $idx++;
                                 ?>
                                 <div class="user-attachment">
                                     <div class="box-xy-50 bg-dark radius-circle margin-auto">
@@ -110,12 +117,14 @@ try {
                                     <p class="bold"><?= $file->up_name ?></p>
                                     <?= sizeName($file->up_size) ?>
                                     <?= $clear->dateTime($file->up_date) ?>
+                                    <input id="delfile-<?= $idx ?>" name="delfile[]" type="checkbox" value="<?= $img->up_name ?>" class="checkbox" />
+                                    <label for="delfile-<?= $idx ?>"></label>
                                 </div>
                                 <?php
                             }
                         } else {
                             ?>
-                            <div style="opacity: .5">
+                            <div style="opacity: .5" id="not-file">
                                 <i class="icon-archive icn-5x"></i>
                                 <p class="padding-top">Você não possui arquivos</p>
                             </div>
@@ -129,9 +138,22 @@ try {
 
         <div id="upload-status"></div>
 
+        <div id="shopping-cart">
+            <div data-cart="" class="line-table vertical-middle"></div>
+            <div class="line-table vertical-middle">
+                <form method="POST" action=""></form>
+                <button class="box-xy-50 radius-circle margin-left bg-light-black bg-red-hover cursor-pointer">
+                    <i class="icon-bin font-medium"></i>
+                </button>
+            </div>
+        </div>
+
         <script>
             smUser.uploadFile('<?= (int) $config->store->uploadSize ?>');
             smTools.tab.init();
+
+            smTools.cart.init('checkbox');
+
         </script>
         <?php
     }
