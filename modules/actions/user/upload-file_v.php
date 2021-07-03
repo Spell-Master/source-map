@@ -65,107 +65,112 @@ try {
         }
 
         $pathInfo = pathinfo($file['name']);
-        $maxStore = 0;
-        $fileName = mb_strtolower($clear->formatStr($pathInfo['filename']) . '_' . time());
-        $extension = strtolower($pathInfo['extension']);
-        $userHash = $clear->formatStr($session->user->hash);
-        $fileDir = __DIR__ . '/../../../uploads/' . $userHash . '/';
-
-        // Cria a pasta do usuário caso ela não exista
-        if (!file_exists($fileDir) && !is_dir($fileDir)) {
-            mkdir($fileDir, 0777);
-        }
-
-        $select->query("uploads", "up_user = :u", "u={$userHash}");
-        $count = ($select->count() ? $select->count() : 0);
-        if ($select->error()) {
-            throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
-        } else if ($count) {
-            foreach ($select->result() as $value) {
-                $maxStore += $value->up_size;
-            }
-        }
-
-        // Checagem se o usuário ainda pode armazenar arquivos
-        if ($admin < $config->admin && $count > $config->store->maxFiles) {
-            throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
-            . ' <span class="bold">' . $config->store->maxFiles . '</span>'
-            . ' em arquivos no armazenamento'
-            . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
-        } else if ($admin < $config->admin && $maxStore > $config->store->maxSize) {
-            throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
-            . ' <span class="bold">' . sizeName($config->store->maxSize) . '</span>'
-            . ' em espaço no armazenamento'
-            . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
+        if (!isset($pathInfo['extension']) || !isset($pathInfo['filename'])) {
+            throw new ConstException('Não é possível salvar esse tipo de arquivo', ConstException::INVALID_POST);
         } else {
-            if ($storeModel == 'image') { // Se for imagens
-                $upload = new ImageUpload($fileDir);
-                $upload->sendImage($file, $fileName, 1024);
-                if ($upload->getResult()) {
-                    $save = [
-                        'up_name' => $upload->getImgName(),
-                        'up_size' => filesize($fileDir . $upload->getImgName()),
-                        'up_user' => $userHash,
-                        'up_date' => date('Y-m-d'),
-                        'up_type' => 'image'
-                    ];
-                }
-            } else if ($storeModel == 'compress') { // Se for arquivo compactado
-                if (move_uploaded_file($file['tmp_name'], $fileDir . $fileName . '.' . $extension) && is_writable($fileDir)) {
-                    $save = [
-                        'up_name' => $fileName . '.' . $extension,
-                        'up_size' => filesize($fileDir . $fileName . '.' . $extension),
-                        'up_user' => $userHash,
-                        'up_date' => date('Y-m-d'),
-                        'up_type' => 'file'
-                    ];
-                }
-            } else { // Qualquer outro tipo de arquivo "COMPACTAR ELE ENTÂO"
-                $zip = new ZipArchive();
-                if ($zip->open($fileDir . $fileName . '.zip', ZipArchive::CREATE) === true) {
-                    $zip->addFromString($file['name'], file_get_contents($file['tmp_name']));
-                    $zip->close();
-                    $save = [
-                        'up_name' => $fileName . '.zip',
-                        'up_size' => filesize($fileDir . $fileName . '.zip'),
-                        'up_user' => $userHash,
-                        'up_date' => date('Y-m-d'),
-                        'up_type' => 'file'
-                    ];
+            $extension = strtolower($pathInfo['extension']);
+            $maxStore = 0;
+            $fileName = mb_strtolower($clear->formatStr($pathInfo['filename']) . '_' . time());
+            $userHash = $clear->formatStr($session->user->hash);
+            $fileDir = __DIR__ . '/../../../uploads/' . $userHash . '/';
+
+            // Cria a pasta do usuário caso ela não exista
+            if (!file_exists($fileDir) && !is_dir($fileDir)) {
+                mkdir($fileDir, 0777);
+            }
+
+            $select->query("uploads", "up_user = :u", "u={$userHash}");
+            $count = ($select->count() ? $select->count() : 0);
+            if ($select->error()) {
+                throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
+            } else if ($count) {
+                foreach ($select->result() as $value) {
+                    $maxStore += $value->up_size;
                 }
             }
-        }
 
-        // Se o arquivo foi armazenado
-        if (isset($save)) {
-            $insert->query("uploads", $save);
-            if ($insert->count()) {
-                ?>
-                <script>
-                    smUser.uploadAtt(
-                        params = {
-                            model: `<?= ($storeModel) ?>`,
-                            hash: `<?= $userHash ?>`,
-                            size: `<?= sizeName($save['up_size']) ?>`,
-                            date: `<?= $clear->dateTime($save['up_date']) ?>`,
-                            name: `<?= $save['up_name'] ?>`,
-                            idx: `<?= ($count + 1) ?>`,
-                            img: `<?= ($storeModel == 'image' ? $upload->getImgName() : '') ?>`
-                        }
-                    );
-                </script>
-                <?php
-            } else if ($insert->error()) {
-                unlink($fileDir . $save['up_name']); // Remove o arquivo pois ele não foi registrado no banco
-                throw new ConstException($insert->error());
+            // Checagem se o usuário ainda pode armazenar arquivos
+            if ($admin < $config->admin && $count > $config->store->maxFiles) {
+                throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
+                . ' <span class="bold">' . $config->store->maxFiles . '</span>'
+                . ' em arquivos no armazenamento'
+                . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
+            } else if ($admin < $config->admin && $maxStore > $config->store->maxSize) {
+                throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
+                . ' <span class="bold">' . sizeName($config->store->maxSize) . '</span>'
+                . ' em espaço no armazenamento'
+                . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
             } else {
-                unlink($fileDir . $save['up_name']); // Remove o arquivo pois ele não foi registrado no banco
+                if ($storeModel == 'image') { // Se for imagens
+                    $upload = new ImageUpload($fileDir);
+                    $upload->sendImage($file, $fileName, 1024);
+                    if ($upload->getResult()) {
+                        $save = [
+                            'up_name' => $upload->getImgName(),
+                            'up_size' => filesize($fileDir . $upload->getImgName()),
+                            'up_user' => $userHash,
+                            'up_date' => date('Y-m-d'),
+                            'up_type' => 'image'
+                        ];
+                    }
+                } else if ($storeModel == 'compress') { // Se for arquivo compactado
+                    if (move_uploaded_file($file['tmp_name'], $fileDir . $fileName . '.' . $extension) && is_writable($fileDir)) {
+                        $save = [
+                            'up_name' => $fileName . '.' . $extension,
+                            'up_size' => filesize($fileDir . $fileName . '.' . $extension),
+                            'up_user' => $userHash,
+                            'up_date' => date('Y-m-d'),
+                            'up_type' => 'file'
+                        ];
+                    }
+                } else { // Qualquer outro tipo de arquivo "COMPACTAR ELE ENTÂO"
+                    $zip = new ZipArchive();
+                    if ($zip->open($fileDir . $fileName . '.zip', ZipArchive::CREATE) === true) {
+                        $zip->addFromString($file['name'], file_get_contents($file['tmp_name']));
+                        $zip->close();
+                        $save = [
+                            'up_name' => $fileName . '.zip',
+                            'up_size' => filesize($fileDir . $fileName . '.zip'),
+                            'up_user' => $userHash,
+                            'up_date' => date('Y-m-d'),
+                            'up_type' => 'file'
+                        ];
+                    }
+                }
+            }
+
+            // Se o arquivo foi armazenado
+            if (isset($save)) {
+                $insert->query("uploads", $save);
+                if ($insert->count()) {
+                    ?>
+                    <script>
+                        smUser.uploadAtt(
+                            params = {
+                                id: `<?= $insert->result() ?>`,
+                                model: `<?= ($storeModel) ?>`,
+                                hash: `<?= $userHash ?>`,
+                                size: `<?= sizeName($save['up_size']) ?>`,
+                                date: `<?= $clear->dateTime($save['up_date']) ?>`,
+                                name: `<?= $save['up_name'] ?>`,
+                                idx: `<?= ($count + 1) ?>`,
+                                img: `<?= ($storeModel == 'image' ? $upload->getImgName() : '') ?>`
+                            }
+                        );
+                    </script>
+                    <?php
+                } else if ($insert->error()) {
+                    unlink($fileDir . $save['up_name']); // Remove o arquivo pois ele não foi registrado no banco
+                    throw new ConstException($insert->error());
+                } else {
+                    unlink($fileDir . $save['up_name']); // Remove o arquivo pois ele não foi registrado no banco
+                    throw new ConstException('No momento não foi possível salvar o arquivo'
+                    . '<p class=font-small>Tente novamente mais tarde</p>', ConstException::INVALID_POST);
+                }
+            } else {
                 throw new ConstException('No momento não foi possível salvar o arquivo'
                 . '<p class=font-small>Tente novamente mais tarde</p>', ConstException::INVALID_POST);
             }
-        } else {
-            throw new ConstException('No momento não foi possível salvar o arquivo'
-            . '<p class=font-small>Tente novamente mais tarde</p>', ConstException::INVALID_POST);
         }
     }
 } catch (ConstException $e) {
@@ -190,7 +195,6 @@ try {
                     </div>';
                 $erro.classList.remove('hide');
                 $form.removeChild($form.querySelector('div.load-form'));
-                $form.removeChild($form.querySelector('button'));
                 document.getElementById('file-send').value = '';
                 document.getElementById('file-name').innerText = '';
                 setTimeout(function () {
@@ -202,3 +206,4 @@ try {
             break;
     }
 }
+exit();

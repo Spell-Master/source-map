@@ -81,7 +81,7 @@ try {
                             foreach ($upImg as $img) {
                                 $idx++;
                                 ?>
-                                <div class="user-attachment">
+                                <div class="user-attachment" data-att="<?= $img->up_id ?>">
                                     <img src="uploads/<?= $img->up_user ?>/<?= $img->up_name ?>" alt="" />
                                     <p>
                                         <?= sizeName($img->up_size) ?>
@@ -110,14 +110,14 @@ try {
                             foreach ($upFile as $file) {
                                 $idx++;
                                 ?>
-                                <div class="user-attachment">
+                                <div class="user-attachment" data-att="<?= $file->up_id ?>">
                                     <div class="box-xy-50 bg-dark radius-circle margin-auto">
                                         <i class="icon-file-zip2"></i>
                                     </div>
                                     <p class="bold"><?= $file->up_name ?></p>
                                     <?= sizeName($file->up_size) ?>
                                     <?= $clear->dateTime($file->up_date) ?>
-                                    <input id="delfile-<?= $idx ?>" name="delfile[]" type="checkbox" value="<?= $img->up_name ?>" class="checkbox" />
+                                    <input id="delfile-<?= $idx ?>" name="delfile[]" type="checkbox" value="<?= $file->up_name ?>" class="checkbox" />
                                     <label for="delfile-<?= $idx ?>"></label>
                                 </div>
                                 <?php
@@ -141,8 +141,10 @@ try {
         <div id="shopping-cart">
             <div data-cart="" class="line-table vertical-middle"></div>
             <div class="line-table vertical-middle">
-                <form method="POST" action=""></form>
-                <button class="box-xy-50 radius-circle margin-left bg-light-black bg-red-hover cursor-pointer">
+                <form method="POST" action="" id="delatt"></form>
+                <button
+                    class="box-xy-50 radius-circle margin-left bg-light-black bg-red-hover cursor-pointer"
+                    onclick="smUser.delAttach();">
                     <i class="icon-bin font-medium"></i>
                 </button>
             </div>
