@@ -40,7 +40,7 @@ try {
         </div>
         <hr />
 
-        <div class="box-x-900 margin-auto<?= ($admin < $config->admin && $maxStorage > $config->store->maxSize ? ' class="hide"' : null) ?>">
+        <div class="box-x-900 margin-auto<?= ($admin < $config->admin && $maxStorage > $config->store->maxSize ? ' hide' : null) ?>" id="box-upload">
             <p class="list margin-left">Enviar Anexo</p>
             <div id="upload-error" class="alert-danger patern-bg fade-in hide"></div>
             <div class="margin-top">
@@ -63,6 +63,20 @@ try {
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <?php
+        $width = round(($maxStorage / (int) $config->store->maxSize) * 100);
+        $totalUp = ($width > 100 ? 100 : $width);
+        $totaltext = $totalUp . '% = ' . sizeName($maxStorage);
+        ?>
+        <div class="margin-top">
+            <p class="list margin-left font-medium">Armazenamento Utilizado</p>
+            <div class="bg-light-black relative shadow" style="height: 20px; width: 100%;">
+                <div class="absolute pos-top-left bg-red patern-bg" style="height: 20px; width: <?= $totalUp ?>%" id="totalup">
+                </div>
+                <div class="absolute pos-center align-center text-white" id="totaltext"><?= $totaltext ?></div>
             </div>
         </div>
 
@@ -153,9 +167,7 @@ try {
         <script>
             smUser.uploadFile('<?= (int) $config->store->uploadSize ?>');
             smTools.tab.init();
-
             smTools.cart.init('checkbox');
-
         </script>
         <?php
     }

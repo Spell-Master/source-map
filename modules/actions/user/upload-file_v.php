@@ -69,7 +69,7 @@ try {
             throw new ConstException('Não é possível salvar esse tipo de arquivo', ConstException::INVALID_POST);
         } else {
             $extension = strtolower($pathInfo['extension']);
-            $maxStore = 0;
+            $maxStorage = 0;
             $fileName = mb_strtolower($clear->formatStr($pathInfo['filename']) . '_' . time());
             $userHash = $clear->formatStr($session->user->hash);
             $fileDir = __DIR__ . '/../../../uploads/' . $userHash . '/';
@@ -85,17 +85,12 @@ try {
                 throw new ConstException($select->error(), ConstException::SYSTEM_ERROR);
             } else if ($count) {
                 foreach ($select->result() as $value) {
-                    $maxStore += $value->up_size;
+                    $maxStorage += $value->up_size;
                 }
             }
 
             // Checagem se o usuário ainda pode armazenar arquivos
-            if ($admin < $config->admin && $count > $config->store->maxFiles) {
-                throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
-                . ' <span class="bold">' . $config->store->maxFiles . '</span>'
-                . ' em arquivos no armazenamento'
-                . '<p class="font-small">Apague um ou mais arquivos para poder enviar outro</p>', ConstException::INVALID_POST);
-            } else if ($admin < $config->admin && $maxStore > $config->store->maxSize) {
+            if ($admin < $config->admin && $maxStorage > $config->store->maxSize) {
                 throw new ConstException('Você não pode enviar mais arquivos porque já atingiu o limite de'
                 . ' <span class="bold">' . sizeName($config->store->maxSize) . '</span>'
                 . ' em espaço no armazenamento'
@@ -143,8 +138,16 @@ try {
             if (isset($save)) {
                 $insert->query("uploads", $save);
                 if ($insert->count()) {
+                    $currentSize = $maxStorage + $save['up_size'];
+                    $width = round(($currentSize / (int) $config->store->maxSize) * 100);
+                    $totalUp = ($width > 100 ? 100 : $width);
+                    $totaltext = $totalUp . '% = ' . sizeName($currentSize);
                     ?>
                     <script>
+                        <?php if ($admin < $config->admin && $currentSize > $config->store->maxSize) { ?>
+                            var $boxForm = document.getElementById('box-upload');
+                            $boxForm.classList.add('hide');
+                        <?php } ?>
                         smUser.uploadAtt(
                             params = {
                                 id: `<?= $insert->result() ?>`,
@@ -157,6 +160,8 @@ try {
                                 img: `<?= ($storeModel == 'image' ? $upload->getImgName() : '') ?>`
                             }
                         );
+                        document.getElementById('totalup').style.width = `<?= $totalUp ?>%`;
+                        document.getElementById('totaltext').innerText = `<?= $totaltext ?>`;
                     </script>
                     <?php
                 } else if ($insert->error()) {

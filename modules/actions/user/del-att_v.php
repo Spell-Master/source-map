@@ -1,6 +1,7 @@
 <?php
 echo ("<script>smTools.modal.showX();</script>"); // APAGAR ISSO DEPOIS DA PRODUÇÃO
 require_once (__DIR__ . '/../../../system/config.php');
+require_once (__DIR__ . '/../../../system/function/Translate.php');
 sleep((int) $config->length->colldown);
 
 $post = GlobalFilter::filterPost();
@@ -8,7 +9,7 @@ $valid = new StrValid();
 $clear = new StrClean();
 $select = new Select();
 $delete = new Delete();
-        
+
 $files = (isset($post->delfile) ? $post->delfile : false);
 
 try {
@@ -29,14 +30,17 @@ try {
         $fileID = [];
         $fileDir = __DIR__ . '/../../../uploads/' . $userHash . '/';
         $count = 0;
+        $maxStorage = 0;
 
         $select->query("uploads", "up_user = :u", "u={$userHash}");
 
         if ($select->count()) {
             foreach ($select->result() as $sql) {
+                $maxStorage += $sql->up_size;
                 foreach ($files as $file) {
                     if ($file == $sql->up_name && file_exists($fileDir . $sql->up_name)) {
                         $count++;
+                        $maxStorage -= $sql->up_size;
                         $fileID[] = $sql->up_id;
                         // Apagar registro
                         $delete->query("uploads", "up_id = :id", "id={$sql->up_id}");
@@ -47,8 +51,16 @@ try {
             }
             if ($delete->count()) {
                 $json = json_encode($fileID);
+                $width = round(($maxStorage / (int) $config->store->maxSize) * 100);
+                $totalUp = ($width > 100 ? 100 : $width);
+                $totaltext = $totalUp . '% = ' . sizeName($maxStorage);
                 ?>
                 <script>
+                    <?php if ($maxStorage < $config->store->maxSize) { ?>
+                              var $boxForm = document.getElementById('box-upload');
+                              $boxForm.classList.remove('hide');
+                    <?php } ?>
+
                     var $json = JSON.parse(`<?= $json ?>`),
                         $attId = document.querySelectorAll('[data-att]'),
                         $imgAtt = document.getElementById('img-att'),
@@ -66,6 +78,9 @@ try {
                     if ($fileAtt.children.length < 1) {
                         $fileAtt.innerHTML = '<div style="opacity: .5" id="not-file"><i class="icon-archive icn-5x"></i><p class="padding-top">Você não possui arquivos</p></div>';
                     }
+
+                    document.getElementById('totalup').style.width = `<?= $totalUp ?>%`;
+                    document.getElementById('totaltext').innerText = `<?= $totaltext ?>`;
 
                     smTools.cart.restart();
                     smTools.modal.close();
