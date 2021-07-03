@@ -96,6 +96,10 @@ try {
                                 $idx++;
                                 ?>
                                 <div class="user-attachment" data-att="<?= $img->up_id ?>">
+                                    <a class="href-link" onclick="smTools.transfer.download('uploads/<?= $img->up_user ?>/<?= $img->up_name ?>', true)">
+                                        Transferir <i class="icon-download4"></i>
+                                    </a>
+
                                     <img src="uploads/<?= $img->up_user ?>/<?= $img->up_name ?>" alt="" />
                                     <p>
                                         <?= sizeName($img->up_size) ?>
@@ -125,6 +129,9 @@ try {
                                 $idx++;
                                 ?>
                                 <div class="user-attachment" data-att="<?= $file->up_id ?>">
+                                    <a class="href-link" onclick="smTools.transfer.download('uploads/<?= $file->up_user ?>/<?= $file->up_name ?>', true)">
+                                        Transferir <i class="icon-download4"></i>
+                                    </a>
                                     <div class="box-xy-50 bg-dark radius-circle margin-auto">
                                         <i class="icon-file-zip2"></i>
                                     </div>
