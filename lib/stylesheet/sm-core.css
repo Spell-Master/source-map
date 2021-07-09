@@ -499,6 +499,12 @@ Outros
     height: 100%;
     max-width: 250px
 }
+.sm-attach > img {
+    margin: auto;
+    width: auto;
+    height: auto;
+    max-height: 500px
+}
 
 .user-attachment {
     width: 250px;
@@ -513,6 +519,24 @@ Outros
     max-height: 250px
 }
 .user-attachment i {
+    font-size: 25px;
+    line-height: 50px
+}
+
+.user-attachment-b {
+    width: 125px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    cursor: pointer
+}
+.user-attachment-b > img {
+    width: inherit;
+    height: auto;
+    max-height: 125px
+}
+.user-attachment-b i {
     font-size: 25px;
     line-height: 50px
 }

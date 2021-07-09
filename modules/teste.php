@@ -5,15 +5,21 @@
     </div>
     <div class="bg-light padding-all text-white">
         <div class="row">
-            <div class="col-third col-fix padding-top-min bg-aqua">
+            <div class="col-third col-fix padding-top-min hide-min">
                 <button
                     class="btn-dark button-small shadow-on-hover"
                     title="Inserir um vídeo"
                     onclick="editorVideo();">
                     &nbsp;<i class="icon-youtube"></i>&nbsp;
                 </button>
+                <button
+                    class="btn-dark button-small shadow-on-hover"
+                    title="Inserir um anexo"
+                    onclick="editorAtt();">
+                    &nbsp;<i class="icon-box-add"></i>&nbsp;
+                </button>
             </div>
-            <div class="col-twothird col-fix align-right bg-orange">
+            <div class="col-twothird col-fix align-right maximize-min">
                 <button class="btn-success shadow-on-hover">
                     <i class="icon-file-plus2"></i>
                 </button>
@@ -24,12 +30,7 @@
                     <i class="icon-file-minus2"></i>
                 </button>
             </div>
-
         </div>
-
-
-
-
     </div>
 </div>
 
